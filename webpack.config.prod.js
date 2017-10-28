@@ -27,7 +27,7 @@ export default {
   //开启调试
 
   entry: {
-    app: path.resolve(__dirname, 'src/index'),
+    app: path.resolve(__dirname, 'src/helps/index'),
     vendor: ['react','react-dom','redux','react-redux','react-router-redux','react-router-dom','redux-thunk']
   },
   target: 'web', // 目标是web服务

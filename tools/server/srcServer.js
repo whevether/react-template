@@ -1,21 +1,28 @@
-import 'babel-polyfill';
-/* eslint-disable no-unused-vars*/
-import React from 'react';
 import express from 'express';
-import open from 'open';
-import path from 'path';
-import compression from 'compression';
+import webpack from 'webpack';
+import config from '../../webpack.config.dev'; 
+import open from 'open'; 
+/*eslint-disable no-unused-vars*/
+import React from 'react';
+// import path from 'path';
 import renderer from '../render/index';
 import { matchRoutes } from 'react-router-config';
 import routes from '../../src/router/routes';
 // 状态
 import createStore from '../store/configureStore';
+/* eslint-disable no-console */
 const port = 3000;
+
 const app = express();
-app.set("dist", path.resolve(__dirname,"../../dist"));
-app.use(compression());
+const compiler = webpack(config);
+app.use(require('webpack-dev-middleware')(compiler, {
+  publicPath: config.output.publicPath
+}));
+
+app.use(require('webpack-hot-middleware')(compiler));
+
 app.use(express.static('dist'));
-//会报一个错误，bug;  应该是使用了react-router-redux 的问题；  同步路由的时候。还未加载出dom  但应该是不影响使用的; 
+
 app.get('*',(req,res)=>{
   const {store,history} = createStore(req.path);
   const promises = matchRoutes(routes, req.path)
@@ -43,8 +50,8 @@ app.get('*',(req,res)=>{
       res.status(200).send(content);
     });
 });
+//开启http 服务
 app.listen(port, function(err) {
-  /*eslint-disable no-console*/
   if (err) {
     console.log(err);
   } else {

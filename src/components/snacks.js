@@ -1,11 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link,Route} from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import {RouteWithSubRoutes} from '../router/router';
-import PropTypes from 'prop-types';
 // 子组件示例
 /* eslint-disable react/no-multi-comp */ 
-const Snacks = ({routes}) =>{
+const Snacks = () =>{
     const head = ()=>{
         return (
             <Helmet>
@@ -22,14 +20,12 @@ const Snacks = ({routes}) =>{
                 <li><Link to="/snacks/one">辣条</Link></li>
                 <li><Link to="/snacks/two">薯片</Link></li>
             </ul>
-            {routes.map((route,key)=>(
-                <RouteWithSubRoutes key={key} {...route}/>
-            ))}
+            {/* 修改子路由， 子路由是父路由的组件，被父路由包裹 */}
+            <div className="router_sub">
+                <Route path="/snacks/one" component={()=><h2>子路由1</h2>} />
+                <Route path="/snacks/two" component={() => <h2>子路由2</h2>} />
+            </div>
         </div>
     );
-};
-// 新的验证规则模块,从react 中剥离了
-Snacks.propTypes = {
-    routes: PropTypes.arrayOf(Object).isRequired
 };
 export default Snacks;

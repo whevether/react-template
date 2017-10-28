@@ -24,7 +24,7 @@ export default {
       //  设置目标源和热加载源
       'react-hot-loader/patch',   //这个是最新的react热加载插件。目前还是rc版.取代babel-react-hmr
       'webpack-hot-middleware/client?reload=true',
-      path.resolve(__dirname, 'src/index.js') // 定位客户端目标
+      path.resolve(__dirname, 'src/helps/index.js') // 定位客户端目标
     ]
   },
   target: 'web', // 目标是web 服务器

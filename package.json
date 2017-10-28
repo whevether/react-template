@@ -1,6 +1,6 @@
 {
   "name": "react-template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个,包含服务端渲染.服务端渲染是另外两个store,需要特别注意;",
   "engines": {
     "npm": ">=3"
@@ -13,6 +13,7 @@
     "open:src": "babel-node tools/srcServer.js && npm run buildHtml",
     "open:dist": "babel-node tools/distServer.js",
     "open:serverDist": "babel-node tools/server/distServer.js",
+    "open:srcServer": "babel-node tools/server/srcServer.js",
     "lint": "esw webpack.config.* src tools --color",
     "lint:watch": "npm run lint -- --watch",
     "clean-dist": "npm run remove-dist && mkdir dist",
@@ -20,6 +21,7 @@
     "buildHtml": "babel-node tools/buildHtml.js",
     "prebuild": "npm run clean-dist && npm run lint && npm run test && npm run buildHtml",
     "build": "babel-node tools/build.js  && npm run open:dist && npm run buildHtml",
+    "server": "npm-run-all --parallel  test:watch open:srcServer lint:watch ",
     "prod": "npm run clean-dist && babel-node tools/build.js && npm run open:serverDist",
     "test": "mocha tools/testSetup.js \"./{,!(node_modules)/**/}*.spec.js\" --reporter progress",
     "test:watch": "npm run test -- --watch"
@@ -27,7 +29,7 @@
   "author": "keep_wan",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "0.17.0",
     "babel-polyfill": "^6.26.0",
     "classnames": "2.2.5",
     "create-react-class": "15.6.2",
@@ -40,8 +42,9 @@
     "react-helmet": "^5.2.0",
     "react-loadable": "^5.2.2",
     "react-redux": "5.0.6",
+    "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "4.2.2",
-    "react-router-redux": "^5.0.0-alpha.6",
+    "react-router-redux": "5.0.0-alpha.8",
     "redux": "3.7.2",
     "redux-thunk": "2.2.0",
     "serialize-javascript": "1.4.0"
@@ -80,16 +83,16 @@
     "npm-run-all": "4.1.1",
     "open": "0.0.5",
     "postcss-loader": "2.0.7",
-    "react-hot-loader": "3.0.0-beta.6",
+    "react-hot-loader": "3.1.1",
     "rimraf": "2.6.2",
     "sass-loader": "6.0.6",
     "sinon": "4.0.1",
     "sinon-chai": "2.14.0",
     "style-loader": "0.19.0",
     "url-loader": "0.6.2",
-    "webpack": "3.7.1",
+    "webpack": "3.8.1",
     "webpack-dev-middleware": "1.12.0",
-    "webpack-hot-middleware": "2.19.1"
+    "webpack-hot-middleware": "2.20.0"
   },
   "keywords": [
     "react",
@@ -103,10 +106,10 @@
     "boilerplate",
     "starter",
     "react-template",
-    "react-version15.5"
+    "react-version16"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/whevether/react-template.git"
+    "url": "https://github.com/whevether/react-template-keep.git"
   }
 }

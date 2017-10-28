@@ -1,16 +1,29 @@
 import React from 'react';
 import Navbar from '../components/navbar';
 import PropTypes from 'prop-types';
-// 这个相当于路由导航组件
-const App = (props)=>{
+import {withRouter,Switch} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {RouteWithSubRoutes} from '../router/routes';
+/*把switch 包裹在这里面使用withRouter 保证同步路由数据*/ 
+const ConnectedSwitch = withRouter(connect(state => ({
+	location: state.location
+}))(Switch));
+const App = ({route})=>{
+
     return(
       <div className="main" style={{'textAlign':'center'}}>
         <Navbar />
-        {props.children}
+        <ConnectedSwitch>
+          {route ? route.routes.map((route, i) => (
+              <RouteWithSubRoutes key={i} {...route}/>
+          )): ''}
+        </ConnectedSwitch>
       </div>
     );
 };
 App.propTypes = {
-  children: PropTypes.element
+  route: PropTypes.objectOf(Array).isRequired
 };
-export default App;
+export default withRouter(connect(state => ({
+  location: state.location,
+}))(App));

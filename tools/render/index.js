@@ -1,32 +1,22 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { Switch,StaticRouter } from 'react-router-dom';
+// import { Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import serialize from 'serialize-javascript';
 import { ConnectedRouter } from 'react-router-redux';
-import {RouteWithSubRoutes,routes} from '../../src/router/router';
-import App from '../../src/containers/app';
+import Routes from '../../src/router/routes';
 import { Helmet } from 'react-helmet';
-const index = routes.map((route, i) => (
-  <RouteWithSubRoutes key={i} {...route}/>
-));
+import { renderRoutes } from 'react-router-config';
 export default (req, store, context,history) => {
   const content = renderToString(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <StaticRouter location={req.path} context={context}>
-          <App>
-            <Switch>
-              {index}
-            </Switch>
-          </App>
-        </StaticRouter>
+        <div>{renderRoutes(Routes)}</div>
       </ConnectedRouter>
     </Provider>
   );
 
   const helmet = Helmet.renderStatic();
-
   return `
     <html>
       <head>
@@ -35,7 +25,7 @@ export default (req, store, context,history) => {
         <link rel="stylesheet" href="/app.css">
       </head>
       <body>
-        <div id="root">${content}</div>
+        <div id="app">${content}</div>
         <script>
           window.INITIAL_STATE = ${serialize(store.getState())}
         </script>
