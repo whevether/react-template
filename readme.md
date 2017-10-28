@@ -37,6 +37,6 @@
 4. 增加redux axios 中间件调用方法;以及调用获取数据例子
 5. 增加 使用react-router-redux 编程式导航的例子;通过代码跳转到页面返回上级页面;并保证redux的数据同步，不会延迟;
 ##### 示例图片 || 已经解决了之前服务端端存在问题
-[![示例图片](./screen/1.gi) "示例图片")](https://whevether.github.io/react-template "示例")
+[![示例图片](./screen/1.gif) "示例图片")](https://whevether.github.io/react-template "示例")
 ##### 演示地址。不含服务端渲染;
 [演示](https://whevether.github.io/react-template "演示")
