@@ -1,6 +1,6 @@
 {
   "name": "react-template",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个,包含服务端渲染.服务端渲染是另外两个store,需要特别注意;",
   "engines": {
     "npm": ">=3"
