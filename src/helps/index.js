@@ -1,5 +1,5 @@
 /* eslint-disable import/default */
-import 'babel-polyfill';
+import '@babel/polyfill';
 // 路由句柄
 import React from 'react';
 import ReactDOM from 'react-dom';

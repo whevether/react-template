@@ -7,4 +7,4 @@ process.env.NODE_ENV = 'test';
 });
 
 //注册babel 以便识别es6 转换es5
-require('babel-register')();
+require('@babel/register')();

@@ -16,7 +16,7 @@ const Home = (props) =>{
         );
     };
     return(
-        <div className="home">
+        <>
             {head()}
             <h2 onClick={props.fetch_data}>主页</h2>
             {props.indexData !== null ? props.indexData.banner.map((elm,key)=>{
@@ -27,7 +27,7 @@ const Home = (props) =>{
                     </div>
                 );
             }): '点击主页文字获取数据'}
-        </div>
+        </>
     );
 };
 Home.propTypes = {

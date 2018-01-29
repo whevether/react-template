@@ -1,18 +1,18 @@
 {
   "presets": [
-    "react",
-    "stage-1",
-    "es2015"
+    "@babel/preset-es2015",
+    "@babel/preset-react",
+    "@babel/preset-stage-1"
   ],
   "env": {
     "development": {
-      "plugins": [["react-hot-loader/babel"],["transform-class-properties"]]
+      "plugins": [["react-hot-loader/babel"],["@babel/plugin-transform-classes"]]
     },
     "production": {
       "plugins": [
-        "transform-react-constant-elements",
-        "transform-react-remove-prop-types",
-        "transform-class-properties"
+        "@babel/plugin-transform-classes",
+        "@babel/plugin-transform-react-constant-elements",
+        "babel-plugin-transform-react-remove-prop-types"
       ]
     }
   }

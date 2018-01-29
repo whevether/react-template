@@ -1,6 +1,6 @@
 {
   "name": "react-template",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个,包含服务端渲染.服务端渲染是另外两个store,需要特别注意;",
   "engines": {
     "npm": ">=3"
@@ -30,7 +30,6 @@
   "license": "MIT",
   "dependencies": {
     "axios": "0.17.1",
-    "babel-polyfill": "^6.26.0",
     "classnames": "2.2.5",
     "create-react-class": "15.6.2",
     "express": "4.16.2",
@@ -50,19 +49,22 @@
     "serialize-javascript": "1.4.0"
   },
   "devDependencies": {
+    "@babel/cli": "7.0.0-beta.38",
+    "@babel/core": "7.0.0-beta.38",
+    "@babel/node": "7.0.0-beta.38",
+    "@babel/plugin-transform-classes": "7.0.0-beta.38",
+    "@babel/plugin-transform-react-constant-elements": "7.0.0-beta.38",
+    "@babel/preset-env": "7.0.0-beta.38",
+    "@babel/preset-es2015": "7.0.0-beta.38",
+    "@babel/preset-react": "7.0.0-beta.38",
+    "@babel/preset-stage-1": "7.0.0-beta.38",
+    "@babel/register": "7.0.0-beta.38",
+    "babel-loader": "8.0.0-beta.0",
+    "@babel/polyfill": "7.0.0-beta.38",
     "autoprefixer": "7.2.5",
-    "babel-cli": "6.26.0",
-    "babel-core": "6.26.0",
     "babel-eslint": "8.2.1",
-    "babel-loader": "7.1.2",
     "babel-jest": "22.1.0",
-    "babel-plugin-transform-class-properties": "6.24.1",
-    "babel-plugin-transform-react-constant-elements": "6.23.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.12",
-    "babel-preset-es2015": "6.24.1",
-    "babel-preset-react": "6.24.1",
-    "babel-preset-stage-1": "6.24.1",
-    "babel-register": "6.26.0",
     "chai": "4.1.2",
     "chalk": "2.3.0",
     "compression": "1.7.1",
