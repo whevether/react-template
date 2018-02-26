@@ -17,8 +17,8 @@ export default {
     }
   },
 
-  devtool: 'cheap-module-eval-source-map', // 调试工具
-
+  devtool: 'eval', // 调试工具
+  mode: "development",
   entry: {
       app:[
       //  设置目标源和热加载源
@@ -31,7 +31,8 @@ export default {
   output: {
     path: path.resolve(__dirname, 'dist'), // 输出编译文件目录
     publicPath: '/', //根目录
-    filename: '[name].js'
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
   },
   plugins: [
     new webpack.DefinePlugin({

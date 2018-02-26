@@ -31,24 +31,26 @@ export default {
     vendor: ['react','react-dom','redux','react-redux','react-router-redux','react-router-dom','redux-thunk']
   },
   target: 'web', // 目标是web服务
+  mode: "production",
   output: {
     //输出目录
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].js'
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
   },
   plugins: [
     // 编译环境变量
     new webpack.DefinePlugin(GLOBALS),
 
     // 生成css 文件
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('[name].bundle.css'),
     //优化编译插件
-    new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        filename: '[name].js'
-    })
+    // new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //     name: 'vendor',
+    //     filename: '[name].js'
+    // })
   ],
   module: {
     rules: [
