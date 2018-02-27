@@ -34,6 +34,13 @@ export default {
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
   },
+  optimization: {
+    splitChunks:{
+      minSize:1
+    },
+    minimize: true,
+    runtimeChunk: true
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)

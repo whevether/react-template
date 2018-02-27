@@ -28,7 +28,7 @@ export default {
 
   entry: {
     app: path.resolve(__dirname, 'src/helps/index'),
-    vendor: ['react','react-dom','redux','react-redux','react-router-redux','react-router-dom','redux-thunk']
+    // vendor: ['react','react-dom','redux','react-redux','react-router-redux','react-router-dom','redux-thunk']
   },
   target: 'web', // 目标是web服务
   mode: "production",
@@ -39,6 +39,14 @@ export default {
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
   },
+  optimization: {
+    splitChunks:{
+      minSize:1
+    },
+    minimize: true,
+    runtimeChunk: true
+  },
+  devtool: "source-map",
   plugins: [
     // 编译环境变量
     new webpack.DefinePlugin(GLOBALS),
@@ -49,11 +57,6 @@ export default {
     // new webpack.optimization.splitChunks(),
     // new webpack.optimization.runtimeChunk(),
     // new webpack.optimization.minimize()
-    // new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //     name: 'vendor',
-    //     filename: '[name].js'
-    // })
   ],
   module: {
     rules: [
