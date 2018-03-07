@@ -1,17 +1,16 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 // 服务端
-import Home from '../components/home';
-import RedBull from '../components/redBull';
-import Snacks from '../components/snacks'; //包裹了子路由的组件
-import NotFoundPage from '../components/nodeFound';
-import App from '../containers/app';
+import AsyncHome from '../components/home';
+import AsyncRedBull from '../components/redBull';
+import AsyncSnacks from '../components/snacks'; //包裹了子路由的组件
+import AsyncNotFoundPage from '../components/nodeFound';
+import AsyncApp from '../containers/app';
 /*
   当不需要服务端渲染的时候可以开启代码分割。服务端渲染代码分割这个插件会有问题
 */ 
 // import Loadable from 'react-loadable'; 
-// import path from 'path';
-// 路由加载时动画 
+// // 路由加载时动画 
 // const MyLoadingComponent = ({ isLoading, error }) => {
 //     // Handle the loading state
 //     if (isLoading) {
@@ -26,43 +25,50 @@ import App from '../containers/app';
 //     }
 // };
 // //分割路由
+// const AsyncApp = Loadable({
+//   loader: ()=>import('../containers/app'),
+//   loading: MyLoadingComponent,
+//   delay: 200
+// });
 // const AsyncHome = Loadable({
 //     loader: () => import('../components/home'),
 //     loading: MyLoadingComponent,
-//     delay: 200,
-//     serverSideRequirePath: path.join(__dirname, '../components/home')
+//     delay: 200
 // }); 
 // const AsyncRedBull = Loadable({
 //     loader: () => import('../components/redBull'),
 //     loading: MyLoadingComponent,
-//     delay: 200,
-//     serverSideRequirePath: path.join(__dirname, '../components/redBull')
+//     delay: 200
 // });
 // const AsyncSnacks = Loadable({
 //     loader: () => import('../components/snacks'),
 //     loading: MyLoadingComponent,
-//     delay: 200,
-//     serverSideRequirePath: path.join(__dirname, '../components/snacks')
+//     delay: 200
+// });
+// const AsyncNotFoundPage = Loadable({
+//   loader: () => import('../components/nodeFound'),
+//   loading: MyLoadingComponent,
+//   delay: 200
 // });
 export default [
     {
-      component: App,
+      component: AsyncApp,
       routes: [
         {
-          component: Home,
+          component: AsyncHome,
           path: '/',
           exact: true
         },
         {
-          component:RedBull,
+          component:AsyncRedBull,
           path: '/redbull'
         },
         {
-          component: Snacks,
+          component: AsyncSnacks,
           path: '/snacks'
         },
         {
-          ...NotFoundPage   //没有路由的通配页面 404页面
+          ...AsyncNotFoundPage   //没有路由的通配页面 404页面
         }
       ]
     }

@@ -19,11 +19,12 @@ const Home = (props) =>{
         <>
             {head()}
             <h2 onClick={props.fetch_data}>主页</h2>
-            {props.indexData !== null ? props.indexData.banner.map((elm,key)=>{
+            {props.indexData !== null ? props.indexData.dash.map((elm,key)=>{
                 return (
                     <div key={key}>
-                        <span>{elm.content}</span>
-                        <img src={elm.image_url} />  
+                        <span>{elm.name}</span>
+                        <img src={elm.url} />
+                        <span>{elm.author}</span>  
                     </div>
                 );
             }): '点击主页文字获取数据'}

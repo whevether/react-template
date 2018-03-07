@@ -13,7 +13,7 @@ const Snacks = () =>{
         );
     };
     return(
-        <div>
+        <>
             {head()}
             <h2>小吃</h2>
             <ul>
@@ -25,7 +25,7 @@ const Snacks = () =>{
                 <Route path="/snacks/one" component={()=><h2>子路由1</h2>} />
                 <Route path="/snacks/two" component={() => <h2>子路由2</h2>} />
             </div>
-        </div>
+        </>
     );
 };
 export default Snacks;

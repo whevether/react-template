@@ -13,14 +13,16 @@ import { renderRoutes } from 'react-router-config';
 import 'style/test.scss';
 const history = createHistory();
 const store = configureStore(history); //第二个参数是初始状态
+import Loadable from 'react-loadable';
 // store.dispatch(push('/foo'));//用react-router-redux 跳转的栗子
 import Routes from '../router/routes';
-ReactDOM.hydrate(
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-          {/* <Route component={App}/> */}
-          <div>{renderRoutes(Routes)}</div>
-      </ConnectedRouter>
-    </Provider>,
-    document.getElementById('app')
+Loadable.preloadReady().then(() => {
+  ReactDOM.hydrate(
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <>{renderRoutes(Routes)}</>
+        </ConnectedRouter>
+      </Provider>,
+      document.getElementById('app')
   );
+});

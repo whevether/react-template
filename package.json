@@ -1,6 +1,6 @@
 {
   "name": "react-template",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个,包含服务端渲染.服务端渲染是另外两个store,需要特别注意;",
   "engines": {
     "npm": ">=3"
@@ -22,6 +22,7 @@
     "prebuild": "npm run clean-dist && npm run lint  && npm run buildHtml",
     "build": "babel-node tools/build.js  && npm run open:dist",
     "server": "npm-run-all --parallel  open:srcServer lint:watch test:watch",
+    "preprod": "npm run clean-dist && npm run lint  && npm run buildHtml",
     "prod": "babel-node tools/build.js && npm run open:serverDist",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -35,13 +36,13 @@
     "express": "4.16.2",
     "history": "4.7.2",
     "object-assign": "4.1.1",
-    "prop-types": "15.6.0",
+    "prop-types": "15.6.1",
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-helmet": "5.2.0",
     "react-loadable": "5.3.1",
     "react-redux": "5.0.7",
-    "react-router-config": "^1.0.0-beta.4",
+    "react-router-config": "1.0.0-beta.4",
     "react-router-dom": "4.2.2",
     "react-router-redux": "5.0.0-alpha.9",
     "redux": "3.7.2",
@@ -64,18 +65,18 @@
     "babel-jest": "22.4.1",
     "babel-loader": "8.0.0-beta.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.13",
-    "chalk": "2.3.1",
+    "chalk": "2.3.2",
     "compression": "1.7.2",
     "css-loader": "0.28.10",
     "enzyme": "3.3.0",
-    "eslint": "4.18.1",
+    "eslint": "4.18.2",
     "eslint-plugin-import": "2.9.0",
     "eslint-plugin-react": "7.7.0",
     "eslint-watch": "3.1.3",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
     "file-loader": "1.1.11",
-    "jest": "22.4.2",
-    "jest-cli": "22.4.2",
+    "jest": "22.4.1",
+    "jest-cli": "22.4.1",
     "json-loader": "0.5.7",
     "node-sass": "4.7.2",
     "npm-run-all": "4.1.2",
@@ -87,8 +88,14 @@
     "style-loader": "0.20.2",
     "url-loader": "1.0.1",
     "webpack": "4.1.0",
-    "webpack-dev-middleware": "2.0.6",
-    "webpack-hot-middleware": "2.21.0"
+    "webpack-dev-middleware": "3.0.1",
+    "webpack-hot-middleware": "2.21.2"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/assetsTransformer.js",
+      "\\.(css)$": "<rootDir>/tools/assetsTransformer.js"
+    }
   },
   "keywords": [
     "react",

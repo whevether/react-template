@@ -11,7 +11,7 @@
 ```
 ##### 安装命令和一些常用的npm脚本;
 - yarn    (安装脚手架依赖)
-- yarn preinstall    (检查node版本,最低6.0以上版本)
+- yarn preinstall    (检查node版本,最低8.0以上版本)
 - yarn prestart    (删除dist 编译打包文件)
 - yarn start (启动客户端的开发环境)
 - yarn build (打包编译客户端环境,并启动)
@@ -30,7 +30,7 @@
 4. 这个脚手架是封装了axios 这个ajax库到redux中；所以不用在调用的地方引入axios;只需要在redux的action中使用我在redux中封装的axios 中间件的别名  例如: api.get api.post等就好了;action中也符合redux的方式;
 5. 需要注意的是不是服务端渲染的启动命令也是不同的; 服务端渲染主要是为了解决seo问题，因为是单页应用。必须用户点击打开index.html 或index.php 或者站点后才能加载打包后的js 文件开始渲染节点内容; 没有加载js 也就不能渲染出节点。也就不能被搜索引擎检索到；  这也就是服务端渲染的需要;另外服务端渲染也加快网页加载速度; 只要服务器压力能承受住;
 6. 为什么服务端渲染不分割代码。因为会报错；而且用了压缩代码会小很多;普通十多张页面不会超过1MB .1Mb对于服务端来说并没有什么..
-##### 更新日志(2018.02.26)
+##### 更新日志(2018.03.07)
 1. 优化父子路由的写法。 父路由嵌套子路由
 2. 解决了服务端之前存在的报错问题。并加入服务端渲染调试模式,
 3. 优化redux路由数据在服务端渲染的时候不同步问题;
@@ -38,7 +38,7 @@
 5. 增加 使用react-router-redux 编程式导航的例子;通过代码跳转到页面返回上级页面;并保证redux的数据同步，不会延迟;
 6. webpack 升级到webpack version 4.1.0;
 7. 移除mocha 测试.使用更加简单的jest来处理测试
-8. 修复部分bug
+8. 更新webpack-dev-middleware与 webpack-hot-middleware,
 ##### 示例图片 || 已经解决了之前服务端端存在问题
 [![示例图片](./screen/1.gif) "示例图片")](https://whevether.github.io/react-template "示例")
 ##### 演示地址。不含服务端渲染;

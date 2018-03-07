@@ -5,7 +5,7 @@ import createHistory from 'history/createMemoryHistory';
 import axios from 'axios';
 import {routerMiddleware} from 'react-router-redux';
 const axiosInstance = axios.create({
-  baseURL: 'https://shop.keep-wan.me/api'
+  baseURL: 'https://www.keep-wan.me/api'
 });
 export default function configureStore(path='/') {
   const initialState = {};

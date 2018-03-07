@@ -9,10 +9,10 @@
           "useBuiltIns": "entry"
         }]
       ],
-      "plugins": [["react-hot-loader/babel"],["@babel/plugin-transform-classes"]]
+      "plugins": [["react-hot-loader/babel"],["@babel/plugin-transform-classes"],["react-loadable/babel"]]
     },
     "test": {
-      "presets": [["@babel/preset-env"], "@babel/preset-react"]
+      "presets": ["@babel/preset-env","@babel/preset-react","@babel/preset-stage-1","@babel/preset-es2015"]
     },
     "production": {
       "presets": [
@@ -26,7 +26,8 @@
       "plugins": [
         "@babel/plugin-transform-classes",
         "@babel/plugin-transform-react-constant-elements",
-        "babel-plugin-transform-react-remove-prop-types"
+        "babel-plugin-transform-react-remove-prop-types",
+        "react-loadable/babel"
       ]
     }
   }

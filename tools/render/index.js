@@ -11,7 +11,7 @@ export default (req, store, context,history) => {
   const content = renderToString(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <div>{renderRoutes(Routes)}</div>
+        <>{renderRoutes(Routes)}</>
       </ConnectedRouter>
     </Provider>
   );
@@ -22,6 +22,7 @@ export default (req, store, context,history) => {
       <head>
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <link rel="stylesheet" href="/app.css">
       </head>
       <body>
