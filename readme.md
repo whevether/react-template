@@ -1,7 +1,7 @@
 ###React version 16.2 版本脚手架
-> 包含客户端，服务端渲染完整示例，使用了最新的react,并实现version 16 最新的服务端渲染;
+> 包含客户端，服务端渲染完整示例，使用了最新的react,并实现version 16.2 最新的服务端渲染;
 > 解决了一些之前的服务端渲染bug;并添加了调试的服务端渲染模式;
-
+> 使用webpack 4.0 来编译
 ```html
 <!-- 分离的第三方依赖 -->
 <script src="../dist/js/vendor.js"></script>
@@ -36,7 +36,9 @@
 3. 优化redux路由数据在服务端渲染的时候不同步问题;
 4. 增加redux axios 中间件调用方法;以及调用获取数据例子
 5. 增加 使用react-router-redux 编程式导航的例子;通过代码跳转到页面返回上级页面;并保证redux的数据同步，不会延迟;
-6. webpack 升级到webpack version 4.0;
+6. webpack 升级到webpack version 4.1.0;
+7. 移除mocha 测试.使用更加简单的jest来处理测试
+8. 修复部分bug
 ##### 示例图片 || 已经解决了之前服务端端存在问题
 [![示例图片](./screen/1.gif) "示例图片")](https://whevether.github.io/react-template "示例")
 ##### 演示地址。不含服务端渲染;

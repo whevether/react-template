@@ -52,11 +52,7 @@ export default {
     new webpack.DefinePlugin(GLOBALS),
 
     // 生成css 文件
-    new ExtractTextPlugin('[name].bundle.css'),
-    //优化编译插件
-    // new webpack.optimization.splitChunks(),
-    // new webpack.optimization.runtimeChunk(),
-    // new webpack.optimization.minimize()
+    new ExtractTextPlugin('[name].bundle.css')
   ],
   module: {
     rules: [

@@ -16,7 +16,8 @@ const port = 3000;
 const app = express();
 const compiler = webpack(config);
 app.use(require('webpack-dev-middleware')(compiler, {
-  publicPath: config.output.publicPath
+  publicPath: config.output.publicPath,
+  serverSideRender: true
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
