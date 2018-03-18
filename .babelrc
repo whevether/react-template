@@ -6,13 +6,19 @@
         "@babel/preset-react",
         "@babel/preset-stage-1",
         ["@babel/preset-env",{
-          "useBuiltIns": "entry"
+          "useBuiltIns": "entry",
+          "spec": true,
+          "loose": true
         }]
       ],
       "plugins": [["react-hot-loader/babel"],["@babel/plugin-transform-classes"],["react-loadable/babel"]]
     },
     "test": {
-      "presets": ["@babel/preset-env","@babel/preset-react","@babel/preset-stage-1","@babel/preset-es2015"]
+      "presets": [["@babel/preset-env",{
+          "useBuiltIns": "entry",
+          "spec": true,
+          "loose": true
+        }],"@babel/preset-react","@babel/preset-stage-1","@babel/preset-es2015"]
     },
     "production": {
       "presets": [
@@ -20,7 +26,9 @@
         "@babel/preset-react",
         "@babel/preset-stage-1",
         ["@babel/preset-env",{
-          "useBuiltIns": "entry"
+          "useBuiltIns": "entry",
+          "spec": true,
+          "loose": true
         }]
       ],
       "plugins": [
