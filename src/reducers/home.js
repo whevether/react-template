@@ -7,7 +7,7 @@ export default function home(state=initData,action){
   switch(action.type){
     case types.FETCH_DATA:
       if(action.payload){
-        return Object.assign(...state,{indexData:action.payload.responData});
+        return {...state,indexData:action.payload.responData};
       }
       break;
     default: 
