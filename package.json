@@ -1,6 +1,6 @@
 {
   "name": "react-template",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个,包含服务端渲染.服务端渲染是另外两个store,需要特别注意;",
   "engines": {
     "npm": ">=3"
@@ -37,8 +37,8 @@
     "history": "4.7.2",
     "object-assign": "4.1.1",
     "prop-types": "15.6.1",
-    "react": "16.2.0",
-    "react-dom": "16.2.0",
+    "react": "16.3.1",
+    "react-dom": "16.3.1",
     "react-helmet": "5.2.0",
     "react-loadable": "5.3.1",
     "react-redux": "5.0.7",
@@ -50,16 +50,16 @@
     "serialize-javascript": "1.4.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.0.0-beta.42",
-    "@babel/core": "7.0.0-beta.42",
-    "@babel/node": "7.0.0-beta.42",
-    "@babel/plugin-transform-classes": "7.0.0-beta.42",
-    "@babel/plugin-transform-react-constant-elements": "7.0.0-beta.42",
-    "@babel/polyfill": "7.0.0-beta.42",
-    "@babel/preset-env": "7.0.0-beta.42",
-    "@babel/preset-es2015": "7.0.0-beta.42",
-    "@babel/preset-react": "7.0.0-beta.42",
-    "@babel/preset-stage-1": "7.0.0-beta.42",
+    "@babel/cli": "7.0.0-beta.44",
+    "@babel/core": "7.0.0-beta.44",
+    "@babel/node": "7.0.0-beta.44",
+    "@babel/plugin-transform-classes": "7.0.0-beta.44",
+    "@babel/plugin-transform-react-constant-elements": "7.0.0-beta.44",
+    "@babel/polyfill": "7.0.0-beta.44",
+    "@babel/preset-env": "7.0.0-beta.44",
+    "@babel/preset-es2015": "7.0.0-beta.44",
+    "@babel/preset-react": "7.0.0-beta.44",
+    "@babel/preset-stage-1": "7.0.0-beta.44",
     "regenerator-runtime": "0.11.1",
     "autoprefixer": "8.2.0",
     "babel-eslint": "8.2.2",
@@ -88,9 +88,9 @@
     "sass-loader": "6.0.7",
     "style-loader": "0.20.3",
     "url-loader": "1.0.1",
-    "webpack": "4.2.0",
-    "webpack-dev-middleware": "3.0.1",
-    "webpack-hot-middleware": "2.21.2"
+    "webpack": "4.5.0",
+    "webpack-dev-middleware": "3.1.2",
+    "webpack-hot-middleware": "2.22.0"
   },
   "jest": {
     "moduleNameMapper": {
