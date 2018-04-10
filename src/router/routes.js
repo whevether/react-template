@@ -6,6 +6,7 @@ import AsyncRedBull from '../components/redBull';
 import AsyncSnacks from '../components/snacks'; //包裹了子路由的组件
 import AsyncNotFoundPage from '../components/nodeFound';
 import AsyncApp from '../containers/app';
+import AsyncKeep from '../components/keep';
 /*
   当不需要服务端渲染的时候可以开启代码分割。服务端渲染代码分割这个插件会有问题
 */ 
@@ -66,6 +67,10 @@ export default [
         {
           component: AsyncSnacks,
           path: '/snacks'
+        },
+        {
+          component:AsyncKeep,
+          path: '/keep'
         },
         {
           ...AsyncNotFoundPage   //没有路由的通配页面 404页面

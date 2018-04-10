@@ -9,6 +9,8 @@ const NavBar = ()=>{
       <NavLink to="/redbull" activeStyle={activeStyle}>红牛</NavLink>
       {' | '}
       <NavLink to="/snacks" activeStyle={activeStyle}>说明</NavLink>
+      {' | '}
+      <NavLink to="/keep" activeStyle={activeStyle}>react v16.3 新api</NavLink>
     </div>
   );
 };
