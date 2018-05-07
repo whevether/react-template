@@ -11,7 +11,12 @@
           "loose": true
         }]
       ],
-      "plugins": [["react-hot-loader/babel"],["@babel/plugin-transform-classes"],["react-loadable/babel"]]
+      "plugins": [
+        "react-hot-loader/babel",
+        "@babel/plugin-transform-classes",
+        "react-loadable/babel",
+        ["import", { "libraryName": "antd-mobile", "style": true }] 
+      ]
     },
     "production": {
       "presets": [
@@ -28,7 +33,8 @@
         "@babel/plugin-transform-classes",
         "@babel/plugin-transform-react-constant-elements",
         "babel-plugin-transform-react-remove-prop-types",
-        "react-loadable/babel"
+        "react-loadable/babel",
+        ["import", { "libraryName": "antd-mobile", "style": true }] 
       ]
     }
   }

@@ -109,8 +109,8 @@ export default {
         ]
       },
       {
-        test: /(\.css|\.scss|\.sass)$/,
-        exclude: /node_modules/,
+        test: /\.css|\.less$/,
+        // exclude: /node_modules/, //排除这个文件夹
         use: [
           'style-loader',
           {
@@ -124,12 +124,14 @@ export default {
               plugins: () => [
                 require('autoprefixer')
               ],
-              sourceMap: true
+              sourceMap: false
             }
           }, {
-            loader: 'sass-loader',
+            loader: 'less-loader',
             options: {
-              includePaths: [path.resolve(__dirname, 'src', 'scss')],
+              // includePaths: [path.resolve(__dirname, 'src', 'less')],
+              paths:[path.resolve(__dirname, 'src'),path.resolve(__dirname, 'node_modules', )],
+              javascriptEnabled: true,
               sourceMap: true
             }
           }

@@ -10,7 +10,7 @@ import { ConnectedRouter } from 'react-router-redux'; //push
 import configureStore from '../store/configureStore';
 import { renderRoutes } from 'react-router-config';
 //服务端渲染的时候样式需要放在入口这里。放别的地方环境会报错; 
-import 'style/test.scss';
+import 'style/test.less';
 const history = createHistory();
 const store = configureStore(history); //第二个参数是初始状态
 import Loadable from 'react-loadable';

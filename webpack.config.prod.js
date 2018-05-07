@@ -46,7 +46,7 @@ export default {
     minimize: true,
     runtimeChunk: true
   },
-  devtool: "source-map",
+  // devtool: "source-map",
   plugins: [
     // 编译环境变量
     new webpack.DefinePlugin(GLOBALS),
@@ -123,15 +123,15 @@ export default {
         ]
       },
       {
-        test: /(\.css|\.scss|\.sass)$/,
-        exclude: /node_modules/,
+        test: /\.css|\.less$/,
+        // exclude: /node_modules/, //排除这个文件夹
         use: ExtractTextPlugin.extract({
           use: [
             {
               loader: 'css-loader',
               options: {
                 minimize: true,
-                sourceMap: true
+                sourceMap: false
               }
             }, {
               loader: 'postcss-loader',
@@ -139,13 +139,15 @@ export default {
                 plugins: () => [
                   require('autoprefixer')
                 ],
-                sourceMap: true
+                sourceMap: false
               }
             }, {
-              loader: 'sass-loader',
+              loader: 'less-loader',
               options: {
-                includePaths: [path.resolve(__dirname, 'src', 'scss')],
-                sourceMap: true
+                // includePaths: [path.resolve(__dirname, 'src')],
+                paths:[path.resolve(__dirname, 'src'),path.resolve(__dirname, 'node_modules', )],
+                javascriptEnabled: true,
+                sourceMap: false
               }
             }
           ]
