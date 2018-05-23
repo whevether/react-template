@@ -23,15 +23,16 @@ export default (req, store, context,history) => {
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <link rel="stylesheet" href="/app.css">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link href="/css/app.css" rel="stylesheet">
       </head>
       <body>
         <div id="app">${content}</div>
         <script>
           window.INITIAL_STATE = ${serialize(store.getState())}
         </script>
-        <script src="runtime~app.bundle.js"></script>
-        <script src="app.bundle.js"></script>
+        <script src="/js/vendor.js"></script>
+        <script src="/js/app.js"></script>
       </body>
     </html>
   `;

@@ -12,15 +12,21 @@ const app = express();
 const compiler = webpack(config);
 app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath,
-  serverSideRender: true
+  // serverSideRender: true
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.use(express.static('dist'));
-
+// app.use(express.static(path.join(__dirname, '../','dist')));
+app.set('views', 'dist');
+app.engine('html',require('ejs').renderFile);
+app.set('view engine', 'html');
 app.get('*',(req,res)=>{
-  res.sendFile(path.join(__dirname,'../views/indexdev.html'));
+  res.sendFile(path.join(__dirname,'../views/index.html'));
+});
+app.get('/',(req,res)=>{
+  res.sendFile(path.join(__dirname,'../views/index.html'));
 });
 //开启http 服务
 app.listen(port, function(err) {

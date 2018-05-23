@@ -1,6 +1,9 @@
 import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';     //css 插件
-/* eslint-disable  react/require-extension */ 
+import MiniCssExtractPlugin from "mini-css-extract-plugin"; //打包压缩css
+import HtmlWebpackPlugin from 'html-webpack-plugin'; //生成html并注入
+import CopyWebpackPlugin from 'copy-webpack-plugin'; //拷贝资源文件
+import WebpackMd5Hash from 'webpack-md5-hash'; //hash文件名
+/* eslint-disable  react/require-extension */
 import path from 'path';
 // 设置node.js生产环境变量
 const GLOBALS = {
@@ -11,24 +14,23 @@ const GLOBALS = {
 export default {
   resolve: {
     //识别扩展文件名
-     extensions: ['*', '.js', '.jsx', '.json'],
-     alias: {
-        components: path.resolve(__dirname, 'src/components/'),
-        containers: path.resolve(__dirname, 'src/containers/'),
-        constants: path.resolve(__dirname, 'src/constants/'),
-        actions: path.resolve(__dirname, 'src/actions/'),
-        reducers: path.resolve(__dirname, 'src/reducers/'),
-        helps: path.resolve(__dirname, 'src/helps/'),
-        router: path.resolve(__dirname, 'src/router/'),
-        style: path.resolve(__dirname, 'src/style/'),
-        store: path.resolve(__dirname, 'src/store/')
+    extensions: ['*', '.js', '.jsx', '.json'],
+    alias: {
+      components: path.resolve(__dirname, 'src/components/'),
+      containers: path.resolve(__dirname, 'src/containers/'),
+      constants: path.resolve(__dirname, 'src/constants/'),
+      actions: path.resolve(__dirname, 'src/actions/'),
+      reducers: path.resolve(__dirname, 'src/reducers/'),
+      helps: path.resolve(__dirname, 'src/helps/'),
+      router: path.resolve(__dirname, 'src/router/'),
+      style: path.resolve(__dirname, 'src/style/'),
+      store: path.resolve(__dirname, 'src/store/')
     }
   },
   //开启调试
 
   entry: {
-    app: path.resolve(__dirname, 'src/helps/index'),
-    // vendor: ['react','react-dom','redux','react-redux','react-router-redux','react-router-dom','redux-thunk']
+    app: path.resolve(__dirname, 'src/helps/index')
   },
   target: 'web', // 目标是web服务
   mode: "production",
@@ -36,23 +38,80 @@ export default {
     //输出目录
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
+    filename: 'js/[name].js?v=[chunkhash]',
+    chunkFilename: 'js/vendor.js?v=[chunkhash]',
   },
   optimization: {
-    splitChunks:{
-      minSize:1
-    },
-    minimize: true,
-    runtimeChunk: true
+    // 优化打包配置
+    splitChunks: {
+      chunks: "all",
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      name: true,
+      cacheGroups: {
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        }
+      }
+    }
   },
+  // optimization: {
+  //   splitChunks:{
+  //     minSize:1
+  //   },
+  //   minimize: true,
+  //   runtimeChunk: true
+  // },
   // devtool: "source-map",
   plugins: [
+    new WebpackMd5Hash(),
     // 编译环境变量
     new webpack.DefinePlugin(GLOBALS),
-
-    // 生成css 文件
-    new ExtractTextPlugin('[name].bundle.css')
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional eea1d28b685828b67788
+      filename: "css/[name].css?v=[chunkhash]",
+      chunkFilename: "css/vendor.css?v=[chunkhash]"
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, 'src/assets'),
+        to: path.resolve(__dirname, 'dist/assets'),
+        ignore: ['.*']
+      }
+    ]),
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      filename: 'index.html',
+      // title: '阿布云首页',
+      // chunks: ['vendor','index'],
+      // excludeChunks: ['app'],
+      favicon: 'src/favicon.ico',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      },
+      inject: true,
+      // Note that you can add custom options here if you need to handle other custom logic in index.html
+      // To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token below.
+      trackJSToken: ''
+    }),
   ],
   module: {
     rules: [
@@ -124,34 +183,32 @@ export default {
       },
       {
         test: /\.css|\.less$/,
-        // exclude: /node_modules/, //排除这个文件夹
-        use: ExtractTextPlugin.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true,
-                sourceMap: false
-              }
-            }, {
-              loader: 'postcss-loader',
-              options: {
-                plugins: () => [
-                  require('autoprefixer')
-                ],
-                sourceMap: false
-              }
-            }, {
-              loader: 'less-loader',
-              options: {
-                // includePaths: [path.resolve(__dirname, 'src')],
-                paths:[path.resolve(__dirname, 'src'),path.resolve(__dirname, 'node_modules', )],
-                javascriptEnabled: true,
-                sourceMap: false
-              }
+        // exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: true,
+              sourceMap: false
             }
-          ]
-        })
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [
+                require('autoprefixer')
+              ],
+              sourceMap: false
+            }
+          }, {
+            loader: 'less-loader',
+            options: {
+              paths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules', )],
+              javascriptEnabled: true,
+              sourceMap: false
+            }
+          }
+        ]
       }
     ]
   }

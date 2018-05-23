@@ -4,7 +4,9 @@
       "presets": [
         "@babel/preset-es2015",
         "@babel/preset-react",
-        "@babel/preset-stage-1",
+        ["@babel/preset-stage-1",{
+          "decoratorsLegacy": true
+        }],
         ["@babel/preset-env",{
           "useBuiltIns": "entry",
           "spec": true,
@@ -22,7 +24,9 @@
       "presets": [
         "@babel/preset-es2015",
         "@babel/preset-react",
-        "@babel/preset-stage-1",
+        ["@babel/preset-stage-1",{
+          "decoratorsLegacy": true
+        }],
         ["@babel/preset-env",{
           "useBuiltIns": "entry",
           "spec": true,
@@ -33,7 +37,6 @@
         "@babel/plugin-transform-classes",
         "@babel/plugin-transform-react-constant-elements",
         "babel-plugin-transform-react-remove-prop-types",
-        "react-loadable/babel",
         ["import", { "libraryName": "antd-mobile", "style": true }] 
       ]
     }

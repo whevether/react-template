@@ -1,5 +1,5 @@
 import express from 'express';
-import path from 'path';
+// import path from 'path';
 import open from 'open';
 import compression from 'compression';
 // import bodyParser from 'body-parser';
@@ -12,8 +12,15 @@ app.use(compression());
 app.use(express.static('dist'));
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
+// app.use(express.static(path.join(__dirname, '../','dist')));
+app.set('views', 'dist');
+app.engine('html',require('ejs').renderFile);
+app.set('view engine', 'html');
 app.get('*',(req,res)=>{
-  res.sendFile(path.join(__dirname,'../views/index.html'));
+  res.render('index', {req, res});
+});
+app.get('/',(req,res)=>{
+  res.render('index', {req, res});
 });
 app.listen(port, function(err) {
   /*eslint-disable no-console*/
