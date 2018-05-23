@@ -23,9 +23,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.use(express.static('dist'));
-app.set('views', 'dist');
-app.engine('html',require('ejs').renderFile);
-app.set('view engine', 'html');
+// app.set('views', 'dist');
+// app.engine('html',require('ejs').renderFile);
+// app.set('view engine', 'html');
 app.get('*',(req,res)=>{
   const {store,history} = createStore(req.path);
   const promises = matchRoutes(routes, req.path)

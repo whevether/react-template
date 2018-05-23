@@ -41,11 +41,11 @@
 8. 更新webpack-dev-middleware与 webpack-hot-middleware,
 9. 更新redux 到4.0版本.测试react v16.3新api
 10. 修复一些报错
-11. 正在antd 移动端组件库
-12. 移除sass 改用less,因为antd 组件库用的是less.用sass就显得多余了.
-13. 优化webpack 配置;
-14. 优化部分依赖；
-15. 优化webpack 配置
+11. 移除sass 改用less,因为antd 组件库用的是less.用sass就显得多余了.
+12. 优化webpack 配置;
+13. 优化部分依赖；
+14. 优化webpack 配置
+15. 只有服务端渲染才使用express 来启动. 不是服务端渲染使用第三方以来启动;
 ##### 示例图片 || 已经解决了之前服务端端存在问题
 [![示例图片](./screen/1.gif) "示例图片")](https://whevether.github.io/react-template "示例")
 ##### 演示地址。不含服务端渲染;
