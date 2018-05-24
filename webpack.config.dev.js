@@ -34,7 +34,7 @@ export default {
     path: path.resolve(__dirname, 'dist'), // 输出编译文件目录
     publicPath: '/', //根目录
     filename: 'js/[name].js',
-    chunkFilename: 'js/vendor.js',
+    // chunkFilename: 'js/vendor.js',
   },
   // optimization: {
   //   splitChunks:{

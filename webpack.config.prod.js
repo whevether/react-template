@@ -39,7 +39,7 @@ export default {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: 'js/[name].js?v=[chunkhash]',
-    chunkFilename: 'js/vendor.js?v=[chunkhash]',
+    // chunkFilename: 'js/vendor.js?v=[chunkhash]',
   },
   optimization: {
     // 优化打包配置
