@@ -196,7 +196,9 @@ export default {
             loader: 'postcss-loader',
             options: {
               plugins: () => [
-                require('autoprefixer')
+                require('autoprefixer')({
+                  browsers: ['last 15 versions']
+                })
               ],
               sourceMap: false
             }
