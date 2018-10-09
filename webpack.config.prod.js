@@ -3,6 +3,8 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin"; //打包压缩css
 import HtmlWebpackPlugin from 'html-webpack-plugin'; //生成html并注入
 import CopyWebpackPlugin from 'copy-webpack-plugin'; //拷贝资源文件
 import WebpackMd5Hash from 'webpack-md5-hash'; //hash文件名
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 /* eslint-disable  react/require-extension */
 import path from 'path';
 // 设置node.js生产环境变量
@@ -43,6 +45,19 @@ export default {
   },
   optimization: {
     // 优化打包配置
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: false,
+      }),
+      new OptimizeCSSAssetsPlugin({
+        assetNameRegExp: /\.css|\.less$/g,
+        cssProcessor: require('cssnano'),
+        cssProcessorOptions: { discardComments: { removeAll: true } },
+        canPrint: true
+      })
+    ],
     splitChunks: {
       chunks: "all",
       minSize: 30000,
@@ -51,26 +66,36 @@ export default {
       maxInitialRequests: 3,
       name: true,
       cacheGroups: {
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-        vendors: {
+        vendor: {//node_modules内的依赖库
+          chunks: "all",
           test: /[\\/]node_modules[\\/]/,
-          priority: -10
+          name: "vendor",
+          minChunks: 1, //被不同entry引用次数(import),1次的话没必要提取
+          maxInitialRequests: 5,
+          minSize: 0,
+          priority: 100,
+          // enforce: true?
+        },
+        common: {// ‘src/js’ 下的js文件
+          chunks: "all",
+          test: /[\\/]src[\\/]js[\\/]/,//也可以值文件/[\\/]src[\\/]js[\\/].*\.js/,  
+          name: "common", //生成文件名，依据output规则
+          minChunks: 1,
+          maxInitialRequests: 5,
+          minSize: 0,
+          priority: 1
+        },
+        styles: {
+          name: 'styles',
+          test: /\.css|\.less$/,
+          chunks: 'all',
+          minSize: 0,
+          minChunks: 2,
+          enforce: true
         }
       }
     }
   },
-  // optimization: {
-  //   splitChunks:{
-  //     minSize:1
-  //   },
-  //   minimize: true,
-  //   runtimeChunk: true
-  // },
-  // devtool: "source-map",
   plugins: [
     new WebpackMd5Hash(),
     // 编译环境变量
@@ -205,7 +230,7 @@ export default {
           }, {
             loader: 'less-loader',
             options: {
-              paths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules', )],
+              paths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
               javascriptEnabled: true,
               sourceMap: false
             }

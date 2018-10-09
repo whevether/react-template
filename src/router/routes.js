@@ -26,11 +26,11 @@ const MyLoadingComponent = ({ isLoading, error }) => {
     }
 };
 // //分割路由
-const AsyncApp = Loadable({
-  loader: ()=>import('../containers/app'),
-  loading: MyLoadingComponent,
-  delay: 200
-});
+// const AsyncApp = Loadable({
+//   loader: ()=>import('../containers/app'),
+//   loading: MyLoadingComponent,
+//   delay: 200
+// });
 const AsyncHome = Loadable({
     loader: () => import('../components/home'),
     loading: MyLoadingComponent,
@@ -56,33 +56,28 @@ const AsyncNotFoundPage = Loadable({
   loading: MyLoadingComponent,
   delay: 200
 });
-export default [
-    {
-      component: AsyncApp,
-      routes: [
-        {
-          component: AsyncHome,
-          path: '/',
-          exact: true
-        },
-        {
-          component:AsyncRedBull,
-          path: '/redbull'
-        },
-        {
-          component: AsyncSnacks,
-          path: '/snacks'
-        },
-        {
-          component:AsyncKeep,
-          path: '/keep'
-        },
-        {
-          ...AsyncNotFoundPage   //没有路由的通配页面 404页面
-        }
-      ]
-    }
-  ];
+export const routes = [
+  {
+    component: AsyncHome,
+    path: '/',
+    exact: true
+  },
+  {
+    component: AsyncRedBull,
+    path: '/redbull'
+  },
+  {
+    component: AsyncSnacks,
+    path: '/snacks'
+  },
+  {
+    component: AsyncKeep,
+    path: '/keep'
+  },
+  {
+    ...AsyncNotFoundPage   //没有路由的通配页面 404页面
+  }
+];
 /* eslint-disable react/self-closing-comp */
   export const RouteWithSubRoutes = (route) => (
     <Route path={route.path} exact={route.exact} render={props=>(
