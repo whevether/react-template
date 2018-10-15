@@ -1,7 +1,7 @@
 {
   "name": "react-template",
-  "version": "0.1.9",
-  "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个,包含服务端渲染.服务端渲染是另外两个store,需要特别注意;",
+  "version": "0.2.0",
+  "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个",
   "engines": {
     "npm": ">=3"
   },
@@ -30,9 +30,7 @@
     "classnames": "2.2.6",
     "create-react-class": "15.6.3",
     "history": "4.7.2",
-    "next": "^7.0.1",
     "object-assign": "4.1.1",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "prop-types": "15.6.2",
     "react": "16.5.2",
     "react-dom": "16.5.2",
@@ -40,10 +38,8 @@
     "react-loadable": "^5.5.0",
     "react-redux": "5.0.7",
     "react-router-dom": "4.3.1",
-    "react-router-redux": "5.0.0-alpha.9",
     "redux": "4.0.0",
-    "redux-thunk": "2.3.0",
-    "uglifyjs-webpack-plugin": "^2.0.1"
+    "redux-thunk": "2.3.0"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0",
@@ -64,6 +60,8 @@
     "babel-jest": "23.4.2 ",
     "babel-loader": "8.0.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.15",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "browser-sync": "2.24.7",
     "chalk": "2.4.1",
     "compression": "^1.7.3",

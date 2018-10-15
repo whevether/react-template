@@ -1,6 +1,6 @@
 ###React version 16.4.1 版本脚手架
-> 包含客户端，服务端渲染完整示例，使用了最新的react,并实现version 16.4.2 最新的服务端渲染;
-> 解决了一些之前的服务端渲染bug;并添加了调试的服务端渲染模式;
+> 包含客户端，使用了最新的react,并实现version 16.5.2;
+> 移除服务端渲染。使用next.js来服务端渲染.另开一个模板
 > 使用webpack 4.X 来编译
 ```html
 <!-- 分离的第三方依赖 -->
@@ -26,16 +26,13 @@
 ##### 一些常见问题
 1. 部署到服务器上,需要nginx 反向代理启动node.js 的http 服务;
 2. 刷新之后 404 或者子路由报错；是使用了 BrowserRouter这个路由或者分割了代码。这个路由会开启h5 的history 模式;所以需要nginx的支持; nginx uri 定向到例如是打包文件是通过index.html 就重定向到index.html;如果是放在index.php就重定向到index.php就不会有这个问题了；
-3. 服务端渲染的样式需要放在入口内。不是服务端渲染的就不用;
-4. 这个脚手架是封装了axios 这个ajax库到redux中；所以不用在调用的地方引入axios;只需要在redux的action中使用我在redux中封装的axios 中间件的别名  例如: api.get api.post等就好了;action中也符合redux的方式;
-5. 需要注意的是不是服务端渲染的启动命令也是不同的; 服务端渲染主要是为了解决seo问题，因为是单页应用。必须用户点击打开index.html 或index.php 或者站点后才能加载打包后的js 文件开始渲染节点内容; 没有加载js 也就不能渲染出节点。也就不能被搜索引擎检索到；  这也就是服务端渲染的需要;另外服务端渲染也加快网页加载速度; 只要服务器压力能承受住;
-6. 为什么服务端渲染不分割代码。因为会报错；而且用了压缩代码会小很多;普通十多张页面不会超过1MB .1Mb对于服务端来说并没有什么..
-##### 更新日志(2018.10.09)
+3. 这个脚手架是封装了axios 这个ajax库到redux中；所以不用在调用的地方引入axios;只需要在redux的action中使用我在redux中封装的axios 中间件的别名  例如: api.get api.post等就好了;action中也符合redux的方式;
+##### 更新日志(2018.10.15)
 1. 优化父子路由的写法。 父路由嵌套子路由
 2. 移除服务端渲染,
 3. 优化redux路由数据在服务端渲染的时候不同步问题;
 4. 增加redux axios 中间件调用方法;以及调用获取数据例子
-5. 增加 使用react-router-redux 编程式导航的例子;通过代码跳转到页面返回上级页面;并保证redux的数据同步，不会延迟;
+5. 移除react-redux-router,增加稳定性
 6. webpack 升级到webpack version 4.8.0;
 7. 移除mocha 测试.使用更加简单的jest来处理测试
 8. 更新webpack-dev-middleware与 webpack-hot-middleware,
@@ -45,8 +42,8 @@
 12. 优化webpack 配置;
 13. 优化部分依赖；
 14. 优化webpack 配置
-15. 移除服务端渲染。使用nuxt来处理服务端渲染;
-##### 示例图片 || 已经解决了之前服务端端存在问题
+15. 移除服务端渲染。另外开个模板来使用next来处理服务端渲染, 因为next.js的路由写法与react-router-dom冲突;
+##### 示例图片
 [![示例图片](./screen/1.gif) "示例图片")](https://whevether.github.io/react-template "示例")
-##### 演示地址。不含服务端渲染;
+#演示
 [演示](https://whevether.github.io/react-template "演示")
