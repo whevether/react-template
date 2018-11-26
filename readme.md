@@ -1,5 +1,5 @@
-###React version 16.4.1 版本脚手架
-> 包含客户端，使用了最新的react,并实现version 16.5.2;
+###React version 16.6.3 版本脚手架
+> 包含客户端，使用了最新的react,并实现version 16.6.3;
 > 移除服务端渲染。使用next.js来服务端渲染.另开一个模板
 > 使用webpack 4.X 来编译
 ```html
