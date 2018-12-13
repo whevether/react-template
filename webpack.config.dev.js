@@ -160,12 +160,12 @@ export default {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 2,
-              modules: true,
-              // namedExport: true, // this is  invalid Options ,I find it
-              camelCase: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
-              // sourceMap: true
+              // importLoaders: 2,
+              // modules: true,
+              // // namedExport: true, // this is  invalid Options ,I find it
+              // camelCase: true,
+              // localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              sourceMap: true
             }
           }, {
             loader: 'postcss-loader',
