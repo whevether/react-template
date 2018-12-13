@@ -214,8 +214,13 @@ export default {
           {
             loader: 'css-loader',
             options: {
-              minimize: true,
-              sourceMap: false
+              // minimize: true,
+              // sourceMap: false
+              importLoaders: 2,
+              modules: true,
+              // namedExport: true, // this is  invalid Options ,I find it
+              camelCase: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
             }
           }, {
             loader: 'postcss-loader',
