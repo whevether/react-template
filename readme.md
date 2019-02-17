@@ -1,5 +1,5 @@
-###React version 16.6.3 版本脚手架
-> 包含客户端，使用了最新的react,并实现version 16.6.3;
+###React version 16.8.X 版本脚手架
+> 包含客户端，使用了最新的react,并实现version 16.8.X;
 > 移除服务端渲染。使用next.js来服务端渲染.另开一个模板
 > 使用webpack 4.X 来编译
 ```html
@@ -41,8 +41,7 @@
 11. 移除sass 改用less,因为antd 组件库用的是less.用sass就显得多余了.
 12. 优化webpack 配置;
 13. 优化部分依赖；
-14. 优化webpack 配置
-15. 移除服务端渲染。另外开个模板来使用next来处理服务端渲染, 因为next.js的路由写法与react-router-dom冲突;
+14. 移除服务端渲染。另外开个模板来使用next来处理服务端渲染, 因为next.js的路由写法与react-router-dom冲突;
 ##### 示例图片
 [![示例图片](./screen/1.gif) "示例图片")](https://whevether.github.io/react-template "示例")
 #演示
