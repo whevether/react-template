@@ -14,7 +14,8 @@ const store = configureStore(history); //第二个参数是初始状态
 import Loadable from 'react-loadable';
 import App from '../containers/app';
 Loadable.preloadReady().then(() => {
-  ReactDOM.hydrate(
+  // ReactDOM.hydrate  服务端渲染用
+  ReactDOM.render(
       <Provider store={store} >
         <Router history={history}>
           <App />

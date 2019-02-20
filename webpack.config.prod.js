@@ -47,6 +47,17 @@ export default {
     // 优化打包配置
     minimizer: [
       new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            properties: true
+          },
+          output: {
+            comments: false
+          },
+          warnings: false,
+          mangle: true,
+          ie8: true
+        },
         cache: true,
         parallel: true,
         sourceMap: false,
