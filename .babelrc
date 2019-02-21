@@ -11,6 +11,7 @@
       ],
       "plugins": [
         "react-hot-loader/babel",
+        "react-loadable/babel",
         "@babel/plugin-transform-classes",
         "@babel/plugin-syntax-dynamic-import",
         ["@babel/plugin-proposal-class-properties", { "loose": false }],
@@ -27,6 +28,7 @@
         }]
       ],
       "plugins": [
+        "react-loadable/babel",
         "@babel/plugin-transform-classes",
         "@babel/plugin-transform-react-constant-elements",
         "babel-plugin-transform-react-remove-prop-types",
