@@ -15,7 +15,8 @@
         "@babel/plugin-transform-classes",
         "@babel/plugin-syntax-dynamic-import",
         ["@babel/plugin-proposal-class-properties", { "loose": false }],
-        "@babel/plugin-proposal-json-strings"
+        "@babel/plugin-proposal-json-strings",
+        "@babel/plugin-transform-runtime"
       ]
     },
     "production": {
@@ -34,7 +35,8 @@
         "babel-plugin-transform-react-remove-prop-types",
         "@babel/plugin-syntax-dynamic-import",
         ["@babel/plugin-proposal-class-properties", { "loose": false }],
-        "@babel/plugin-proposal-json-strings"
+        "@babel/plugin-proposal-json-strings",
+        "@babel/plugin-transform-runtime"
       ]
     }
   }
