@@ -12,7 +12,7 @@ import 'style/test.less';
 const history = createHistory();
 const store = configureStore(history); //第二个参数是初始状态
 import Loadable from 'react-loadable';
-import App from '../containers/app';
+import App from 'containers/app';
 Loadable.preloadReady().then(() => {
   // ReactDOM.hydrate  服务端渲染用
   ReactDOM.render(

@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from '../components/navbar';
+import Navbar from 'components/navbar';
 import PropTypes from 'prop-types';
 import {withRouter,Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {RouteWithSubRoutes, routes} from '../router/routes';
+import {RouteWithSubRoutes, routes} from 'router/routes';
 /*把switch 包裹在这里面使用withRouter 保证同步路由数据*/ 
 const ConnectedSwitch = withRouter(connect(state => ({
 	location: state.location

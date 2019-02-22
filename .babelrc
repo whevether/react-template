@@ -12,10 +12,17 @@
       "plugins": [
         "react-hot-loader/babel",
         "react-loadable/babel",
-        "@babel/plugin-transform-classes",
+        ["@babel/plugin-transform-classes", {
+          "loose": true
+        }],
         "@babel/plugin-syntax-dynamic-import",
-        ["@babel/plugin-proposal-class-properties", { "loose": false }],
+        "@babel/plugin-syntax-import-meta",
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
         "@babel/plugin-proposal-json-strings",
+        "@babel/plugin-transform-arrow-functions",
+        "@babel/plugin-proposal-async-generator-functions",
+        "@babel/plugin-syntax-async-generators",
+        "@babel/plugin-transform-async-to-generator",
         "@babel/plugin-transform-runtime"
       ]
     },
@@ -34,8 +41,13 @@
         "@babel/plugin-transform-react-constant-elements",
         "babel-plugin-transform-react-remove-prop-types",
         "@babel/plugin-syntax-dynamic-import",
-        ["@babel/plugin-proposal-class-properties", { "loose": false }],
+        "@babel/plugin-syntax-import-meta",
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
         "@babel/plugin-proposal-json-strings",
+        "@babel/plugin-transform-arrow-functions",
+        "@babel/plugin-proposal-async-generator-functions",
+        "@babel/plugin-syntax-async-generators",
+        "@babel/plugin-transform-async-to-generator",
         "@babel/plugin-transform-runtime"
       ]
     }
