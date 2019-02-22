@@ -42,6 +42,10 @@
 12. 优化webpack 配置;
 13. 优化部分依赖；
 14. 移除服务端渲染。另外开个模板来使用next来处理服务端渲染, 因为next.js的路由写法与react-router-dom冲突;
+### 更新日志(2019.02.22)
+1. 解决ie 9兼容性问题。
+2. 解决 async await 链式写法箭头函数错误问题.
+3. 增加hook例子
 ##### 示例图片
 [![示例图片](./screen/1.gif) "示例图片")](https://whevether.github.io/react-template "示例")
 #演示

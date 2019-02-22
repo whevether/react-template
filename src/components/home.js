@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Fragment, useState} from 'react';
 import { Helmet } from 'react-helmet';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -16,44 +16,36 @@ const Home = (props) =>{
             </Helmet>
         );
     };
+    const [count, setCount] = useState(0);
     return(
         <>
             {head()}
             <h2 onClick={props.fetch_data}>主页</h2>
-            {/* antd mobile 测试代码 */}
-            {/* <List>
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((i, index) => {
-                if (index === 0) {
-                return (<List.Item key={index}
-                    thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
-                    multipleLine
-                >Category</List.Item>);
-                }
-                return (<List.Item key={index}
-                thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
-                >Category{index}</List.Item>);
-            })}
-            </List> */}
-            {/* end */}
-            {props.indexData !== null ? props.indexData.dash.map((elm,key)=>{
-                return (
-                    <div key={key}>
-                        <span>{elm.name}</span>
-                        <img src={elm.url} />
-                        <span>{elm.author}</span>  
-                    </div>
-                );
-            }): '点击主页文字获取数据'}
+            <h5 style={{cursor: 'pointer'}} onClick={()=>setCount(count+1)}>react hook <span style={{color: 'green'}}>{count}</span></h5>
+            {props.data  === null && <Fragment>点击主页文字获取数据</Fragment>}
+            {props.data !== null && <div className="content">
+                <h6>{props.data.title}</h6>
+                {props.data.subjects.map((item,i)=>{
+                    return(
+                        <div className="item-wrapper" key={i}>
+                            <h3>{item.title}</h3>
+                            <img src={item.images.large}/>
+                            <div>上映年份{item.year}</div>
+                            <div>上映年份{item.year}</div>
+                        </div>
+                    );
+                })}
+            </div>}
         </>
     );
 };
 Home.propTypes = {
     fetch_data: PropTypes.func.isRequired,
-    indexData: PropTypes.objectOf(Array)
+    data: PropTypes.objectOf(Array)
 };
 const mapStateToProps = (state)=>{
     return{
-        indexData: state.home.indexData
+        data: state.home.data
     };
 };
 const mapDispatchToProps = (dispatch)=>{

@@ -15,17 +15,38 @@ browserSync({
   ui: {
     port: 3001
   },
-  server: {
-    baseDir: 'src',
+  // server: {
+  //   baseDir: 'src',
 
+  //   middleware: [
+  //     historyApiFallback(),
+
+  //     webpackDevMiddleware(bundler, {
+  //       publicPath: config.output.publicPath,
+
+  //       noInfo: true,
+  //       quiet: false,
+  //       stats: {
+  //         assets: false,
+  //         colors: true,
+  //         version: false,
+  //         hash: false,
+  //         timings: false,
+  //         chunks: false,
+  //         chunkModules: false
+  //       },
+  //     }),
+  //     webpackHotMiddleware(bundler)
+  //   ]
+  // },
+  proxy: {
+    target: 'https://api.douban.com', 
     middleware: [
       historyApiFallback(),
 
       webpackDevMiddleware(bundler, {
-        // Dev middleware can't access config, so we provide publicPath
         publicPath: config.output.publicPath,
 
-        // These settings suppress noisy webpack output so only errors are displayed to the console.
         noInfo: true,
         quiet: false,
         stats: {
@@ -37,16 +58,12 @@ browserSync({
           chunks: false,
           chunkModules: false
         },
-
-        // for other settings see
-        // https://webpack.js.org/guides/development/#using-webpack-dev-middleware
       }),
-
-      // bundler should be the same as above
       webpackHotMiddleware(bundler)
-    ]
+    ],
+    ws: false
   },
-
+  https: true,
   // no need to watch '*.js' here, webpack will take care of it for us,
   // including full page reloads if HMR won't work
   files: [
