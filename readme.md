@@ -15,8 +15,6 @@
 - yarn prestart    (删除dist 编译打包文件)
 - yarn start (启动客户端的开发环境)
 - yarn build (打包编译客户端环境,并启动)
-- yarn prod (启动并打包服务端渲染)
-- yarn server (启动服务端渲染开发环境)
 - yarn lint (检查代码规范)
 - yarn lint:watch (检查代码规范并监听)
 - yarn test (启动单元测试)
