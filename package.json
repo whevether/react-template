@@ -1,6 +1,6 @@
 {
   "name": "react-template",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个",
   "engines": {
     "npm": ">=3"
