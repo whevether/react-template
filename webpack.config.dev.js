@@ -173,6 +173,15 @@ export default {
               plugins: () => [
                 require('autoprefixer')({
                   browsers: ['last 15 versions']
+                }),
+                require('postcss-pxtorem')({
+                  rootValue: 16,
+                  unitPrecision: 5,
+                  propList: ['font', 'font-size', 'line-height', 'letter-spacing'],
+                  selectorBlackList: [],
+                  replace: true,
+                  mediaQuery: false,
+                  minPixelValue: 0
                 })
               ],
               sourceMap: false
