@@ -75,7 +75,7 @@ export const routes = [
     path: '/keep'
   },
   {
-    ...AsyncNotFoundPage   //没有路由的通配页面 404页面
+    component:AsyncNotFoundPage   //没有路由的通配页面 404页面
   }
 ];
 /* eslint-disable react/self-closing-comp */
