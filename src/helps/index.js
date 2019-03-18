@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { Provider} from 'react-redux';
 import {createBrowserHistory} from 'history';
 import {BrowserRouter as Router } from 'react-router-dom';
-import configureStore from '../store/configureStore';
+import configureStore from 'store/configureStore';
 //GYGBZ-MB5WR-DPZWK-WTKS2-UWBVS-VXBKW
 //服务端渲染的时候样式需要放在入口这里。放别的地方环境会报错; 
 import 'style/test.less';
