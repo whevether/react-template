@@ -72,7 +72,7 @@ export const routes = [
   {
     path: '/',
     exact: true,
-    component: AsyncDefaultLayout,
+    component: AsyncDefaultLayout, //默认布局
     routes:[
       {
         path: '/',
@@ -93,7 +93,7 @@ export const routes = [
     ]
   },
   {
-    component: AsyncErrorLayout,
+    component: AsyncErrorLayout, //错误布局
     path: '/login',
     routes: [
       {
