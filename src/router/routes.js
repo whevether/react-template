@@ -100,9 +100,6 @@ export const routes = [
         exact: true,
         component: AsyncKeep,
         path: '/login'
-      },
-      {
-        component:AsyncNotFoundPage   //没有路由的通配页面 404页面
       }
     ]
   },
