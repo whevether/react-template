@@ -10,7 +10,7 @@ const ConnectedSwitch = withRouter(connect(state => ({
 }))(Switch));
 const App = () => {
   return (
-    <div className="main" style={{ 'textAlign': 'center' }}>
+    <div className="main" >
       <ConnectedSwitch>
         {routes ? routes.map((route, i) => (
           <RouteWithSubRoutes key={i} {...route} />
