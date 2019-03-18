@@ -56,23 +56,55 @@ const AsyncNotFoundPage = Loadable({
   loading: MyLoadingComponent,
   delay: 200
 });
+// 布局
+const AsyncDefaultLayout = Loadable({
+  loader: () => import('../containers/defaultLayout'),
+  loading: MyLoadingComponent,
+  delay: 200
+});
+// 错误页面布局
+const AsyncErrorLayout = Loadable({
+  loader: () => import('../containers/errorLayout'),
+  loading: MyLoadingComponent,
+  delay: 200
+});
 export const routes = [
   {
-    component: AsyncHome,
     path: '/',
-    exact: true
+    exact: true,
+    component: AsyncDefaultLayout,
+    routes:[
+      {
+        path: '/',
+        component: AsyncHome,
+      },
+      {
+        component: AsyncRedBull,
+        path: '/redbull'
+      },
+      {
+        component: AsyncSnacks,
+        path: '/snacks'
+      },
+      {
+        component: AsyncKeep,
+        path: '/keep'
+      }
+    ]
   },
   {
-    component: AsyncRedBull,
-    path: '/redbull'
-  },
-  {
-    component: AsyncSnacks,
-    path: '/snacks'
-  },
-  {
-    component: AsyncKeep,
-    path: '/keep'
+    component: AsyncErrorLayout,
+    path: '/login',
+    routes: [
+      {
+        exact: true,
+        component: AsyncKeep,
+        path: '/login'
+      },
+      {
+        component:AsyncNotFoundPage   //没有路由的通配页面 404页面
+      }
+    ]
   },
   {
     component:AsyncNotFoundPage   //没有路由的通配页面 404页面
