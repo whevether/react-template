@@ -71,46 +71,39 @@ const AsyncErrorLayout = Loadable({
 export const routes = [
   {
     path: '/',
+    layout: AsyncDefaultLayout, //默认布局
     exact: true,
-    component: AsyncDefaultLayout, //默认布局
-    routes:[
-      {
-        path: '/',
-        component: AsyncHome,
-      },
-      {
-        component: AsyncRedBull,
-        path: '/redbull'
-      },
-      {
-        component: AsyncSnacks,
-        path: '/snacks'
-      },
-      {
-        component: AsyncKeep,
-        path: '/keep'
-      }
-    ]
+    component: AsyncHome
   },
   {
-    component: AsyncErrorLayout, //错误布局
+    layout: AsyncDefaultLayout, //默认布局
+    component: AsyncRedBull,
+    path: '/redbull'
+  },
+  {
+    layout: AsyncDefaultLayout, //默认布局
+    component: AsyncSnacks,
+    path: '/snacks'
+  },
+  {
+    layout: AsyncDefaultLayout, //默认布局
+    component: AsyncKeep,
+    path: '/keep'
+  },
+  {
+    layout: AsyncErrorLayout, //错误布局
     path: '/login',
-    routes: [
-      {
-        exact: true,
-        component: AsyncKeep,
-        path: '/login'
-      }
-    ]
+    component: AsyncKeep
   },
   {
-    component:AsyncNotFoundPage   //没有路由的通配页面 404页面
+    component:AsyncNotFoundPage,
+    layout:AsyncErrorLayout
   }
 ];
 /* eslint-disable react/self-closing-comp */
   export const RouteWithSubRoutes = (route) => (
     <Route path={route.path} exact={route.exact} render={props=>(
-        <route.component {...props} routes={route.routes}/>
+        <route.layout {...props} routes={route}/>
     )}>
     </Route>
 );

@@ -14,16 +14,15 @@ const DefaultLayout = (props) => {
     <div className="DefaultLayout-wrapper" >
       <Navbar />
       <ConnectedSwitch>
-        {props.routes ? props.routes.map((item, key) => {
-          return <Route key={key} exact={item.exact} path={item.path} component={item.component} />;
-        })
-          : ''}
+        {props.routes &&
+          <Route  key={props.routes.path} exact={props.routes.exact} path={props.routes.path} component={props.routes.component} />
+        }
       </ConnectedSwitch>
     </div>
   );
 };
 DefaultLayout.propTypes = {
-  routes: PropTypes.arrayOf(Object)
+  routes: PropTypes.object.isRequired
 };
 export default withRouter(connect(state => ({
   state: state

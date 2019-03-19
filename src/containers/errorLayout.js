@@ -13,16 +13,15 @@ const ErrorLayout = (props) => {
     <div className="ErrorLayout-wrapper" >
       <div>错误页面布局</div>
       <ConnectedSwitch>
-        {props.routes ? props.routes.map((item, key) => {
-          return <Route key={key} exact={item.exact} path={item.path} component={item.component} />;
-        })
-          : ''}
+      {props.routes &&
+          <Route  key={props.routes.path} exact={props.routes.exact} path={props.routes.path} component={props.routes.component} />
+        }
       </ConnectedSwitch>
     </div>
   );
 };
 ErrorLayout.propTypes = {
-  routes: PropTypes.arrayOf(Object)
+  routes: PropTypes.object.isRequired
 };
 export default withRouter(connect(state => ({
   state: state
