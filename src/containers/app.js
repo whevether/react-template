@@ -12,9 +12,9 @@ const App = () => {
   return (
     <div className="main" >
       <ConnectedSwitch>
-        {routes ? routes.map((route, i) => (
+        {routes && routes.map((route, i) => (
           <RouteWithSubRoutes key={i} {...route} />
-        )) : ''}
+        ))}
       </ConnectedSwitch>
     </div>
   );
