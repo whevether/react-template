@@ -97,7 +97,8 @@ export const routes = [
   },
   {
     component:AsyncNotFoundPage,
-    layout:AsyncErrorLayout
+    layout:AsyncErrorLayout,
+    path: '*'
   }
 ];
 /* eslint-disable react/self-closing-comp */
