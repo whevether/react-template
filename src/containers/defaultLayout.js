@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter, Route } from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import Navbar from 'components/navbar';
+import ProtectedRoute from 'router/ProtectedRoute';
 // 登入页布局
 
 const DefaultLayout = (props) => {
@@ -10,7 +11,7 @@ const DefaultLayout = (props) => {
     <div className="DefaultLayout-wrapper" >
       <Navbar />
         {props.routes &&
-          <Route  key={props.routes.path} exact={props.routes.exact} path={props.routes.path} component={props.routes.component} />
+          <ProtectedRoute key={props.routes.path} exact={props.routes.exact} path={props.routes.path} component={props.routes.component} permission={props.routes.permission}/>
         }
     </div>
   );
