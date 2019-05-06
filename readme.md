@@ -46,7 +46,13 @@
 3. 增加hook例子
 ### 更新日志(2019.03.18)
 1. 解决 @babel/plugin-proposal-class-properties 与 @babel/plugin-transform-classes冲突问题
+### 更新日志(2019.05.06)
+1. 修改优化布局写法,
+2. 优化路由写法.
+3. 组件化
+4. 使用react hooks
+5. 大版本更新
 ##### 示例图片
-[![示例图片](./screen/1.gif) "示例图片")](https://whevether.github.io/react-template "示例")
+[![示例图片](./screen/1.gif) "示例图片")](https://react-template.keep-wan.me "示例")
 #演示
-[演示](https://whevether.github.io/react-template "演示")
+[演示](https://react-template.keep-wan.me "演示")

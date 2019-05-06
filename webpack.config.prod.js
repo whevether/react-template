@@ -23,7 +23,6 @@ export default {
       constants: path.resolve(__dirname, 'src/constants/'),
       actions: path.resolve(__dirname, 'src/actions/'),
       reducers: path.resolve(__dirname, 'src/reducers/'),
-      helps: path.resolve(__dirname, 'src/helps/'),
       router: path.resolve(__dirname, 'src/router/'),
       style: path.resolve(__dirname, 'src/style/'),
       store: path.resolve(__dirname, 'src/store/')
@@ -32,7 +31,7 @@ export default {
   //开启调试
 
   entry: {
-    app: path.resolve(__dirname, 'src/helps/index')
+    app: path.resolve(__dirname, 'src/index')
   },
   target: 'web', // 目标是web服务
   mode: "production",
