@@ -5,6 +5,6 @@ const LoadableComponent = (component)=>
     loader: component,
     loading: Loading,
     timeout: 2000,
-    delay: 200
+    delay: 1500
   });
 export default LoadableComponent;
