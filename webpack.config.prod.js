@@ -237,9 +237,8 @@ export default {
             loader: 'postcss-loader',
             options: {
               plugins: () => [
-                require('autoprefixer')({
-                  browsers: ['last 15 versions']
-                }),
+                require('autoprefixer'),
+                require('cssnano'),
                 require('postcss-pxtorem')({
                   rootValue: 16,
                   unitPrecision: 5,
