@@ -25,33 +25,9 @@
 1. 部署到服务器上,需要nginx 反向代理启动node.js 的http 服务;
 2. 刷新之后 404 或者子路由报错；是使用了 BrowserRouter这个路由或者分割了代码。这个路由会开启h5 的history 模式;所以需要nginx的支持; nginx uri 定向到例如是打包文件是通过index.html 就重定向到index.html;如果是放在index.php就重定向到index.php就不会有这个问题了；
 3. 这个脚手架是封装了axios 这个ajax库到redux中；所以不用在调用的地方引入axios;只需要在redux的action中使用我在redux中封装的axios 中间件的别名  例如: api.get api.post等就好了;action中也符合redux的方式;
-##### 更新日志(2018.10.15)
-1. 优化父子路由的写法。 父路由嵌套子路由
-2. 移除服务端渲染,
-3. 优化redux路由数据在服务端渲染的时候不同步问题;
-4. 增加redux axios 中间件调用方法;以及调用获取数据例子
-5. 移除react-redux-router,增加稳定性
-6. webpack 升级到webpack version 4.8.0;
-7. 移除mocha 测试.使用更加简单的jest来处理测试
-8. 更新webpack-dev-middleware与 webpack-hot-middleware,
-9. 更新redux 到4.0版本.测试react v16.3新api
-10. 修复一些报错
-11. 移除sass 改用less,因为antd 组件库用的是less.用sass就显得多余了.
-12. 优化webpack 配置;
-13. 优化部分依赖；
-14. 移除服务端渲染。另外开个模板来使用next来处理服务端渲染, 因为next.js的路由写法与react-router-dom冲突;
-### 更新日志(2019.02.22)
-1. 解决ie 9兼容性问题。
-2. 解决 async await 链式写法箭头函数错误问题.
-3. 增加hook例子
-### 更新日志(2019.03.18)
-1. 解决 @babel/plugin-proposal-class-properties 与 @babel/plugin-transform-classes冲突问题
-### 更新日志(2019.05.06)
-1. 修改优化布局写法,
-2. 优化路由写法.
-3. 组件化
-4. 使用react hooks
-5. 大版本更新
+##### 更新日志(2019.06.10)
+1. 移除多余依赖。升级依赖。优化webpack配置
+2. 优化嵌套路由写法
 ##### 示例图片
 [![示例图片](./screen/1.gif) "示例图片")](https://react-template.keep-wan.me "示例")
 #演示
