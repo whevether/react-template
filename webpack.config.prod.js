@@ -1,19 +1,18 @@
-import webpack from 'webpack';
-import MiniCssExtractPlugin from "mini-css-extract-plugin"; //打包压缩css
-import HtmlWebpackPlugin from 'html-webpack-plugin'; //生成html并注入
-import CopyWebpackPlugin from 'copy-webpack-plugin'; //拷贝资源文件
-import WebpackMd5Hash from 'webpack-md5-hash'; //hash文件名
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //打包压缩css
+const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html并注入
+const CopyWebpackPlugin = require('copy-webpack-plugin'); //拷贝资源文件
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 /* eslint-disable  react/require-extension */
-import path from 'path';
+const path = require('path');
 // 设置node.js生产环境变量
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production'),
   __DEV__: false
 };
 
-export default {
+const config = {
   resolve: {
     //识别扩展文件名
     extensions: ['*', '.js', '.jsx', '.json'],
@@ -108,7 +107,6 @@ export default {
     }
   },
   plugins: [
-    new WebpackMd5Hash(),
     // 编译环境变量
     new webpack.DefinePlugin(GLOBALS),
     new MiniCssExtractPlugin({
@@ -264,3 +262,4 @@ export default {
     ]
   }
 };
+module.exports = config;

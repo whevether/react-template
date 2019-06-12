@@ -7,19 +7,17 @@
   },
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
-    "start-message": "babel-node tools/startMessage.js",
+    "start-message": "node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message remove-dist",
     "start": "npm-run-all --parallel  open:src lint:watch test:watch",
-    "open:src": "babel-node tools/srcServer.js",
-    "open:dist": "babel-node tools/distServer.js",
-    "open:serverDist": "babel-node tools/server/distServer.js",
-    "open:srcServer": "babel-node tools/server/srcServer.js",
+    "open:src": "node tools/srcServer.js",
+    "open:dist": "node tools/distServer.js",
     "lint": "esw webpack.config.* src tools --color",
     "lint:watch": "npm run lint -- --watch",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
     "prebuild": "npm run clean-dist && npm run lint",
-    "build": "babel-node tools/build.js  && npm run open:dist",
+    "build": "node tools/build.js  && npm run open:dist",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
@@ -43,7 +41,6 @@
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
-    "@babel/node": "^7.4.5",
     "@babel/plugin-proposal-async-generator-functions": "^7.2.0",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-json-strings": "^7.2.0",
@@ -54,10 +51,10 @@
     "@babel/plugin-transform-async-to-generator": "^7.4.4",
     "@babel/plugin-transform-react-constant-elements": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.4.4",
-    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.4.5",
+    "core-js": "^3.1.3",
     "autoprefixer": "^9.6.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.8.0",
@@ -94,12 +91,11 @@
     "url-loader": "^2.0.0",
     "webpack": "^4.33.0",
     "webpack-dev-middleware": "^3.7.0",
-    "webpack-hot-middleware": "^2.25.0",
-    "webpack-md5-hash": "^0.0.6"
+    "webpack-hot-middleware": "^2.25.0"
   },
   "browserslist": [
     "last 15 versions",
-    "> 1%",
+    "> 0.25%",
     "maintained node versions",
     "not dead"
   ],

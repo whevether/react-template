@@ -1,5 +1,6 @@
 /* eslint-disable import/default */
-import '@babel/polyfill';
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 // 路由句柄
 import React from 'react';
 import ReactDOM from 'react-dom';
