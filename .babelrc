@@ -20,6 +20,7 @@
         "@babel/plugin-proposal-async-generator-functions",
         "@babel/plugin-syntax-async-generators",
         "@babel/plugin-transform-async-to-generator",
+        "@babel/plugin-proposal-optional-chaining",
         "@babel/plugin-transform-runtime"
       ]
     },
@@ -44,6 +45,7 @@
         "@babel/plugin-proposal-async-generator-functions",
         "@babel/plugin-syntax-async-generators",
         "@babel/plugin-transform-async-to-generator",
+        "@babel/plugin-proposal-optional-chaining",
         "@babel/plugin-transform-runtime"
       ]
     }
