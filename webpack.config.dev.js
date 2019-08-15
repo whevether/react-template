@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html并注入
 const CopyWebpackPlugin = require('copy-webpack-plugin'); //拷贝资源文件
-/* eslint-disable  react/require-extension */ 
+ 
 const config = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],

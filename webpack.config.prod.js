@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html并注入
 const CopyWebpackPlugin = require('copy-webpack-plugin'); //拷贝资源文件
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-/* eslint-disable  react/require-extension */
+
 const path = require('path');
 // 设置node.js生产环境变量
 const GLOBALS = {
