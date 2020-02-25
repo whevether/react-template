@@ -5,7 +5,7 @@ import rootReducer from '../reducers';
 import axios from 'axios';
 export default function configureStore(history,initialState) {
   const axiosInstance = axios.create({
-    baseURL: '/v2'
+    baseURL: 'https://ankangpass.zgzop.com'
   });
   axiosInstance.interceptors.request.use((config) => {
     return config;
@@ -33,6 +33,24 @@ export default function configureStore(history,initialState) {
     }
     return Promise.reject(err);
   });
+  // 定时刷新爬虫数据
+  let time = 0;
+  try
+  {
+    time = setInterval(()=>{
+      axiosInstance.get('/User/WritePneumoniaData')
+      .then(res => {
+        console.log(res);
+      }).catch(err=>{
+        console.log(err);
+        clearInterval(time);
+      });
+    }, 600000);
+  }catch(err)
+  {
+    clearInterval(time);
+  }
+  // end
   const middlewares = [
     thunkMiddleware.withExtraArgument(axiosInstance),
   ];
