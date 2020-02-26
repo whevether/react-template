@@ -33,24 +33,24 @@ export default function configureStore(history,initialState) {
     }
     return Promise.reject(err);
   });
-  // 定时刷新爬虫数据
-  let time = 0;
-  try
-  {
-    time = setInterval(()=>{
-      axiosInstance.get('/User/WritePneumoniaData')
-      .then(res => {
-        console.log(res);
-      }).catch(err=>{
-        console.log(err);
-        clearInterval(time);
-      });
-    }, 600000);
-  }catch(err)
-  {
-    clearInterval(time);
-  }
-  // end
+  // // 定时刷新爬虫数据
+  // let time = 0;
+  // try
+  // {
+  //   time = setInterval(()=>{
+  //     axiosInstance.get('/User/WritePneumoniaData')
+  //     .then(res => {
+  //       console.log(res);
+  //     }).catch(err=>{
+  //       console.log(err);
+  //       clearInterval(time);
+  //     });
+  //   }, 600000);
+  // }catch(err)
+  // {
+  //   clearInterval(time);
+  // }
+  // // end
   const middlewares = [
     thunkMiddleware.withExtraArgument(axiosInstance),
   ];
