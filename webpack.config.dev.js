@@ -187,10 +187,11 @@ const config = {
           }, {
             loader: 'less-loader',
             options: {
-              // includePaths: [path.resolve(__dirname, 'src', 'less')],
-              paths:[path.resolve(__dirname, 'src'),path.resolve(__dirname, 'node_modules', )],
-              javascriptEnabled: true,
-              sourceMap: true
+              lessOptions: {
+                paths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
+                javascriptEnabled: true,
+                sourceMap: false
+              }
             }
           }
         ]
