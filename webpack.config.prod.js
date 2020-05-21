@@ -115,13 +115,14 @@ const config = {
       filename: "css/[name].css?v=[chunkhash]",
       chunkFilename: "css/vendor.css?v=[chunkhash]"
     }),
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin({
+      patterns:[
       {
         from: path.resolve(__dirname, 'src/assets'),
         to: path.resolve(__dirname, 'dist/assets'),
-        ignore: ['.*']
+        // ignore: ['.*']
       }
-    ]),
+    ]}),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       filename: 'index.html',

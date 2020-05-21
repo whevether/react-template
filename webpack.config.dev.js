@@ -73,13 +73,14 @@ const config = {
       'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
       __DEV__: true
     }),
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin({
+      patterns:[
       {
         from: path.resolve(__dirname, 'src/assets'),
         to: path.resolve(__dirname, 'dist/assets'),
-        ignore: ['.*']
+        // ignore: ['.*']
       }
-    ]),
+    ]}),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
