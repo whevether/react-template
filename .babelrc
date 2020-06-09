@@ -5,6 +5,7 @@
         "@babel/preset-react",
         ["@babel/preset-env",{
           "useBuiltIns": "entry",
+          "corejs": "3",
           "spec": true,
           "loose": true
         }]
@@ -29,6 +30,7 @@
         "@babel/preset-react",
         ["@babel/preset-env",{
           "useBuiltIns": "entry",
+          "corejs": "3",
           "spec": true,
           "loose": true
         }]
