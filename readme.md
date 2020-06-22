@@ -1,5 +1,5 @@
-###React version 16.12.X 版本脚手架
-> 包含客户端，使用了最新的react,并实现version 16.12.X;
+###React version 16.13.X 版本脚手架
+> 包含客户端，使用了最新的react,并实现version 16.13.X;
 > 移除服务端渲染。使用next.js来服务端渲染.另开一个模板
 > 使用webpack 4.X 来编译
 ```html
@@ -29,6 +29,6 @@
 1. 移除多余依赖。升级依赖。优化webpack配置
 2. 优化嵌套路由写法
 ##### 示例图片
-[![示例图片](./screen/1.gif) "示例图片")](https://react-template.keep-wan.me "示例")
+[![示例图片](./screen/1.gif) "示例图片")](https://react.keep-wan.me "示例")
 #演示
-[演示](https://react-template.keep-wan.me "演示")
+[演示](https://react.keep-wan.me "演示")
