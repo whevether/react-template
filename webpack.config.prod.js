@@ -19,9 +19,9 @@ const config = {
     alias: {
       components: path.resolve(__dirname, 'src/components/'),
       containers: path.resolve(__dirname, 'src/containers/'),
-      constants: path.resolve(__dirname, 'src/constants/'),
-      actions: path.resolve(__dirname, 'src/actions/'),
-      reducers: path.resolve(__dirname, 'src/reducers/'),
+      constants: path.resolve(__dirname, 'src/store/constants/'),
+      actions: path.resolve(__dirname, 'src/store/actions/'),
+      reducers: path.resolve(__dirname, 'src/store/reducers/'),
       router: path.resolve(__dirname, 'src/router/'),
       style: path.resolve(__dirname, 'src/style/'),
       store: path.resolve(__dirname, 'src/store/'),

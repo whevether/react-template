@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import * as fetchAction from 'actions/fetch';
+import * as fetchAction from 'store/actions/fetch';
 // import { List } from 'antd-mobile';   //测试代码
 /* eslint-disable react/no-multi-comp */ 
 const Home = (props) =>{
