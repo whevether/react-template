@@ -6,9 +6,11 @@ import classNames from 'classnames';
 const Address = (props) => {
   const [address, setAddress] = useState('长沙');
   const [show, setShow] = useState(false);
+  const [data,setData] = useState(['430000000000', '430100000000']);
   const handleChannelAddress = (value) => {
     // let label = '';
     let label = '';
+    let v = undefined;
     addressJson.forEach((dataItem) => {
       if (dataItem.value === value[0]) {
         label = dataItem.label;
@@ -16,14 +18,17 @@ const Address = (props) => {
           dataItem.children.forEach((cItem) => {
             if (cItem.value === value[1]) {
               label = ` ${cItem.label}`;
+              v = cItem.value;
             }
           });
         }
       }
     });
-    if (label != '' && label != undefined) {
+    setData(value);
+    if (label != '' && label != undefined && v) {
       setAddress(label);
       setShow(false);
+      props?.onChange(v);
     }
   };
   const handleMenu = () => {
@@ -34,7 +39,7 @@ const Address = (props) => {
     'arrow-up': !show
   });
   return (
-    <div className={'menu-active'}>
+    <div className={props?.menuClass}>
       <div className="menu" onClick={handleMenu}>
         <span style={props?.color}>{address}</span>
         <img src="assets/resource/home/down.svg" className={arrowClass}/>
@@ -42,7 +47,7 @@ const Address = (props) => {
       {show ? <Menu
         className="foo-menu"
         data={addressJson}
-        value={['430000000000', '430100000000']}
+        value={data}
         onChange={handleChannelAddress}
         height={'auto'}
       /> : null}
@@ -52,6 +57,8 @@ const Address = (props) => {
 Address.propTypes = {
   show: PropTypes.bool,
   address: PropTypes.string,
-  color: PropTypes.object
+  color: PropTypes.object,
+  menuClass: PropTypes.string,
+  onChange: PropTypes.func
 };
 export default Address;
