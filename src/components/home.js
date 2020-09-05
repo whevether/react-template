@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import Address from './address/index';
 import * as fetchAction from 'store/actions/fetch';
 // import { List } from 'antd-mobile';   //测试代码
 /* eslint-disable react/no-multi-comp */ 
@@ -11,8 +12,8 @@ const Home = (props) =>{
     const head = () => {
         return (
             <Helmet>
-              <title>主页</title>
-              <meta property="og:title" content="主页" />
+              <title>首页</title>
+              <meta property="og:title" content="首页" />
             </Helmet>
         );
     };
@@ -20,6 +21,7 @@ const Home = (props) =>{
     return(
         <>
             {head()}
+            <Address color={{color:'#fff'}} />
             <h2 onClick={props.fetchPublicKey}>主页</h2>
             <h5 style={{cursor: 'pointer'}} onClick={()=>setCount(count+1)}>react hook <span style={{color: 'green'}}>{count}</span></h5>
         </>

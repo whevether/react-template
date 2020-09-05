@@ -53,3 +53,30 @@ body{
 .main{
   text-align: center;
 }
+// menu
+.menu-active{
+	.menu{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+	}
+	span{
+		padding-left: 5px;
+	}
+}
+.menu-down{
+	width: 22px;
+}
+.foo-menu {
+  position: relative;
+  z-index: 1000 !important;
+}
+.arrow-up {
+	transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+	transform: scale(1,-1);
+}
+.arrow-down {
+	transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+	transform: scale(1,1);
+}
