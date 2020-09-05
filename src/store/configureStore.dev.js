@@ -5,7 +5,7 @@ import rootReducer from './reducers';
 import axios from 'axios';
 export default function configureStore(history,initialState) {
   const axiosInstance = axios.create({
-    baseURL: 'https://ankangpass.zgzop.com'
+    baseURL: 'https://api.keep-wan.me/api'
   });
   axiosInstance.interceptors.request.use((config) => {
     return config;

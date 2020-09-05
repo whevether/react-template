@@ -1,7 +1,7 @@
 {
-  "name": "react-template",
+  "name": "wjsz.weixin.h5",
   "version": "1.0.1",
-  "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个",
+  "description": "智慧旅游公众号",
   "engines": {
     "npm": ">=3"
   },
@@ -24,6 +24,7 @@
   "author": "keep_wan",
   "license": "MIT",
   "dependencies": {
+    "antd-mobile": "^2.3.3",
     "axios": "^0.20.0",
     "classnames": "^2.2.6",
     "history": "^5.0.0",

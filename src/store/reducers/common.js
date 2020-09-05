@@ -1,9 +1,11 @@
 import * as types from 'constants/types';
 // 初始数据
 let initData = {
-  data: null
+  data: null,
+  hidden: false
 };
-export default function home(state=initData,action){
+// 获取主页数据
+export default function getHomeData(state=initData,action){
   switch(action.type){
     case types.FETCH_DATA:
       if(action.payload){
@@ -14,3 +16,4 @@ export default function home(state=initData,action){
       return state;
   }
 }
+
