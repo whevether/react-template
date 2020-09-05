@@ -22,8 +22,7 @@
         "@babel/plugin-syntax-async-generators",
         "@babel/plugin-transform-async-to-generator",
         "@babel/plugin-proposal-optional-chaining",
-        "@babel/plugin-transform-runtime",
-        ["import", { "libraryName": "antd-mobile", "style": "less" }]
+        "@babel/plugin-transform-runtime"
       ]
     },
     "production": {
@@ -49,8 +48,7 @@
         "@babel/plugin-syntax-async-generators",
         "@babel/plugin-transform-async-to-generator",
         "@babel/plugin-proposal-optional-chaining",
-        "@babel/plugin-transform-runtime",
-        ["import", { "libraryName": "antd-mobile", "style": "less" }]
+        "@babel/plugin-transform-runtime"
       ]
     }
   }

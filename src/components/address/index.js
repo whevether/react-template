@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import addressJson from 'assets/index_2019__level_5.json';
+// import addressJson from 'assets/index_2019__level_5.json';
 import { Menu } from 'antd-mobile';
 import classNames from 'classnames';
 const Address = (props) => {
   const [address, setAddress] = useState('长沙');
   const [show, setShow] = useState(false);
   const [data,setData] = useState(['430000000000', '430100000000']);
+  const addressJson = 'assets/index_2019__level_5.json';
   const handleChannelAddress = (value) => {
     // let label = '';
     let label = '';
