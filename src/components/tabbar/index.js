@@ -33,7 +33,7 @@ const Footer = (props) => {
           selectedIcon={<div style={{
             width: '22px',
             height: '22px',
-            background: 'url(assets/resource/home.svg) center center /  21px 21px no-repeat'
+            background: 'url(assets/resource/home_sel.svg) center center /  21px 21px no-repeat'
           }}
           />
           }
@@ -48,7 +48,7 @@ const Footer = (props) => {
             <div style={{
               width: '22px',
               height: '22px',
-              background: 'url(https://gw.alipayobjects.com/zos/rmsportal/BTSsmHkPsQSPTktcXyTV.svg) center center /  21px 21px no-repeat'
+              background: 'url(assets/resource/hot.svg) center center /  21px 21px no-repeat'
             }}
             />
           }
@@ -56,7 +56,7 @@ const Footer = (props) => {
             <div style={{
               width: '22px',
               height: '22px',
-              background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat'
+              background: 'url(assets/resource/hot_sel.svg) center center /  21px 21px no-repeat'
             }}
             />
           }
@@ -65,7 +65,7 @@ const Footer = (props) => {
           badge={'hot'}
           selected={sel === 'hot'}
           onPress={() => {
-            handleNavRoute('/home','hot');
+            handleNavRoute('/hot','hot');
           }}
           data-seed="logId1"
         />
@@ -74,7 +74,7 @@ const Footer = (props) => {
             <div style={{
               width: '22px',
               height: '22px',
-              background: 'url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  21px 21px no-repeat'
+              background: 'url(assets/resource/video.svg) center center /  21px 21px no-repeat'
             }}
             />
           }
@@ -82,7 +82,7 @@ const Footer = (props) => {
             <div style={{
               width: '22px',
               height: '22px',
-              background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat'
+              background: 'url(assets/resource/video_sel.svg) center center /  21px 21px no-repeat'
             }}
             />
           }
@@ -95,13 +95,27 @@ const Footer = (props) => {
           }}
         />
         <Item
-          icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
-          selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
+          icon={
+            <div style={{
+              width: '22px',
+              height: '22px',
+              background: 'url(assets/resource/my.svg) center center /  21px 21px no-repeat'
+            }}
+            />
+          }
+          selectedIcon={
+            <div style={{
+              width: '22px',
+              height: '22px',
+              background: 'url(assets/resource/my_sel.svg) center center /  21px 21px no-repeat'
+            }}
+            />
+          }
           title="我的"
           key="my"
           selected={sel === 'my'}
           onPress={() => {
-            setSel({ sel: 'my' });
+            handleNavRoute('/my','my');
           }}
         />
       </TabBar>
