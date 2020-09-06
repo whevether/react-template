@@ -30,6 +30,11 @@ export const routes = [
   },
   {
     layout: LoadableComponent(() => import('../containers/errorLayout')),
+    path: '/login',
+    component: LoadableComponent(() => import('../components/login'))
+  },
+  {
+    layout: LoadableComponent(() => import('../containers/errorLayout')),
     path: '/401',
     component: LoadableComponent(() => import('../components/401'))
   }, 
