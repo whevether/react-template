@@ -25,7 +25,7 @@ const config = {
       router: path.resolve(__dirname, 'src/router/'),
       style: path.resolve(__dirname, 'src/style/'),
       store: path.resolve(__dirname, 'src/store/'),
-      utils: path.resolve(__dirname,'src/utils/')
+      utils: path.resolve(__dirname, 'src/utils/')
     }
   },
   //开启调试
@@ -116,13 +116,14 @@ const config = {
       chunkFilename: "css/vendor.css?v=[chunkhash]"
     }),
     new CopyWebpackPlugin({
-      patterns:[
-      {
-        from: path.resolve(__dirname, 'src/assets'),
-        to: path.resolve(__dirname, 'dist/assets'),
-        // ignore: ['.*']
-      }
-    ]}),
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/assets'),
+          to: path.resolve(__dirname, 'dist/assets'),
+          // ignore: ['.*']
+        }
+      ]
+    }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       filename: 'index.html',
@@ -235,20 +236,22 @@ const config = {
           }, {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [
-                require('autoprefixer'),
-                require('cssnano'),
-                require('postcss-pxtorem')({
-                  rootValue: 16,
-                  unitPrecision: 5,
-                  propList: ['*'],
-                  selectorBlackList: [],
-                  replace: true,
-                  mediaQuery: false,
-                  minPixelValue: 0
-                })
-              ],
-              sourceMap: false
+              postcssOptions: {
+                plugins: () => [
+                  require('autoprefixer'),
+                  require('cssnano'),
+                  require('postcss-pxtorem')({
+                    rootValue: 16,
+                    unitPrecision: 5,
+                    propList: ['*'],
+                    selectorBlackList: [],
+                    replace: true,
+                    mediaQuery: false,
+                    minPixelValue: 0
+                  })
+                ],
+                sourceMap: false
+              }
             }
           }, {
             loader: 'less-loader',

@@ -2,27 +2,27 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html并注入
 const CopyWebpackPlugin = require('copy-webpack-plugin'); //拷贝资源文件
- 
+
 const config = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
     alias: {
-        components: path.resolve(__dirname, 'src/components/'),
-        containers: path.resolve(__dirname, 'src/containers/'),
-        constants: path.resolve(__dirname, 'src/store/constants/'),
-        actions: path.resolve(__dirname, 'src/store/actions/'),
-        reducers: path.resolve(__dirname, 'src/store/reducers/'),
-        router: path.resolve(__dirname, 'src/router/'),
-        style: path.resolve(__dirname, 'src/style/'),
-        store: path.resolve(__dirname, 'src/store/'),
-        utils: path.resolve(__dirname,'src/utils/')
+      components: path.resolve(__dirname, 'src/components/'),
+      containers: path.resolve(__dirname, 'src/containers/'),
+      constants: path.resolve(__dirname, 'src/store/constants/'),
+      actions: path.resolve(__dirname, 'src/store/actions/'),
+      reducers: path.resolve(__dirname, 'src/store/reducers/'),
+      router: path.resolve(__dirname, 'src/router/'),
+      style: path.resolve(__dirname, 'src/style/'),
+      store: path.resolve(__dirname, 'src/store/'),
+      utils: path.resolve(__dirname, 'src/utils/')
     }
   },
 
   devtool: 'eval', // 调试工具
   mode: "development",
   entry: {
-      app:[
+    app: [
       //  设置目标源和热加载源
       'react-hot-loader/patch',   //这个是最新的react热加载插件。目前还是rc版.取代babel-react-hmr
       'webpack-hot-middleware/client?reload=true',
@@ -74,13 +74,14 @@ const config = {
       __DEV__: true
     }),
     new CopyWebpackPlugin({
-      patterns:[
-      {
-        from: path.resolve(__dirname, 'src/assets'),
-        to: path.resolve(__dirname, 'dist/assets'),
-        // ignore: ['.*']
-      }
-    ]}),
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/assets'),
+          to: path.resolve(__dirname, 'dist/assets'),
+          // ignore: ['.*']
+        }
+      ]
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
@@ -171,19 +172,21 @@ const config = {
           }, {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [
-                require('autoprefixer'),
-                require('postcss-pxtorem')({
-                  rootValue: 16,
-                  unitPrecision: 5,
-                  propList: ['*'],
-                  selectorBlackList: [],
-                  replace: true,
-                  mediaQuery: false,
-                  minPixelValue: 0
-                })
-              ],
-              sourceMap: false
+              postcssOptions: {
+                plugins: () => [
+                  require('autoprefixer'),
+                  require('postcss-pxtorem')({
+                    rootValue: 16,
+                    unitPrecision: 5,
+                    propList: ['*'],
+                    selectorBlackList: [],
+                    replace: true,
+                    mediaQuery: false,
+                    minPixelValue: 0
+                  })
+                ],
+                sourceMap: false
+              }
             }
           }, {
             loader: 'less-loader',
