@@ -46,18 +46,18 @@ browserSync({
 
       webpackDevMiddleware(bundler, {
         publicPath: config.output.publicPath,
-
-        noInfo: true,
-        quiet: false,
-        stats: {
-          assets: false,
-          colors: true,
-          version: false,
-          hash: false,
-          timings: false,
-          chunks: false,
-          chunkModules: false
-        },
+        writeToDisk: true
+        // noInfo: true,
+        // quiet: false,
+        // stats: {
+        //   assets: false,
+        //   colors: true,
+        //   version: false,
+        //   hash: false,
+        //   timings: false,
+        //   chunks: false,
+        //   chunkModules: false
+        // },
       }),
       webpackHotMiddleware(bundler)
     ],

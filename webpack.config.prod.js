@@ -1,9 +1,9 @@
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //打包压缩css
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html并注入
 const CopyWebpackPlugin = require('copy-webpack-plugin'); //拷贝资源文件
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const path = require('path');
 // 设置node.js生产环境变量
@@ -43,23 +43,28 @@ const config = {
     chunkFilename: 'js/[name].js?v=[chunkhash]',
   },
   optimization: {
-    // 优化打包配置
+    minimize: true,
     minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          compress: {
-            properties: true
-          },
-          output: {
-            comments: false
-          },
-          warnings: false,
-          mangle: true,
-          ie8: true
+      new TerserPlugin({
+        extractComments: false,
+        exclude: /\/excludes/,
+        parallel: 4,
+        terserOptions: {
+          ecma: undefined,
+          parse: {},
+          compress: true,
+          mangle: true, // Note `mangle.properties` is `false` by default.
+          module: false,
+          // Deprecated
+          output: null,
+          format: null,
+          toplevel: false,
+          nameCache: false,
+          ie8: false,
+          keep_classnames: undefined,
+          keep_fnames: false,
+          safari10: false,
         },
-        cache: true,
-        parallel: true,
-        sourceMap: false,
       }),
       new OptimizeCSSAssetsPlugin({
         assetNameRegExp: /\.css|\.less$/g,
@@ -70,11 +75,16 @@ const config = {
     ],
     splitChunks: {
       chunks: "all",
-      minSize: 30000,
+      minSize: {
+        javascript: 30000, // 模块要大于30kb才会进行提取
+        style: 50000, // 模块要大于50kb才会进行提取
+      },
+      minRemainingSize: 0,
       minChunks: 1,
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
-      name: true,
+      // name: true,
+      automaticNameDelimiter: '~', 
       cacheGroups: {
         vendor: {//node_modules内的依赖库
           chunks: "all",
@@ -84,6 +94,7 @@ const config = {
           maxInitialRequests: 5,
           minSize: 0,
           priority: 100,
+          reuseExistingChunk: true
           // enforce: true?
         },
         common: {// ‘src/js’ 下的js文件
@@ -94,14 +105,6 @@ const config = {
           maxInitialRequests: 5,
           minSize: 0,
           priority: 1
-        },
-        styles: {
-          name: 'styles',
-          test: /\.css|\.less$/,
-          chunks: 'all',
-          minSize: 0,
-          minChunks: 2,
-          enforce: true
         }
       }
     }
@@ -154,7 +157,7 @@ const config = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader', options: { cacheDirectory: true } }]
+        use: ['cache-loader',{ loader: 'babel-loader', options: { cacheDirectory: true } }]
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,

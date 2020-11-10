@@ -40,11 +40,16 @@ const config = {
     // 优化打包配置
     splitChunks: {
       chunks: "all",
-      minSize: 30000,
+      minSize: {
+        javascript: 30000, // 模块要大于30kb才会进行提取
+        style: 50000, // 模块要大于50kb才会进行提取
+      },
+      minRemainingSize: 0,
       minChunks: 1,
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
-      name: true,
+      // name: true,
+      automaticNameDelimiter: '~', 
       cacheGroups: {
         vendor: {//node_modules内的依赖库
           chunks: "all",
@@ -54,6 +59,7 @@ const config = {
           maxInitialRequests: 5,
           minSize: 0,
           priority: 100,
+          reuseExistingChunk: true
           // enforce: true?
         },
         common: {// ‘src/js’ 下的js文件
@@ -101,7 +107,7 @@ const config = {
       {
         test: /\.(jsx|js)?$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader', options: { cacheDirectory: true } }]
+        use: ['cache-loader',{ loader: 'babel-loader', options: { cacheDirectory: true } }]
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
