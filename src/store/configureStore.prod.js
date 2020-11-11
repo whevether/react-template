@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default function configureStore(history,initialState) {
   const axiosInstance = axios.create({
-    baseURL: 'https://ankangpass.zgzop.com'
+    baseURL: 'https://center.keep-wan.me/api'
   });
   axiosInstance.interceptors.request.use((config) => {
     return config;
@@ -13,8 +13,8 @@ export default function configureStore(history,initialState) {
     return Promise.reject(error);
   });
   axiosInstance.interceptors.response.use((response)=>{
-    if(response.status === 200 || response.data.status === 200 || response.data.status === 0){
-      return response.data;
+    if(response.status === 200 && (response.data.code === 200 || response.data.code === 0)){
+      return response?.data?.data;
     }
   },(err)=>{
     const {response} = err;

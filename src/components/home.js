@@ -24,17 +24,9 @@ const Home = (props) =>{
             <h5 style={{cursor: 'pointer'}} onClick={()=>setCount(count+1)}>react hook <span style={{color: 'green'}}>{count}</span></h5>
             {props.data  === null && <Fragment>点击主页文字获取数据</Fragment>}
             {props.data !== null && <div className="content">
-                <h6>{props.data.title}</h6>
-                {props.data.subjects.map((item,i)=>{
-                    return(
-                        <div className="item-wrapper" key={i}>
-                            <h3>{item.title}</h3>
-                            <img src={item.images.large}/>
-                            <div>上映年份{item.year}</div>
-                            <div>上映年份{item.year}</div>
-                        </div>
-                    );
-                })}
+                <h6 style={{color:'red'}}>appkey: {props?.data?.appKey}</h6>
+                <h6 style={{color:'red'}}>sign: {props?.data?.sign}</h6>
+                <h6 style={{color:'red'}}>time: {props?.data?.timestamp}</h6>
             </div>}
         </>
     );
