@@ -1,10 +1,5 @@
-import Loadable from 'react-loadable'; 
-import Loading from './LoadingComponent';
-const LoadableComponent = (component)=>
-  Loadable({
-    loader: component,
-    loading: Loading,
-    timeout: 2000,
-    delay: 1500
-  });
+import Loadable from '@loadable/component';
+import React from 'react';
+const LoadableComponent = (component) =>
+  Loadable(component, { fallback: <div>加载中</div> });
 export default LoadableComponent;

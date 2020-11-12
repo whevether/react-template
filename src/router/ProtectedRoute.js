@@ -36,7 +36,7 @@ const ProtectedRoute = ({component: Component,permission,...rest}) => {
   );
 };
 ProtectedRoute.propTypes = {
-  component: PropTypes.func,
+  Component: PropTypes.func,
   permission: PropTypes.string,
   location: PropTypes.object
 };
