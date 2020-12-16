@@ -1,7 +1,7 @@
 ###React version 17.X 版本脚手架
-> 包含客户端，使用了最新的react,并实现version 16.13.X;
+> 包含客户端，使用了最新的react,并实现version 17.X;
 > 移除服务端渲染。使用next.js来服务端渲染.另开一个模板
-> 使用webpack 4.X 来编译
+> 使用webpack 5.X 来编译
 ```html
 <!-- 分离的第三方依赖 -->
 <script src="../dist/js/vendor.js"></script>
@@ -28,6 +28,9 @@
 ##### 更新日志(2019.06.10)
 1. 移除多余依赖。升级依赖。优化webpack配置
 2. 优化嵌套路由写法
+##### 更新日志(2020.11.20)
+1. 移除过期依赖。
+2. 升级webpack 5
 ##### 示例图片
 [![示例图片](./screen/1.gif) "示例图片")](https://react.keep-wan.me "示例")
 #演示
