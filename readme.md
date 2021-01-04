@@ -35,3 +35,5 @@
 [![示例图片](./screen/1.gif) "示例图片")](https://react.keep-wan.me "示例")
 #演示
 [演示](https://react.keep-wan.me "演示")
+##### npm 7 安装命令
+`npm i --legacy-peer-deps`
