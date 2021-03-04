@@ -36,7 +36,7 @@ export const removeCookie = (arr, domain='.keep-wan.me')=>{
   try{
     if (Array.isArray(arr)) {
       for(let value of arr.values()){
-        return Cookies.remove(value,{domain: domain});
+        Cookies.remove(value,{domain: domain});
       }
     }
   }catch(err){

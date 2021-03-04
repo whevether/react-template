@@ -19,6 +19,10 @@ const loading = () => {
     if (document.getElementById('scene')) {
       document.getElementById('scene').remove();
     }
+    //删除加载动画js,防止继续运行消耗内存
+    for(let src of document.getElementsByClassName('loading')){
+      src.parentNode.removeChild(src);
+    }
   }, 1500);
 };
 loading();
