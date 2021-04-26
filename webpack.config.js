@@ -24,9 +24,6 @@ const config = {
   mode: "development",
   entry: {
     app: [
-      //  设置目标源和热加载源
-      'react-hot-loader/patch',   //这个是最新的react热加载插件。目前还是rc版.取代babel-react-hmr
-      'webpack-hot-middleware/client?reload=true',
       path.resolve(__dirname, 'src/index.js') // 定位客户端目标
     ]
   },
@@ -34,46 +31,15 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'), // 输出编译文件目录
     publicPath: '/', //根目录
-    filename: 'js/[name].js',
-    chunkFilename: 'js/[name].js',
+    filename: 'js/[name].js'
   },
-  optimization: {
-    // 优化打包配置
-    splitChunks: {
-      chunks: "all",
-      minSize: {
-        javascript: 30000, // 模块要大于30kb才会进行提取
-        style: 50000, // 模块要大于50kb才会进行提取
-      },
-      minRemainingSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      // name: true,
-      automaticNameDelimiter: '~', 
-      cacheGroups: {
-        vendor: {//node_modules内的依赖库
-          chunks: "all",
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
-          minChunks: 1, //被不同entry引用次数(import),1次的话没必要提取
-          maxInitialRequests: 5,
-          minSize: 0,
-          priority: 100,
-          reuseExistingChunk: true
-          // enforce: true?
-        },
-        common: {// ‘src/js’ 下的js文件
-          chunks: "all",
-          test: /[\\/]src[\\/]js[\\/]/,//也可以值文件/[\\/]src[\\/]js[\\/].*\.js/,  
-          name: "common", //生成文件名，依据output规则
-          minChunks: 1,
-          maxInitialRequests: 5,
-          minSize: 0,
-          priority: 1
-        }
-      }
-    }
+  devServer: {
+    contentBase: path.join(__dirname, "public/"),
+    port: 3000,
+    publicPath: "/",
+    // hotOnly: true,
+    hot: true,
+    open: true,
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -108,7 +74,7 @@ const config = {
       {
         test: /\.(jsx|js)?$/,
         exclude: /node_modules/,
-        use: ['cache-loader',{ loader: 'babel-loader', options: { cacheDirectory: true } }]
+        use: ['react-hot-loader/webpack','babel-loader']
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
