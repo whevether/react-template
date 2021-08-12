@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html并注入
 const CopyWebpackPlugin = require('copy-webpack-plugin'); //拷贝资源文件
-
 const config = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
@@ -35,11 +34,15 @@ const config = {
   },
   devServer: {
     contentBase: path.join(__dirname, "public/"),
-    port: 3000,
+    port: 3005,
     publicPath: "/",
     // hotOnly: true,
     hot: true,
     open: true,
+    proxy: {
+      '/api': 'http://localhost:5900',
+    },
+    historyApiFallback: true
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -78,54 +81,64 @@ const config = {
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
-        use: ['file-loader']
+        type: 'asset/resource',
+        generator: {
+          filename: '[name].[ext]'
+        }
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              mimetype: 'application/font-woff'
-            }
-          }
-        ]
+        type: 'asset/resource',
+        generator: {
+          filename: '[name].[ext]'
+        }
       },
       {
         test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              mimetype: 'application/octet-stream'
-            }
-          }
-        ]
+        type: 'javascript/auto',
+        generator: {
+          filename: '[name].[ext]'
+        }
+        // use: [
+        //   {
+        //     loader: 'url-loader',
+        //     options: {
+        //       limit: 10000,
+        //       mimetype: 'application/octet-stream'
+        //     }
+        //   }
+        // ]
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              mimetype: 'image/svg+xml'
-            }
-          }
-        ]
+        type: 'javascript/auto',
+        generator: {
+          filename: '[name].[ext]'
+        }
+        // use: [
+        //   {
+        //     loader: 'url-loader',
+        //     options: {
+        //       limit: 10000,
+        //       mimetype: 'image/svg+xml'
+        //     }
+        //   }
+        // ]
       },
       {
         test: /\.(jpe?g|png|gif|ico)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]'
-            }
-          }
-        ]
+        type: 'asset/resource',
+        generator: {
+          filename: '[name].[ext]'
+        }
+        // use: [
+        //   {
+        //     loader: 'file-loader',
+        //     options: {
+        //       name: '[name].[ext]'
+        //     }
+        //   }
+        // ]
       },
       {
         test: /\.css|\.less$/,
@@ -146,8 +159,8 @@ const config = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: () => [
-                  require('autoprefixer'),
+                plugins: [
+                  ['autoprefixer',{/*options*/}],
                   require('postcss-pxtorem')({
                     rootValue: 16,
                     unitPrecision: 5,

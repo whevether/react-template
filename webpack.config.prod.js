@@ -3,8 +3,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //打包压缩css
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html并注入
 const CopyWebpackPlugin = require('copy-webpack-plugin'); //拷贝资源文件
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const path = require('path');
 // 设置node.js生产环境变量
 const GLOBALS = {
@@ -67,12 +66,7 @@ const config = {
           safari10: false,
         },
       }),
-      new OptimizeCSSAssetsPlugin({
-        assetNameRegExp: /\.css|\.less$/g,
-        cssProcessor: require('cssnano'),
-        cssProcessorOptions: { discardComments: { removeAll: true } },
-        canPrint: true
-      })
+      new CssMinimizerPlugin()
     ],
     splitChunks: {
       chunks: "all",
@@ -162,64 +156,88 @@ const config = {
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              name: '[name].[ext]'
-            }
-          }
-        ]
+        type: 'javascript/auto',
+        generator: {
+          filename: 'assets/[name].[ext]'
+        }
+        // use: [
+        //   {
+        //     loader: 'url-loader',
+        //     options: {
+        //       name: '[name].[ext]'
+        //     }
+        //   }
+        // ]
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              mimetype: 'application/font-woff',
-              name: '[name].[ext]'
-            }
-          }
-        ]
+        type: 'javascript/auto',
+        generator: {
+          filename: '[name].[ext]'
+        }
+        // use: [
+        //   {
+        //     loader: 'url-loader',
+        //     options: {
+        //       limit: 10000,
+        //       mimetype: 'application/font-woff',
+        //       name: '[name].[ext]'
+        //     }
+        //   }
+        // ]
       },
       {
         test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              mimetype: 'application/octet-stream',
-              name: '[name].[ext]'
-            }
-          }
-        ]
+        type: 'javascript/auto',
+        generator: {
+          filename: '[name].[ext]'
+        }
+        // use: [
+        //   {
+        //     loader: 'url-loader',
+        //     options: {
+        //       limit: 10000,
+        //       mimetype: 'application/octet-stream',
+        //       name: '[name].[ext]'
+        //     }
+        //   }
+        // ]
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              mimetype: 'image/svg+xml',
-              name: '[name].[ext]'
-            }
-          }
-        ]
+        type: 'javascript/auto',
+        generator: {
+          filename: '[name].[ext]'
+        }
+        // use: [
+        //   {
+        //     loader: 'url-loader',
+        //     options: {
+        //       limit: 10000,
+        //       mimetype: 'image/svg+xml',
+        //       name: '[name].[ext]'
+        //     }
+        //   }
+        // ]
       },
       {
         test: /\.(jpe?g|png|gif|ico)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]'
-            }
-          }
-        ]
+        type: 'asset/resource',
+        generator: {
+          filename: '[name].[ext]'
+        }
+        // use: [
+        //   {
+        //     // loader: 'file-loader',
+        //     type: 'asset/resource',
+        //     generator: {
+        //       filename: 'assets/[hash][ext][query]'
+        //     }
+        //     // options: {
+        //     //   name: '[name].[ext]'
+        //     // }
+        //   }
+        // ]
       },
       {
         test: /\.css|\.less$/,
@@ -241,9 +259,8 @@ const config = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: () => [
-                  require('autoprefixer'),
-                  require('cssnano'),
+                plugins: [
+                  ['autoprefixer',{/*options*/}],
                   require('postcss-pxtorem')({
                     rootValue: 16,
                     unitPrecision: 5,
