@@ -205,7 +205,7 @@ const config = {
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        type: 'javascript/auto',
+        type: 'asset/inline',
         generator: {
           filename: '[name].[ext]'
         }
