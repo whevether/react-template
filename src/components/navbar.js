@@ -10,7 +10,7 @@ const NavBar = ()=>{
       {' | '}
       <NavLink to="/snacks" activeStyle={activeStyle}>说明</NavLink>
       {' | '}
-      <NavLink to="/keep" activeStyle={activeStyle}>react v16.3 新api</NavLink>
+      <NavLink to="/keep" activeStyle={activeStyle}>react v17.2 新api</NavLink>
     </div>
   );
 };

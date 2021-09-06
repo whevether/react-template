@@ -23,7 +23,7 @@ class Keep extends Component{
   head(){
     return(
       <Helmet>
-      <title>测试v16.3新api</title>
+      <title>测试v17.2新api</title>
       <meta property="og:title" content="新api" />
     </Helmet>
     );
