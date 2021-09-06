@@ -104,6 +104,10 @@ const config = {
       }
     }
   },
+  cache: {
+    type: 'filesystem',
+    allowCollectingMemory: true,
+  },
   plugins: [
     // 编译环境变量
     new webpack.DefinePlugin(GLOBALS),
