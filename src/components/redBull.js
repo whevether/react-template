@@ -1,8 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom";
 /* eslint-disable react/no-multi-comp */ 
-const RedBull = (props) =>{
+const RedBull = () =>{
+    let navigate = useNavigate();
     // 演示编程式导航
     const head = ()=>{
         return (
@@ -14,11 +16,11 @@ const RedBull = (props) =>{
     };
     const handBack = ()=>{
         // 这两个的效果是一样的;
-        props.history.go(-1);
+        navigate(-1);
         // props.history.goBack();
     };
     const handPush = ()=>{
-        props.history.push('/snacks/one');
+        navigate('/snacks/one');
     };
     return(
         <div className="honeniu">
@@ -29,6 +31,6 @@ const RedBull = (props) =>{
     );
 };
 RedBull.propTypes = {
-    history: PropTypes.object.isRequired
+    history: PropTypes.object
 };
 export default RedBull;

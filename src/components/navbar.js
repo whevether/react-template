@@ -1,16 +1,15 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 const NavBar = ()=>{
-  const activeStyle = { color: 'blue' };
   return (
     <div className="header">
-      <NavLink exact to="/" activeStyle={activeStyle}>主页</NavLink>
+      <NavLink  to="/" className={({ isActive }) => "nav-link" + (isActive ? " activated" : "")}>主页</NavLink>
       {' | '}
-      <NavLink to="/redbull" activeStyle={activeStyle}>红牛</NavLink>
+      <NavLink to="/redbull" className={({ isActive }) => "nav-link" + (isActive ? " activated" : "")}>红牛</NavLink>
       {' | '}
-      <NavLink to="/snacks" activeStyle={activeStyle}>说明</NavLink>
+      <NavLink to="/snacks" className={({ isActive }) => "nav-link" + (isActive ? " activated" : "")}>说明</NavLink>
       {' | '}
-      <NavLink to="/keep" activeStyle={activeStyle}>react v17.2 新api</NavLink>
+      <NavLink to="/keep" className={({ isActive }) => "nav-link" + (isActive ? " activated" : "")}>react v17.2 新api</NavLink>
     </div>
   );
 };

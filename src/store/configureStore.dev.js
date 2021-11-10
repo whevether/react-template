@@ -3,7 +3,7 @@ import {createStore, compose, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import {request} from 'utils/request';
-import { routerMiddleware } from 'connected-react-router';
+import { createReduxHistoryContext } from "redux-first-history";
 export default function configureStore(history,initialState) {
   // // 定时刷新爬虫数据
   // let time = 0;
@@ -23,11 +23,15 @@ export default function configureStore(history,initialState) {
   //   clearInterval(time);
   // }
   // end
+  const { createReduxHistory, routerMiddleware, routerReducer } = createReduxHistoryContext({ 
+    history: history,
+    //other options if needed 
+  });
   const middlewares = [
-    routerMiddleware(history),
+    routerMiddleware,
     thunkMiddleware.withExtraArgument(request(history)),
   ];
-  const store = createStore(rootReducer(history), initialState, compose(
+  const store = createStore(rootReducer(routerReducer), initialState, compose(
     applyMiddleware(...middlewares)
     )
   );
@@ -39,6 +43,9 @@ export default function configureStore(history,initialState) {
       store.replaceReducer(nextReducer);
     });
   }
-
-  return store;
+  const h = createReduxHistory(store);
+  return {
+    store,
+    h
+  };
 }

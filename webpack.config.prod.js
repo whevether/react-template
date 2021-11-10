@@ -156,7 +156,7 @@ const config = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: ['cache-loader',{ loader: 'babel-loader', options: { cacheDirectory: true } }]
+        use: [{ loader: 'babel-loader', options: { cacheDirectory: true } }]
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
