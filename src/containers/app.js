@@ -8,16 +8,18 @@ import RootLayout from './rootLayout';
 import DefaultLayout from './defaultLayout';
 //默认布局
 import LoginLayout from './loginLayout';
+//分割路由
+import LoadableComponent from './LoadableComponent';
 /* 页面 */
-import Home from '../components/home';
-import RedBull from '../components/redBull';
-import Snacks from '../components/snacks';
-import One from '../components/one';
-import Two from '../components/two';
-import NotFound from '../components/nodeFound';
-import Error401 from '../components/401';
-import Keep from '../components/keep';
-import Login from '../components/login';
+const Home = LoadableComponent(() => import(/* webpackPrefetch: true */'../components/home'));
+const RedBull = LoadableComponent(() => import(/* webpackPrefetch: true */'../components/redBull'));
+const Snacks = LoadableComponent(() => import(/* webpackPrefetch: true */'../components/snacks'));
+const One = LoadableComponent(() => import(/* webpackPrefetch: true */'../components/one'));
+const Two = LoadableComponent(() => import(/* webpackPrefetch: true */'../components/two'));
+const NotFound = LoadableComponent(() => import(/* webpackPrefetch: true */'../components/nodeFound'));
+const Error401 = LoadableComponent(() => import(/* webpackPrefetch: true */'../components/401'));
+const Keep = LoadableComponent(() => import(/* webpackPrefetch: true */'../components/keep'));
+const Login = LoadableComponent(() => import(/* webpackPrefetch: true */'../components/login'));
 /* Routes 相当于 v4 v5中的switch路由 */
 const routes = [{
   path: "/",
