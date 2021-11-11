@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
  * 
  */
 export const isGranted = (permission)=>{
-  let mock = ['/','/redbull','/snacks','/keep','/snacks/one','/snacks/two'];
+  let mock = ['dash','redbull','snacks','keep','snacks.one','snacks.two'];
   // console.log(permission);
   // console.log(mock.indexOf(permission) !== -1);
   return mock.indexOf(permission) !== -1;

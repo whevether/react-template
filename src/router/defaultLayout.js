@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Navbar from 'components/navbar';
 import {isGranted,getCookie} from 'utils/storage';
+import {permission} from 'utils/permission';
 import {Outlet,Navigate,useLocation} from 'react-router-dom';
 // 登入页布局
 
@@ -14,7 +15,7 @@ const DefaultLayout = () => {
         <Navigate to="/login" replace />
       );
     }else{
-      if(path?.pathname && !isGranted(path?.pathname)){
+      if(path?.pathname && !isGranted(permission[path?.pathname])){
         return(
           <Navigate to="/401" replace />
         );
