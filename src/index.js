@@ -13,7 +13,7 @@ import configureStore from 'store/configureStore';
 import 'style/test.less';
 const history = createBrowserHistory();
 const {store,h} = configureStore(history); //第二个参数是初始状态
-import App from 'containers/app';
+import App from 'router/app';
 const loading = () => {
   setTimeout(() => {
     if (document.getElementById('scene')) {

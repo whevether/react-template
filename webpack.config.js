@@ -7,7 +7,6 @@ const config = {
     extensions: ['*', '.js', '.jsx', '.json'],
     alias: {
       components: path.resolve(__dirname, 'src/components/'),
-      containers: path.resolve(__dirname, 'src/containers/'),
       constants: path.resolve(__dirname, 'src/store/constants/'),
       actions: path.resolve(__dirname, 'src/store/actions/'),
       reducers: path.resolve(__dirname, 'src/store/reducers/'),
