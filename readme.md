@@ -33,9 +33,12 @@
 1. 移除过时依赖。使用webpack 5自带资源加载
 ##### 更新日志(2021.11.11)
 1. 升级react-router 为v6.history为 v5.并修改router为hooks写法.
+##### 更新日志(2021.12.24)
+1. 升级eslint到8
+2. 最低只支持node 14
 ##### 示例图片
 [![示例图片](./screen/1.gif) "示例图片")](https://react.keep-wan.me "示例")
 #演示
 [演示](https://react.keep-wan.me "演示")
-##### npm 7 安装命令
+##### npm 8 安装命令
 `npm i --legacy-peer-deps`

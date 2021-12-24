@@ -8,10 +8,11 @@
   "plugins": [
     "react"
   ],
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 8,
     "sourceType": "module",
+    "requireConfigFile": false,
     "ecmaFeatures": {
       "jsx": true,
       "experimentalObjectRestSpread": true
