@@ -3,7 +3,7 @@
   "version": "1.0.5",
   "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个",
   "engines": {
-    "npm": ">=3"
+    "npm": ">=8"
   },
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
@@ -62,7 +62,7 @@
     "babel-loader": "^8.2.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "browser-sync": "^2.27.9",
-    "chalk": "^5.0.1",
+    "chalk": "^4.1.2",
     "connect-history-api-fallback": "^1.6.0",
     "copy-webpack-plugin": "^10.2.4",
     "core-js": "^3.21.1",

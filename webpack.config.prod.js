@@ -114,7 +114,7 @@ const config = {
       // Options similar to the same options in webpackOptions.output
       // both options are optional eea1d28b685828b67788
       filename: "css/[name].css?v=[chunkhash]",
-      chunkFilename: "css/vendor.css?v=[chunkhash]"
+      chunkFilename: "css/[id].css?v=[chunkhash]"
     }),
     new CopyWebpackPlugin({
       patterns: [
