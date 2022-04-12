@@ -1,5 +1,5 @@
-###React version 17.X 版本脚手架
-> 包含客户端，使用了最新的react,并实现version 17.X;
+###React version 18.X 版本脚手架
+> 包含客户端，使用了最新的react,并实现version 18.X;
 > 使用webpack 5.X 来编译
 ```html
 <!-- 分离的第三方依赖 -->
@@ -36,6 +36,8 @@
 ##### 更新日志(2021.12.24)
 1. 升级eslint到8
 2. 最低只支持node 14
+##### 更新日志(2022.04.12)
+1. 升级为react v18.0
 ##### 示例图片
 [![示例图片](./screen/1.gif) "示例图片")](https://react.keep-wan.me "示例")
 #演示
