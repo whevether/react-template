@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html并注入
 const CopyWebpackPlugin = require('copy-webpack-plugin'); //拷贝资源文件
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const config = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
@@ -48,9 +49,9 @@ const config = {
     },
     port: 3005,
     historyApiFallback: true,
-    proxy: {
-      '/api': 'http://localhost:5000'
-    },
+    // proxy: {
+    //   '/api': 'https://test.zhiyeinfo.com/api'
+    // },
     // hotOnly: true,
     hot: true,
     open: true,
@@ -60,6 +61,7 @@ const config = {
     allowCollectingMemory: true,
   },
   plugins: [
+    new ReactRefreshWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
       __DEV__: true
@@ -85,14 +87,19 @@ const config = {
       },
       inject: true
     })
-  ],
+  ].filter(Boolean),
   module: {
     //  编译模式
     rules: [
       {
         test: /\.(jsx|js)?$/,
         exclude: /node_modules/,
-        use: ['react-hot-loader/webpack','babel-loader']
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            plugins: [require.resolve('react-refresh/babel')].filter(Boolean),
+          },
+        }]
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
@@ -156,7 +163,7 @@ const config = {
         // ]
       },
       {
-        test: /\.css|\.less$/,
+        test: /\.css|\.scss$/,
         // exclude: /node_modules/, //排除这个文件夹
         use: [
           'style-loader',
@@ -190,14 +197,22 @@ const config = {
               }
             }
           }, {
-            loader: 'less-loader',
+            loader: "sass-loader",
             options: {
-              lessOptions: {
-                paths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
-                javascriptEnabled: true,
-                sourceMap: false
-              }
+              sassOptions: {
+                webpackImporter: false,
+                indentWidth: 4,
+                includePaths: [path.resolve(__dirname, 'src', 'scss'),'node_modules'],
+              },
             }
+            // loader: 'less-loader',
+            // options: {
+            //   lessOptions: {
+            //     paths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
+            //     javascriptEnabled: true,
+            //     sourceMap: false
+            //   }
+            // }
           }
         ]
       }
