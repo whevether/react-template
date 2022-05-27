@@ -20,3 +20,13 @@ ul{
 .main{
   text-align: center;
 }
+.footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  text-align: center;
+  a{
+    color: #000;
+  }
+}

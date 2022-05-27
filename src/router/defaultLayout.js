@@ -25,6 +25,7 @@ const DefaultLayout = () => {
             <Navbar />
             {/* 路由占位符  */}
             <Outlet />
+            <p className="footer" ><a href="https://beian.miit.gov.cn/" target="_blank">Copyright © 2022 湘ICP备2022009830号</a></p>
           </div>
         );
       }

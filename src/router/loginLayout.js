@@ -9,6 +9,7 @@ const LoginLayout = () => {
       <div>登入页面布局</div>
       {/* 路由插槽 */}
       <Outlet />
+      <p className="footer" ><a href="https://beian.miit.gov.cn/" target="_blank">Copyright © 2022 湘ICP备2022009830号</a></p>
     </div>
   );
 };
