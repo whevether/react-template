@@ -1,6 +1,6 @@
 {
   "name": "react-template",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个",
   "engines": {
     "npm": ">=8"
@@ -25,9 +25,9 @@
   "license": "MIT",
   "dependencies": {
     "@loadable/component": "^5.15.2",
-    "axios": "^0.27.2",
-    "classnames": "^2.3.1",
-    "echarts": "^5.3.3",
+    "axios": "^1.1.3",
+    "classnames": "^2.3.2",
+    "echarts": "^5.4.0",
     "history": "^5.3.0",
     "js-cookie": "^3.0.1",
     "prop-types": "^15.8.1",
@@ -38,8 +38,7 @@
     "react-router-dom": "^6.3.0",
     "redux": "^4.2.0",
     "redux-first-history": "^5.0.10",
-    "redux-thunk": "^2.4.1",
-    "use-deep-compare-effect": "^1.8.1"
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
@@ -66,7 +65,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "browser-sync": "^2.27.10",
     "chalk": "^4.1.2",
-    "connect-history-api-fallback": "^1.6.0",
+    "connect-history-api-fallback": "^2.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.22.7",
     "css-loader": "^6.7.1",
@@ -118,7 +117,7 @@
     "boilerplate",
     "starter",
     "react-template",
-    "react-version16"
+    "react-version18"
   ],
   "repository": {
     "type": "git",

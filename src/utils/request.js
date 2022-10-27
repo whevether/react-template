@@ -1,7 +1,7 @@
 import axios from 'axios';
 export const request = (history) => {
   const axiosInstance = axios.create({
-    baseURL: 'https://center.keep-wan.me/api'
+    baseURL: 'https://api.zytravel.shop/api'
   });
   axiosInstance.interceptors.request.use((config) => {
     return config;

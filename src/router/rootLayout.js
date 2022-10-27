@@ -16,5 +16,5 @@ RootLayout.propTypes = {
   routes: PropTypes.object
 };
 export default connect(state => ({
-  state: state
+  home: state?.home
 }))(RootLayout);
