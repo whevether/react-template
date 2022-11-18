@@ -7,7 +7,8 @@
           "useBuiltIns": "entry",
           "corejs": "3",
           "spec": true,
-          "loose": true
+          "loose": true,
+          "targets": "defaults"
         }]
       ],
       "plugins": [
@@ -30,7 +31,8 @@
           "useBuiltIns": "entry",
           "corejs": "3",
           "spec": true,
-          "loose": true
+          "loose": true,
+          "targets": "defaults"
         }]
       ],
       "plugins": [
