@@ -9,7 +9,7 @@ const NavBar = ()=>{
       {' | '}
       <NavLink to="/snacks" className={({ isActive }) => "nav-link" + (isActive ? " activated" : "")}>说明</NavLink>
       {' | '}
-      <NavLink to="/keep" className={({ isActive }) => "nav-link" + (isActive ? " activated" : "")}>react v17.2 新api</NavLink>
+      <NavLink to="/keep" className={({ isActive }) => "nav-link" + (isActive ? " activated" : "")}>react v18 新api</NavLink>
     </div>
   );
 };
