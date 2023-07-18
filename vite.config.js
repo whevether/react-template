@@ -45,7 +45,9 @@ export default defineConfig({
       ],
     },
   },
-  plugins: [reactRefresh(),createHtmlPlugin({
+  plugins: [
+    reactRefresh(),
+    createHtmlPlugin({
     minify: true,
     /**
      * 在这里写entry后，你将不需要在`index.html`内添加 script 标签，原有标签需要删除
