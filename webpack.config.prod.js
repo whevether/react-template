@@ -8,6 +8,7 @@ const path = require('path');
 // 设置node.js生产环境变量
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production'),
+  'process.env.BUILD_TYPE': JSON.stringify('webpack'),
   __DEV__: false
 };
 
@@ -30,7 +31,7 @@ const config = {
   //开启调试
 
   entry: {
-    app: path.resolve(__dirname, 'src/index')
+    app: path.resolve(__dirname, 'src/index.jsx') // 定位客户端目标
   },
   target: 'web', // 目标是web服务
   mode: "production",
