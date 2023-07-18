@@ -7,6 +7,8 @@
   },
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
+    "dev": "vite --open --force --mode development",
+    "build:vite": "vite build --mode production",
     "start-message": "node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message remove-dist",
     "start": "npm-run-all --parallel  open:src lint:watch test:watch",
@@ -25,11 +27,13 @@
   "license": "MIT",
   "dependencies": {
     "@loadable/component": "^5.15.3",
+    "@vitejs/plugin-react": "^4.0.3",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "echarts": "^5.4.2",
     "history": "^5.3.0",
     "js-cookie": "^3.0.5",
+    "postcss-import": "^15.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -38,7 +42,8 @@
     "react-router-dom": "^6.14.1",
     "redux": "^4.2.1",
     "redux-first-history": "^5.1.1",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "vite": "^4.4.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.9",
@@ -89,6 +94,7 @@
     "sass": "^1.63.6",
     "sass-loader": "^13.3.2",
     "style-loader": "^3.3.3",
+    "vite-plugin-html": "^3.2.0",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"

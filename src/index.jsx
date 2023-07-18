@@ -7,7 +7,7 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
 import { HistoryRouter as Router } from "redux-first-history/rr6";
-import configureStore from 'store/configureStore';
+import {configureStore} from 'store/configureStore';
 //GYGBZ-MB5WR-DPZWK-WTKS2-UWBVS-VXBKW
 //服务端渲染的时候样式需要放在入口这里。放别的地方环境会报错; 
 import 'style/test.scss';

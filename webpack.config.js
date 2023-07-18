@@ -23,7 +23,7 @@ const config = {
   mode: "development",
   entry: {
     app: [
-      path.resolve(__dirname, 'src/index.js') // 定位客户端目标
+      path.resolve(__dirname, 'src/index.jsx') // 定位客户端目标
     ]
   },
   target: 'web', // 目标是web 服务器
@@ -64,6 +64,7 @@ const config = {
     new ReactRefreshWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
+      'process.env.BUILD_TYPE': JSON.stringify('webpack'),
       __DEV__: true
     }),
     new CopyWebpackPlugin({

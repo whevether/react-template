@@ -35,13 +35,22 @@ export default function configureStore(history,initialState) {
     applyMiddleware(...middlewares)
     )
   );
-
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./reducers', () => {
-      const nextReducer = require('./reducers').default; // eslint-disable-line global-require
-      store.replaceReducer(nextReducer);
-    });
+  if(process.env.BUILD_TYPE === 'webpack'){
+    if(module.hot){
+      // Enable Webpack hot module replacement for reducers
+      module?.hot?.accept('./reducers', () => {
+        const nextReducer = require('./reducers').default; // eslint-disable-line global-require
+        store.replaceReducer(nextReducer);
+      });
+    }
+  }else{
+    if (import.meta?.hot) {
+      // Enable Webpack hot module replacement for reducers
+      import.meta?.hot?.accept('./reducers', () => {
+        const nextReducer = require('./reducers').default; // eslint-disable-line global-require
+        store.replaceReducer(nextReducer);
+      });
+    }
   }
   const h = createReduxHistory(store);
   return {
