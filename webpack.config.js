@@ -61,6 +61,9 @@ const config = {
     allowCollectingMemory: true,
   },
   plugins: [
+    require('unplugin-auto-import/webpack')({
+      imports: ["react","react-router-dom"],
+    }),
     new ReactRefreshWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
@@ -176,7 +179,8 @@ const config = {
               // // namedExport: true, // this is  invalid Options ,I find it
               // camelCase: true,
               // localIdentName: '[path][name]__[local]--[hash:base64:5]',
-              sourceMap: true
+              sourceMap: true,
+              url: false
             }
           }, {
             loader: 'postcss-loader',

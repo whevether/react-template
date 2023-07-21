@@ -109,6 +109,9 @@ const config = {
     allowCollectingMemory: true,
   },
   plugins: [
+    require('unplugin-auto-import/webpack')({
+      imports: ["react","react-router-dom"],
+    }),
     // 编译环境变量
     new webpack.DefinePlugin(GLOBALS),
     new MiniCssExtractPlugin({
@@ -252,6 +255,7 @@ const config = {
             loader: 'css-loader',
             options: {
               sourceMap: false,
+              url: false
               // importLoaders: 2,
               // modules: {
                 // auto: (resourcePath) => resourcePath.endsWith('.scss'),
