@@ -1,9 +1,11 @@
-import { defineConfig } from 'vite'
-import reactRefresh from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import reactRefresh from '@vitejs/plugin-react';
 
-const path = require('path')
-import { createHtmlPlugin } from 'vite-plugin-html'
-const atImport = require('postcss-import')
+import path from 'path';
+import { createHtmlPlugin } from 'vite-plugin-html';
+import AutoImport from "unplugin-auto-import/vite";
+import atImport from 'postcss-import';
+import autoprefixer from 'autoprefixer';
 
 const { resolve } = path
 
@@ -12,6 +14,7 @@ const { resolve } = path
 export default defineConfig({
   root: './src/',
   base: '/',
+  publicDir: 'public',
   resolve: {
     alias: [{find: 'components',replacement: path.resolve(__dirname, 'src/components/')},
     {find: 'constants',replacement: path.resolve(__dirname, 'src/store/constants/')},
@@ -33,7 +36,7 @@ export default defineConfig({
     postcss: {
       plugins: [
         atImport({ path: path.join(__dirname, 'src`') }),
-        require('autoprefixer')({
+        autoprefixer({
           overrideBrowserslist: [
             '> 0.5%',
             'last 2 versions',
@@ -47,6 +50,9 @@ export default defineConfig({
   },
   plugins: [
     reactRefresh(),
+    AutoImport({
+      imports: ["react","react-router-dom"],
+    }),
     createHtmlPlugin({
     minify: true,
     /**
@@ -79,23 +85,37 @@ export default defineConfig({
       ],
     },
   })],
-  // define: {
-  //   'process.env': {
-  //     NODE_ENV: JSON.stringify('production')
-  //   }
-  // },
+  define: {
+    'process.env': {
+    }
+  },
   build: {
     target: 'es2015',
     outDir: '../dist',
     cssCodeSplit: true,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    },
     rollupOptions: {
       input:{
         app: path.resolve(__dirname, 'src/index.html')
       },
       output: {
-        entryFileNames: `[name].js`,
-        chunkFileNames: `[name].js`,
-        assetFileNames: `[name].[ext]`,
+        entryFileNames: `js/[name]-[hash].js`,
+        chunkFileNames: `js/[name]-[hash].js`,
+        assetFileNames: assetInfo => {
+          var extType = 'assets';
+          if (
+            /\.(css|scss|sass|less)(\?.*)?$/i.test(assetInfo.name)
+          ) {
+            extType = 'css'
+          }
+          return `${extType}/[name]-[hash][extname]`
+        },
       },
     },
   },

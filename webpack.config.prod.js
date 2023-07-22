@@ -39,8 +39,8 @@ const config = {
     //输出目录
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'js/[name].js?v=[chunkhash]',
-    chunkFilename: 'js/[name].js?v=[chunkhash]',
+    filename: 'js/[name]-[hash].js?v=[chunkhash]',
+    chunkFilename: 'js/[name]-[hash].js?v=[chunkhash]',
   },
   optimization: {
     minimize: true,
@@ -109,18 +109,21 @@ const config = {
     allowCollectingMemory: true,
   },
   plugins: [
+    require('unplugin-auto-import/webpack')({
+      imports: ["react","react-router-dom"],
+    }),
     // 编译环境变量
     new webpack.DefinePlugin(GLOBALS),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional eea1d28b685828b67788
-      filename: "css/[name].css?v=[chunkhash]",
-      chunkFilename: "css/[id].css?v=[chunkhash]"
+      filename: "css/[name]-[hash].css?v=[chunkhash]",
+      chunkFilename: "css/[id]-[hash].css?v=[chunkhash]"
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/assets'),
+          from: path.resolve(__dirname, 'src/public/assets'),
           to: path.resolve(__dirname, 'dist/assets'),
           // ignore: ['.*']
         }
@@ -252,6 +255,7 @@ const config = {
             loader: 'css-loader',
             options: {
               sourceMap: false,
+              url: false
               // importLoaders: 2,
               // modules: {
                 // auto: (resourcePath) => resourcePath.endsWith('.scss'),
