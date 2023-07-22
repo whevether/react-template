@@ -14,6 +14,7 @@ const { resolve } = path
 export default defineConfig({
   root: './src/',
   base: '/',
+  publicDir: 'public',
   resolve: {
     alias: [{find: 'components',replacement: path.resolve(__dirname, 'src/components/')},
     {find: 'constants',replacement: path.resolve(__dirname, 'src/store/constants/')},
@@ -63,7 +64,7 @@ export default defineConfig({
      * 如果你想将 `index.html`存放在指定文件夹，可以修改它，否则不需要配置
      * @default index.html
      */
-    template: 'index.vite.html',
+    template: 'index.html',
 
     /**
      * 需要注入 index.html ejs 模版的数据
@@ -101,7 +102,7 @@ export default defineConfig({
     },
     rollupOptions: {
       input:{
-        app: path.resolve(__dirname, 'src/index.vite.html')
+        app: path.resolve(__dirname, 'src/index.html')
       },
       output: {
         entryFileNames: `js/[name]-[hash].js`,

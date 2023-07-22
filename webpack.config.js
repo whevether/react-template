@@ -30,7 +30,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'), // 输出编译文件目录
     publicPath: '/', //根目录
-    filename: 'js/[name].js'
+    filename: 'js/[name]-[hash].js'
   },
   devServer: {
     static: {
@@ -73,7 +73,7 @@ const config = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/assets'),
+          from: path.resolve(__dirname, 'src/public/assets'),
           to: path.resolve(__dirname, 'dist/assets'),
           // ignore: ['.*']
         }
