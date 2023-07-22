@@ -24,7 +24,7 @@ export default defineConfig({
     {find: 'style',replacement: path.resolve(__dirname, 'src/style/')},
     {find: 'store',replacement: path.resolve(__dirname, 'src/store/')},
     {find: 'utils',replacement: path.resolve(__dirname, 'src/utils/')},
-    {find: 'assets',replacement:  path.resolve(__dirname, 'src/assets/')},
+    {find: 'assets',replacement:  path.resolve(__dirname, 'src/public/assets/')},
     { find: '@', replacement: resolve(__dirname, './src') }],
     extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
   },

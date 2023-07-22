@@ -15,7 +15,7 @@ const config = {
       style: path.resolve(__dirname, 'src/style/'),
       store: path.resolve(__dirname, 'src/store/'),
       utils: path.resolve(__dirname, 'src/utils/'),
-      assets: path.resolve(__dirname, 'src/assets/')
+      assets: path.resolve(__dirname, 'src/public/assets/')
     }
   },
 
@@ -30,7 +30,8 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'), // 输出编译文件目录
     publicPath: '/', //根目录
-    filename: 'js/[name]-[hash].js'
+    filename: 'js/[name]-[hash].js?v=[chunkhash]',
+    chunkFilename: 'js/[name]-[hash].js?v=[chunkhash]',
   },
   devServer: {
     static: {
