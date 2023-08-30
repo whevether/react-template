@@ -14,7 +14,7 @@
     "start": "npm-run-all --parallel  open:src lint:watch test:watch",
     "open:src": " webpack serve --mode development",
     "open:dist": "node tools/distServer.js",
-    "lint": "esw webpack.config.* src tools --color",
+    "lint": "eslint --ext .tsx,.jsx,.js,.ts src/ tools/ --fix",
     "lint:watch": "npm run lint -- --watch",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
