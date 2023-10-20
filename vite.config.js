@@ -8,8 +8,10 @@ import atImport from 'postcss-import';
 import autoprefixer from 'autoprefixer';
 
 const { resolve } = path
-
-// process.env.NODE_ENV = 'production'; // 生产环境变量
+// const env = loadEnv(mode, process.cwd())
+// 打包模式
+const modeEnv = process.env.VITE_USER_NODE_ENV;
+// console.log(modeEnv)
 // https://vitejs.dev/config/
 export default defineConfig({
   root: './src/',
@@ -52,6 +54,14 @@ export default defineConfig({
     reactRefresh(),
     AutoImport({
       imports: ["react","react-router-dom"],
+    }),
+    (modeEnv === 'production') && viteCompression({
+      filter: /\.(js|css)$/i,
+      verbose: true,
+      disable: false,
+      threshold: 10240,
+      algorithm: "gzip",
+      ext: ".gz",
     }),
     createHtmlPlugin({
     minify: true,
