@@ -4,13 +4,14 @@ import reactRefresh from '@vitejs/plugin-react';
 import path from 'path';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import AutoImport from "unplugin-auto-import/vite";
+import viteCompression from "vite-plugin-compression"
 import atImport from 'postcss-import';
 import autoprefixer from 'autoprefixer';
 
 const { resolve } = path
 // const env = loadEnv(mode, process.cwd())
 // 打包模式
-const modeEnv = process.env.VITE_USER_NODE_ENV;
+const modeEnv = process.env.NODE_ENV;
 // console.log(modeEnv)
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -61,7 +62,7 @@ export default defineConfig({
       disable: false,
       threshold: 10240,
       algorithm: "gzip",
-      ext: ".gz",
+      // ext: ".gz",
     }),
     createHtmlPlugin({
     minify: true,
