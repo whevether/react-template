@@ -1,13 +1,14 @@
 import { defineConfig } from 'vite';
 import reactRefresh from '@vitejs/plugin-react';
-
+import { fileURLToPath, URL } from 'url';
 import path from 'path';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import AutoImport from "unplugin-auto-import/vite";
-import viteCompression from "vite-plugin-compression"
+import viteCompression from "vite-plugin-compression";
 import atImport from 'postcss-import';
 import autoprefixer from 'autoprefixer';
-const { resolve } = path
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+const pathResolve = (dir) => fileURLToPath(new URL(dir, import.meta.url));
 // const env = loadEnv(mode, process.cwd())
 // 打包模式
 const modeEnv = process.env.NODE_ENV;
@@ -18,16 +19,16 @@ export default defineConfig({
   base: '/',
   publicDir: 'public',
   resolve: {
-    alias: [{ find: 'components', replacement: path.resolve(__dirname, 'src/components/') },
-    { find: 'constants', replacement: path.resolve(__dirname, 'src/store/constants/') },
-    { find: 'actions', replacement: path.resolve(__dirname, 'src/store/actions/') },
-    { find: 'reducers', replacement: path.resolve(__dirname, 'src/store/reducers/') },
-    { find: 'router', replacement: path.resolve(__dirname, 'src/router/') },
-    { find: 'style', replacement: path.resolve(__dirname, 'src/style/') },
-    { find: 'store', replacement: path.resolve(__dirname, 'src/store/') },
-    { find: 'utils', replacement: path.resolve(__dirname, 'src/utils/') },
-    { find: 'assets', replacement: path.resolve(__dirname, 'src/public/assets/') },
-    { find: '@', replacement: resolve(__dirname, './src') }],
+    alias: [{ find: 'components', replacement: pathResolve('src/components/') },
+    { find: 'constants', replacement: pathResolve('src/store/constants/') },
+    { find: 'actions', replacement: pathResolve('src/store/actions/') },
+    { find: 'reducers', replacement: pathResolve('src/store/reducers/') },
+    { find: 'router', replacement: pathResolve('src/router/') },
+    { find: 'style', replacement: pathResolve('src/style/') },
+    { find: 'store', replacement: pathResolve('src/store/') },
+    { find: 'utils', replacement: pathResolve('src/utils/') },
+    { find: 'assets', replacement: pathResolve('src/public/assets/') },
+    { find: '@', replacement: pathResolve('./src') }],
     extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
   },
   css: {
@@ -51,17 +52,23 @@ export default defineConfig({
     },
   },
   plugins: [
+    createSvgIconsPlugin({
+      // 指定需要缓存的图标文件夹
+      iconDirs: [pathResolve('src/icons')],
+      // 指定symbolId格式
+      symbolId: 'icon-[name]'
+    }),
     reactRefresh(),
     AutoImport({
-      imports: ["react", "react-router-dom"],
+      imports: ["react", "react-router-dom"]
     }),
     (modeEnv === 'production') && viteCompression({
-      filter: /\.(js|css)$/i,
+      filter: /^(?!.*min\.js$).*\.(js|json|css|scss)$/i,
       verbose: true,
       disable: false,
       threshold: 10240,
       algorithm: "gzip",
-      deleteOriginFile: true
+      deleteOriginFile: true,
       // ext: ".gz",
     }),
     createHtmlPlugin({
@@ -83,8 +90,8 @@ export default defineConfig({
       inject: {
         minify: true,
         // data: {
-          // title: 'react 模版',
-          // injectScript: `<script src="./index.js"></script>`,
+        // title: 'react 模版',
+        // injectScript: `<script src="./index.js"></script>`,
         // },
         tags: [
           {
@@ -116,7 +123,7 @@ export default defineConfig({
     sourcemap: (modeEnv === 'production') ? false : true,
     rollupOptions: {
       input: {
-        app: path.resolve(__dirname, 'src/index.html')
+        app: pathResolve('src/index.html')
       },
       // external: ['react','react-dom'],
       output: {
@@ -131,19 +138,20 @@ export default defineConfig({
               .split("node_modules/")[1]
               .split("/")[0]
               .toString();
-          }},
-          entryFileNames: `js/[name]-[hash].js`,
-            chunkFileNames: `js/[name]-[hash].js`,
-              assetFileNames: assetInfo => {
-                var extType = 'assets';
-                if (
-                  /\.(css|scss|sass|less)(\?.*)?$/i.test(assetInfo.name)
-                ) {
-                  extType = 'css'
-                }
-                return `${extType}/[name]-[hash][extname]`
-              },
-      },
+          }
+        },
+        entryFileNames: `js/[name]-[hash].js`,
+        chunkFileNames: `js/[name]-[hash].js`,
+        assetFileNames: assetInfo => {
+          let extType = 'assets';
+          if (
+            /\.(css|scss|sass|less)(\?.*)?$/i.test(assetInfo.name)
+          ) {
+            extType = 'css'
+          }
+          return `${extType}/[name]-[hash][extname]`
+        },
       },
     },
-  });
+  },
+});
