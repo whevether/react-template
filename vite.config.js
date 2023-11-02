@@ -125,32 +125,46 @@ export default defineConfig({
       input: {
         app: pathResolve('src/index.html')
       },
-      // external: ['react','react-dom'],
       output: {
-        // globals: {
-        //   react: "React",
-        //   "react-dom": "ReactDOM",
-        // },
+        // 静态资源分类和包装
+        chunkFileNames: "js/[name]-[hash].js",
+        entryFileNames: "js/[name]-[hash].js", // 主体文件不打hash，避免android环境更新
+        assetFileNames: (assetInfo) => {
+          const _name = assetInfo?.name
+          let _assetFileNames = ''
+          switch (true) {
+            // 媒体文件
+            case /\.(png|jpe?g|gif|svg|webp|webm|mp3)$/.test(_name):
+              _assetFileNames = `assets/media/[name]-[hash].[ext]`
+              break
+            // 字体文件
+            case /\.(woff|woff2|eot|ttf|otf)$/.test(_name):
+              _assetFileNames = `assets/fonts/[name]-[hash].[ext]`
+              break
+            case /\.(css)$/.test(_name):
+              _assetFileNames = `css/[name]-[hash].[ext]`
+              break
+            default:
+              _assetFileNames = `[ext]/[name]-[hash].[ext]`
+              break
+          }
+          return _assetFileNames
+        },
+        // 静态资源拆分打包
         manualChunks(id) {
-          if (id.includes("node_modules")) {
-            return id
-              .toString()
-              .split("node_modules/")[1]
-              .split("/")[0]
-              .toString();
+          let _manualChunks = ''
+          switch (true) {
+            case id.includes('node_modules'):
+              _manualChunks = 'vendor'
+              break
+            case id.includes('svg-icons-register'):
+              _manualChunks = 'svg-icons-register'
+              break
           }
-        },
-        entryFileNames: `js/[name]-[hash].js`,
-        chunkFileNames: `js/[name]-[hash].js`,
-        assetFileNames: assetInfo => {
-          let extType = 'assets';
-          if (
-            /\.(css|scss|sass|less)(\?.*)?$/i.test(assetInfo.name)
-          ) {
-            extType = 'css'
+          if (_manualChunks) {
+            return _manualChunks
           }
-          return `${extType}/[name]-[hash][extname]`
-        },
+        }
       },
     },
   },

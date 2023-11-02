@@ -165,7 +165,7 @@ const config = {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
         type: 'javascript/auto',
         generator: {
-          filename: 'assets/[name].[ext]'
+          filename: '[name].[ext]'
         }
         // use: [
         //   {
