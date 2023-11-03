@@ -2,10 +2,10 @@ import { defineConfig } from 'vite';
 import reactRefresh from '@vitejs/plugin-react';
 import { fileURLToPath, URL } from 'url';
 import path from 'path';
-import { createHtmlPlugin } from 'vite-plugin-html';
 import AutoImport from "unplugin-auto-import/vite";
-import viteCompression from "vite-plugin-compression";
+import viteCompression from "vite-plugin-compression2";
 import atImport from 'postcss-import';
+// import { cdn } from 'vite-plugin-cdn2';
 import autoprefixer from 'autoprefixer';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 const pathResolve = (dir) => fileURLToPath(new URL(dir, import.meta.url));
@@ -59,6 +59,7 @@ export default defineConfig({
       symbolId: 'icon-[name]'
     }),
     reactRefresh(),
+    // cdn({ modules: ['react-router-dom','axios','echarts','react-redux','redux'] }),
     AutoImport({
       imports: ["react", "react-router-dom"]
     }),
@@ -70,39 +71,6 @@ export default defineConfig({
       algorithm: "gzip",
       deleteOriginFile: true,
       // ext: ".gz",
-    }),
-    createHtmlPlugin({
-      minify: true,
-      /**
-       * 在这里写entry后，你将不需要在`index.html`内添加 script 标签，原有标签需要删除
-       * @default src/main.ts
-       */
-      entry: 'index.jsx',
-      /**
-       * 如果你想将 `index.html`存放在指定文件夹，可以修改它，否则不需要配置
-       * @default index.html
-       */
-      template: 'index.html',
-
-      /**
-       * 需要注入 index.html ejs 模版的数据
-       */
-      inject: {
-        minify: true,
-        // data: {
-        // title: 'react 模版',
-        // injectScript: `<script src="./index.js"></script>`,
-        // },
-        tags: [
-          {
-            injectTo: 'body-prepend',
-            tag: 'div',
-            attrs: {
-              id: 'tag',
-            },
-          },
-        ],
-      },
     })],
   define: {
     'process.env': {
@@ -123,7 +91,7 @@ export default defineConfig({
     sourcemap: (modeEnv === 'production') ? false : true,
     rollupOptions: {
       input: {
-        app: pathResolve('src/index.html')
+        app: pathResolve('src/indexvue.html')
       },
       output: {
         // 静态资源分类和包装
