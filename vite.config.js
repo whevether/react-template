@@ -59,14 +59,13 @@ export default defineConfig({
       symbolId: 'icon-[name]'
     }),
     reactRefresh(),
-    // cdn({ modules: ['react-router-dom','axios','echarts','react-redux','redux'] }),
+    // cdn({ modules: ['react-router-dom','axios','echarts','react-redux','redux',{ name: 'react', relativeModule: './umd/react.production.min.js' },
+    // { name: 'react-dom', relativeModule: './umd/react-dom.production.min.js', aliases: ['client'] }] }),
     AutoImport({
       imports: ["react", "react-router-dom"]
     }),
     (modeEnv === 'production') && viteCompression({
-      filter: /^(?!.*min\.js$).*\.(js|json|css|scss)$/i,
-      verbose: true,
-      disable: false,
+      include: /^(?!.*min\.js$).*\.(js|json|css|scss)$/i,
       threshold: 10240,
       algorithm: "gzip",
       deleteOriginFile: true,
@@ -89,9 +88,18 @@ export default defineConfig({
     },
     reportCompressedSize: (modeEnv === 'production') ? false : true,
     sourcemap: (modeEnv === 'production') ? false : true,
+    external: [
+      'react',
+      'react-dom',
+      'redux',
+      'react-router-dom',
+      'axios',
+      'echarts',
+      'react-redux'
+    ],
     rollupOptions: {
       input: {
-        app: pathResolve('src/indexvue.html')
+        app: pathResolve('src/index.html')
       },
       output: {
         // 静态资源分类和包装
