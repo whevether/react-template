@@ -29,7 +29,7 @@ export default defineConfig({
     { find: 'utils', replacement: pathResolve('src/utils/') },
     { find: 'assets', replacement: pathResolve('src/public/assets/') },
     { find: '@', replacement: pathResolve('./src') }],
-    extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
+    extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx"],
   },
   css: {
     preprocessorOptions: {
@@ -59,8 +59,7 @@ export default defineConfig({
       symbolId: 'icon-[name]'
     }),
     reactRefresh(),
-    // cdn({ modules: ['react-router-dom','axios','echarts','react-redux','redux',{ name: 'react', relativeModule: './umd/react.production.min.js' },
-    // { name: 'react-dom', relativeModule: './umd/react-dom.production.min.js', aliases: ['client'] }] }),
+    // cdn({modules: [{ name: 'react', relativeModule: './umd/react.production.min.js' },{ name: 'react-dom', relativeModule: './umd/react-dom.production.min.js', aliases: ['client'] },'react-helmet', 'react-router-dom','axios','echarts','redux','react-redux'] }),
     AutoImport({
       imports: ["react", "react-router-dom"]
     }),
@@ -88,19 +87,20 @@ export default defineConfig({
     },
     reportCompressedSize: (modeEnv === 'production') ? false : true,
     sourcemap: (modeEnv === 'production') ? false : true,
-    external: [
-      'react',
-      'react-dom',
-      'redux',
-      'react-router-dom',
-      'axios',
-      'echarts',
-      'react-redux'
-    ],
     rollupOptions: {
       input: {
         app: pathResolve('src/index.html')
       },
+      // external: [
+      //   'react',
+      //   'react-dom',
+      //   'react-router-dom',
+      //   'react-helmet',
+      //   'redux',
+      //   'react-redux',
+      //   'axios',
+      //   'echarts'
+      ],
       output: {
         // 静态资源分类和包装
         chunkFileNames: "js/[name]-[hash].js",
