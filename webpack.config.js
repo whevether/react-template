@@ -34,6 +34,7 @@ const config = {
     chunkFilename: 'js/[name]-[hash].js?v=[chunkhash]',
   },
   devServer: {
+    client: { overlay: false },
     static: {
       directory: path.join(__dirname, "public/"),
       staticOptions: {},
@@ -65,7 +66,7 @@ const config = {
     require('unplugin-auto-import/webpack')({
       imports: ["react","react-router-dom"],
     }),
-    new ReactRefreshWebpackPlugin(),
+    new ReactRefreshWebpackPlugin({overlay: false}),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
       'process.env.BUILD_TYPE': JSON.stringify('webpack'),
