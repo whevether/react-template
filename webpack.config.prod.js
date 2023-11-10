@@ -163,7 +163,7 @@ const config = {
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
-        type: 'javascript/auto',
+        type: 'asset/resource',
         generator: {
           filename: '[name].[ext]'
         }
@@ -178,7 +178,7 @@ const config = {
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        type: 'javascript/auto',
+        type: 'asset/resource',
         generator: {
           filename: '[name].[ext]'
         }
@@ -195,7 +195,7 @@ const config = {
       },
       {
         test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
-        type: 'javascript/auto',
+        type: 'asset/resource',
         generator: {
           filename: '[name].[ext]'
         }
@@ -212,7 +212,7 @@ const config = {
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        type: 'asset/inline',
+        type: 'javascript/auto',
         generator: {
           filename: '[name].[ext]'
         }
