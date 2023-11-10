@@ -100,7 +100,7 @@ export default defineConfig({
       //   'react-redux',
       //   'axios',
       //   'echarts'
-      ],
+      // ],
       output: {
         // 静态资源分类和包装
         chunkFileNames: "js/[name]-[hash].js",
