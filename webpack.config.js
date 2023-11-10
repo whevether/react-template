@@ -123,7 +123,7 @@ const config = {
       },
       {
         test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
-        type: 'javascript/auto',
+        type: 'asset/resource',
         generator: {
           filename: '[name].[ext]'
         }
