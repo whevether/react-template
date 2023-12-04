@@ -41,9 +41,11 @@
 ##### (2023.07.22)
 1. 添加vite 配置
 2. 完善vite 配置
+##### (2023.12.04)
+1. 升级redux 依赖
 ##### 示例图片
-[![示例图片](./screen/1.gif) "示例图片")](https://react.keep-wan.me "示例")
+[![示例图片](./screen/1.gif) "示例图片")](https://react.zytravel.shop "示例")
 #演示
-[演示](https://react.keep-wan.me "演示")
+[演示](https://react.zytravel.shop "演示")
 ##### npm 8 安装命令
 `npm i --legacy-peer-deps`

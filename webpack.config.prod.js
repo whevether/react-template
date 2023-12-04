@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //打包压缩c
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html并注入
 const CopyWebpackPlugin = require('copy-webpack-plugin'); //拷贝资源文件
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const AutoImport = require('unplugin-auto-import/webpack');
 const path = require('path');
 // 设置node.js生产环境变量
 const GLOBALS = {
@@ -109,7 +110,7 @@ const config = {
     allowCollectingMemory: true,
   },
   plugins: [
-    require('unplugin-auto-import/webpack')({
+    AutoImport.default({
       imports: ["react","react-router-dom"],
     }),
     // 编译环境变量
