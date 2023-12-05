@@ -35,10 +35,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "react-redux": "^9.0.0",
+    "react-redux": "^9.0.1",
     "react-router-dom": "^6.20.1",
     "redux": "^5.0.0",
-    "redux-first-history": "^5.1.1",
     "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
@@ -61,7 +60,7 @@
     "@babel/runtime": "^7.23.5",
     "@loadable/component": "^5.15.3",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
-    "@vitejs/plugin-react": "^4.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.16",
     "babel-jest": "^29.7.0",
     "babel-loader": "^9.1.3",

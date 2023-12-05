@@ -6,13 +6,13 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
-import { HistoryRouter as Router } from "redux-first-history/rr6";
+import { BrowserRouter } from "react-router-dom";
 import {configureStore} from 'store/configureStore';
 //GYGBZ-MB5WR-DPZWK-WTKS2-UWBVS-VXBKW
 //服务端渲染的时候样式需要放在入口这里。放别的地方环境会报错; 
 import 'style/test.scss';
 const history = createBrowserHistory();
-const {store,h} = configureStore(history); //第二个参数是初始状态
+const {store} = configureStore(history); //第二个参数是初始状态
 import App from 'router/app';
 const loading = () => {
   setTimeout(() => {
@@ -31,8 +31,8 @@ const container = document.getElementById('app');
 const root = createRoot(container);
 root.render(
   <Provider store={store} >
-    <Router history={h}>
+    <BrowserRouter history={h}>
       <App />
-    </Router>
+    </BrowserRouter>
   </Provider>
 );
