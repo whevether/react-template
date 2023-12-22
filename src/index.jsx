@@ -12,7 +12,7 @@ import {configureStore} from 'store/configureStore';
 //服务端渲染的时候样式需要放在入口这里。放别的地方环境会报错; 
 import 'style/test.scss';
 const history = createBrowserHistory();
-const {store} = configureStore(history); //第二个参数是初始状态
+const {store} = configureStore(); //第二个参数是初始状态
 import App from 'router/app';
 const loading = () => {
   setTimeout(() => {
@@ -31,7 +31,7 @@ const container = document.getElementById('app');
 const root = createRoot(container);
 root.render(
   <Provider store={store} >
-    <BrowserRouter history={h}>
+    <BrowserRouter history={history}>
       <App />
     </BrowserRouter>
   </Provider>

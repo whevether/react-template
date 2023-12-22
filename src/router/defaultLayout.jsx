@@ -7,7 +7,7 @@ import {permission} from 'utils/permission';
 import {Outlet,Navigate,useLocation} from 'react-router-dom';
 // 登入页布局
 
-const DefaultLayout = () => {
+const DefaultLayout = (props) => {
   let path = useLocation();
   const renderProtectedRoute = ()=>{
     if(!getCookie('token')) {
@@ -32,11 +32,19 @@ const DefaultLayout = () => {
     }
   };
   return (
-    renderProtectedRoute()
+    <> 
+      {
+        !props?.home?.logout && renderProtectedRoute()
+      }
+      {
+        props?.home?.logout && <Navigate to="/login" replace />
+      }
+    </>
   );
 };
 DefaultLayout.propTypes = {
-  routes: PropTypes.object
+  routes: PropTypes.object,
+  home: PropTypes.object
 };
 export default connect(state => ({
   home: state?.home

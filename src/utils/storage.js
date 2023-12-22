@@ -22,7 +22,7 @@ export const getCookie = (name)=>{
   }
 };
 //设置cookie
-export const setCookie = (name, value, domain='.keep-wan.me')=>{
+export const setCookie = (name, value, domain='localhost')=>{
   try{
     if(typeof name === 'string' && value){
       return Cookies.set(name,value,{path: '/', domain: domain});
@@ -32,7 +32,7 @@ export const setCookie = (name, value, domain='.keep-wan.me')=>{
   }
 };
 // 移除 cookie
-export const removeCookie = (arr, domain='.keep-wan.me')=>{
+export const removeCookie = (arr, domain='localhost')=>{
   try{
     if (Array.isArray(arr)) {
       for(let value of arr.values()){

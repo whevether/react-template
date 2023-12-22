@@ -2,7 +2,7 @@ import {createStore, compose, applyMiddleware} from 'redux';
 import {withExtraArgument} from 'redux-thunk';
 import rootReducer from './reducers';
 import {request,axiosInstance} from 'utils/request';
-export default function configureStore(history,initialState) {
+export default function configureStore(initialState) {
   const middlewares = [
     withExtraArgument(axiosInstance),
   ];
@@ -27,7 +27,7 @@ export default function configureStore(history,initialState) {
       });
     }
   }
-  request(history,store);
+  request(store);
   return {
     store
   };
