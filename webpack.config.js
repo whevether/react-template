@@ -52,9 +52,11 @@ const config = {
     },
     port: 3005,
     historyApiFallback: true,
-    // proxy: {
-    //   '/api': 'https://test.zhiyeinfo.com/api'
-    // },
+    // proxy: [{
+    //  'context' :['/api'],
+    //  'target': 'https://test.zhiyeinfo.com/api',
+    //  'changeOrigin': true
+    // }],
     // hotOnly: true,
     hot: true,
     open: true,
