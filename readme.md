@@ -45,9 +45,11 @@
 1. 升级redux 依赖
 #### (2023.12.22)
 1. 优化移除redux过时路由之后跳转问题。 以及部分报错问题
+#### (2024.08.05)
+1. 升级eslint 到9.X以上版本
 ##### 示例图片
 [![示例图片](./screen/1.gif) "示例图片")](https://react.zytravel.shop "示例")
 #演示
 [演示](https://react.zytravel.shop "演示")
-##### npm 8 安装命令
+##### npm 兼容 安装命令
 `npm i --legacy-peer-deps`
