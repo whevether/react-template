@@ -1,10 +1,10 @@
-const browserSync = require('browser-sync');
-const historyApiFallback = require('connect-history-api-fallback');
-const {chalkProcessing} = require('./chalkConfig');
+const browserSync = require("browser-sync");
+const historyApiFallback = require("connect-history-api-fallback");
+const {chalkProcessing} = require("./chalkConfig");
 
-/* eslint-disable no-console */
+ /* eslint-disable no-console */
 
-console.log(chalkProcessing('Opening production build...'));
+console.log(chalkProcessing("Opening production build..."));
 
 // Run Browsersync
 browserSync({
@@ -13,10 +13,10 @@ browserSync({
     port: 4001
   },
   server: {
-    baseDir: 'dist'
+    baseDir: "dist"
   },
   files: [
-    'src/*.html'
+    "src/*.html"
   ],
 
   middleware: [historyApiFallback()]

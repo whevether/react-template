@@ -1,3 +1,3 @@
-export const FETCH_DATA = 'FETCH_DATA';
+export const FETCH_DATA = "FETCH_DATA";
 //退出登录
-export const LOGOUT = 'LOGOUT';
+export const LOGOUT = "LOGOUT";

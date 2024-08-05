@@ -1,7 +1,7 @@
-import axios from 'axios';
-import {removeCookie} from 'utils/storage'; 
+import axios from "axios";
+import {removeCookie} from "utils/storage"; 
 export const axiosInstance = axios.create({
-  baseURL: 'https://api.zytravel.shop/api'
+  baseURL: "https://api.zytravel.shop/api"
 });
 export const request = (store) => {
   axiosInstance.interceptors.request.use((config) => {
@@ -16,24 +16,24 @@ export const request = (store) => {
   },(err)=>{
     const {response} = err;
     if([400].indexOf(response.status) > -1){
-      alert('参数错误');
+      alert("参数错误");
     }
     if([401,403].indexOf(response.status) > -1){
-      removeCookie(['token']);
+      removeCookie(["token"]);
       store.dispatch({
-        type: 'LOGOUT',
+        type: "LOGOUT",
         payload: true
       });
-      alert('没有权限');
+      alert("没有权限");
     }
     if([500].indexOf(response.status) > -1){
-      alert('500,服务器错误');
+      alert("500,服务器错误");
     }
     if([404].indexOf(response.status) > -1){
-      alert('没有这个接口');
+      alert("没有这个接口");
     }
     if(response.data){
-      alert('接口错误');
+      alert("接口错误");
     }
     return Promise.reject(err);
   });

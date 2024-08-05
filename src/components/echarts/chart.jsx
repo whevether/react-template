@@ -1,18 +1,18 @@
-import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import * as echarts from 'echarts';
+import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import * as echarts from "echarts";
 const Chart = (props) => {
   const node = useRef(null);
   let chart = null;
   const renderChart = () => {
-    if (props?.typeObj?.type === 'map' && props?.mapData) {
+    if (props?.typeObj?.type === "map" && props?.mapData) {
       echarts.registerMap(props?.typeObj?.value, props?.mapData);
     }
-    chart = echarts.init(node.current, 'macarons');
+    chart = echarts.init(node.current, "macarons");
     if (chart != null && props?.options) {
       chart.setOption(props.options, true);
       if (props?.onChartClick) {
-        chart.on('click', props?.onChartClick);
+        chart.on("click", props?.onChartClick);
       }
     }
   };
@@ -24,9 +24,9 @@ const Chart = (props) => {
   useEffect(() => {
     renderChart();
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener("resize", resize);
     return () =>{
-      window.removeEventListener('resize', resize);
+      window.removeEventListener("resize", resize);
       if(chart){
         chart.dispose();
       }

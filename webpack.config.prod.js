@@ -1,47 +1,47 @@
-const webpack = require('webpack');
-const TerserPlugin = require('terser-webpack-plugin');
+const webpack = require("webpack");
+const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //打包压缩css
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html并注入
-const CopyWebpackPlugin = require('copy-webpack-plugin'); //拷贝资源文件
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const AutoImport = require('unplugin-auto-import/webpack');
-const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin"); //生成html并注入
+const CopyWebpackPlugin = require("copy-webpack-plugin"); //拷贝资源文件
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const AutoImport = require("unplugin-auto-import/webpack");
+const path = require("path");
 // 设置node.js生产环境变量
 const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify('production'),
-  'process.env.BUILD_TYPE': JSON.stringify('webpack'),
+  "process.env.NODE_ENV": JSON.stringify("production"),
+  "process.env.BUILD_TYPE": JSON.stringify("webpack"),
   __DEV__: false
 };
 
 const config = {
   resolve: {
     //识别扩展文件名
-    extensions: ['*', '.js', '.jsx', '.json'],
+    extensions: ["*", ".js", ".jsx", ".json"],
     alias: {
-      components: path.resolve(__dirname, 'src/components/'),
-      constants: path.resolve(__dirname, 'src/store/constants/'),
-      actions: path.resolve(__dirname, 'src/store/actions/'),
-      reducers: path.resolve(__dirname, 'src/store/reducers/'),
-      router: path.resolve(__dirname, 'src/router/'),
-      style: path.resolve(__dirname, 'src/style/'),
-      store: path.resolve(__dirname, 'src/store/'),
-      utils: path.resolve(__dirname, 'src/utils/'),
-      assets: path.resolve(__dirname, 'src/public/assets/')
+      components: path.resolve(__dirname, "src/components/"),
+      constants: path.resolve(__dirname, "src/store/constants/"),
+      actions: path.resolve(__dirname, "src/store/actions/"),
+      reducers: path.resolve(__dirname, "src/store/reducers/"),
+      router: path.resolve(__dirname, "src/router/"),
+      style: path.resolve(__dirname, "src/style/"),
+      store: path.resolve(__dirname, "src/store/"),
+      utils: path.resolve(__dirname, "src/utils/"),
+      assets: path.resolve(__dirname, "src/public/assets/")
     }
   },
   //开启调试
 
   entry: {
-    app: path.resolve(__dirname, 'src/index.jsx') // 定位客户端目标
+    app: path.resolve(__dirname, "src/index.jsx") // 定位客户端目标
   },
-  target: 'web', // 目标是web服务
+  target: "web", // 目标是web服务
   mode: "production",
   output: {
     //输出目录
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
-    filename: 'js/[name]-[hash].js?v=[chunkhash]',
-    chunkFilename: 'js/[name]-[hash].js?v=[chunkhash]',
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
+    filename: "js/[name]-[hash].js?v=[chunkhash]",
+    chunkFilename: "js/[name]-[hash].js?v=[chunkhash]",
   },
   optimization: {
     minimize: true,
@@ -80,7 +80,7 @@ const config = {
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       // name: true,
-      automaticNameDelimiter: '~', 
+      automaticNameDelimiter: "~", 
       cacheGroups: {
         vendor: {//node_modules内的依赖库
           chunks: "all",
@@ -106,7 +106,7 @@ const config = {
     }
   },
   cache: {
-    type: 'filesystem',
+    type: "filesystem",
     allowCollectingMemory: true,
   },
   plugins: [
@@ -124,19 +124,19 @@ const config = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/public/assets'),
-          to: path.resolve(__dirname, 'dist/assets'),
+          from: path.resolve(__dirname, "src/public/assets"),
+          to: path.resolve(__dirname, "dist/assets"),
           // ignore: ['.*']
         }
       ]
     }),
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      filename: 'index.html',
+      template: "src/index.html",
+      filename: "index.html",
       // title: '阿布云首页',
       // chunks: ['vendor','index'],
       // excludeChunks: ['app'],
-      favicon: 'src/favicon.ico',
+      favicon: "src/favicon.ico",
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -152,7 +152,7 @@ const config = {
       inject: true,
       // Note that you can add custom options here if you need to handle other custom logic in index.html
       // To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token below.
-      trackJSToken: ''
+      trackJSToken: ""
     }),
   ],
   module: {
@@ -160,13 +160,13 @@ const config = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader', options: { cacheDirectory: true } }]
+        use: [{ loader: "babel-loader", options: { cacheDirectory: true } }]
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: '[name].[ext]'
+          filename: "[name].[ext]"
         }
         // use: [
         //   {
@@ -179,9 +179,9 @@ const config = {
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: '[name].[ext]'
+          filename: "[name].[ext]"
         }
         // use: [
         //   {
@@ -196,9 +196,9 @@ const config = {
       },
       {
         test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: '[name].[ext]'
+          filename: "[name].[ext]"
         }
         // use: [
         //   {
@@ -213,9 +213,9 @@ const config = {
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        type: 'javascript/auto',
+        type: "javascript/auto",
         generator: {
-          filename: '[name].[ext]'
+          filename: "[name].[ext]"
         }
         // use: [
         //   {
@@ -230,9 +230,9 @@ const config = {
       },
       {
         test: /\.(jpe?g|png|gif|ico)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: '[name].[ext]'
+          filename: "[name].[ext]"
         }
         // use: [
         //   {
@@ -253,7 +253,7 @@ const config = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               sourceMap: false,
               url: false
@@ -264,15 +264,15 @@ const config = {
               // },
             }
           }, {
-            loader: 'postcss-loader',
+            loader: "postcss-loader",
             options: {
               postcssOptions: {
                 plugins: [
-                  ['autoprefixer',{/*options*/}],
-                  require('postcss-pxtorem')({
+                  ["autoprefixer",{/*options*/}],
+                  require("postcss-pxtorem")({
                     rootValue: 16,
                     unitPrecision: 5,
-                    propList: ['*'],
+                    propList: ["*"],
                     selectorBlackList: [],
                     replace: true,
                     mediaQuery: false,
@@ -288,7 +288,7 @@ const config = {
               sassOptions: {
                 // webpackImporter: false,
                 indentWidth: 4,
-                includePaths: [path.resolve(__dirname, 'src', 'scss'),'node_modules'],
+                includePaths: [path.resolve(__dirname, "src", "scss"),"node_modules"],
               },
             }
             // loader: 'less-loader',

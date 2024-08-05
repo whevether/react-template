@@ -1,5 +1,5 @@
 // 提示颜色
-const chalk =  require('chalk');
+const chalk =  require("chalk");
 const chalkError = chalk.red;
 const chalkSuccess = chalk.green;
 const chalkWarning = chalk.yellow;

@@ -1,7 +1,7 @@
-import {createStore, compose, applyMiddleware} from 'redux';
-import {withExtraArgument} from 'redux-thunk';
-import rootReducer from './reducers';
-import {request,axiosInstance} from 'utils/request';
+import {createStore, compose, applyMiddleware} from "redux";
+import {withExtraArgument} from "redux-thunk";
+import rootReducer from "./reducers";
+import {request,axiosInstance} from "utils/request";
 export default function configureStore(initialState) {
   const middlewares = [
     withExtraArgument(axiosInstance),
@@ -10,19 +10,19 @@ export default function configureStore(initialState) {
     applyMiddleware(...middlewares)
     )
   );
-  if(process.env.BUILD_TYPE === 'webpack'){
+  if(process.env.BUILD_TYPE === "webpack"){
     if(module.hot){
       // Enable Webpack hot module replacement for reducers
-      module?.hot?.accept('./reducers', () => {
-        const nextReducer = require('./reducers').default; // eslint-disable-line global-require
+      module?.hot?.accept("./reducers", () => {
+        const nextReducer = require("./reducers").default;  
         store.replaceReducer(nextReducer);
       });
     }
   }else{
     if (import.meta?.hot) {
       // Enable Webpack hot module replacement for reducers
-      import.meta?.hot?.accept('./reducers', () => {
-        const nextReducer = require('./reducers').default; // eslint-disable-line global-require
+      import.meta?.hot?.accept("./reducers", () => {
+        const nextReducer = require("./reducers").default;  
         store.replaceReducer(nextReducer);
       });
     }

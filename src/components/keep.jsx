@@ -1,8 +1,8 @@
-import React,{Component} from 'react';
-import { Helmet } from 'react-helmet';
+import React,{Component} from "react";
+import { Helmet } from "react-helmet";
 class Keep extends Component{
   static getDerivedStateFromProps(nextProps, prevState) {
-    /*eslint-disable no-console*/
+     
     console.log(nextProps);
     console.log(prevState);
     return null;

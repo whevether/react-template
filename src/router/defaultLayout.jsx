@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import Navbar from 'components/navbar';
-import {isGranted,getCookie} from 'utils/storage';
-import {permission} from 'utils/permission';
-import {Outlet,Navigate,useLocation} from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Navbar from "components/navbar";
+import {isGranted,getCookie} from "utils/storage";
+import {permission} from "utils/permission";
+import {Outlet,Navigate,useLocation} from "react-router-dom";
 // 登入页布局
 
 const DefaultLayout = (props) => {
   let path = useLocation();
   const renderProtectedRoute = ()=>{
-    if(!getCookie('token')) {
+    if(!getCookie("token")) {
       return(
         <Navigate to="/login" replace />
       );

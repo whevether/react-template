@@ -1,8 +1,8 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Helmet } from "react-helmet";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-/* eslint-disable react/no-multi-comp */ 
+  
 const RedBull = () =>{
     let navigate = useNavigate();
     // 演示编程式导航
@@ -20,7 +20,7 @@ const RedBull = () =>{
         // props.history.goBack();
     };
     const handPush = ()=>{
-        navigate('/snacks/one');
+        navigate("/snacks/one");
     };
     return(
         <div className="honeniu">

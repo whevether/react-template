@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 const Two = ()=>{
   return(
     <h2>子路由2</h2>

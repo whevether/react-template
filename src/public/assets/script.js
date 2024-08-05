@@ -1,14 +1,14 @@
 // nothing makes sense here :) values handpicked by trial and error
-/* eslint-disable no-undef */
+ 
 /* eslint-disable semi */
-/* eslint-disable no-var */
-/* eslint-disable no-useless-escape */
-/* eslint-disable no-console */
+ 
+ 
+ 
 (() => {
 gsap.registerPlugin(MotionPathPlugin);
   
   const contraction = () => gsap.timeline()
-  .to('#forearm-left', {
+  .to("#forearm-left", {
     keyframes: [{
       duration: 0.5,
       x: 5,
@@ -24,13 +24,13 @@ gsap.registerPlugin(MotionPathPlugin);
     }
                ]
   }, 0)
-  .to('#arm-left', {
+  .to("#arm-left", {
     duration: 1,
     rotateZ: -40,
   }, 0)
 
   const riff = () => gsap.timeline()
-  .to('#forearm-left', {
+  .to("#forearm-left", {
     keyframes: [{
       duration: 0.05,
       x: -45,
@@ -42,28 +42,28 @@ gsap.registerPlugin(MotionPathPlugin);
     }
                ],
   }, 0)
-  .to('#arm-left', {
+  .to("#arm-left", {
     duration: 0.2,
     rotateZ: 30,
   }, 0)
-  .to('.shock.one', {
+  .to(".shock.one", {
     duration: 0.5,
     keyframes: [
       {opacity: 1, scale: 1.5,},
       {opacity: 0, scale: 2,}
     ]
   }, 0.1)
-  .to('.scene', {
+  .to(".scene", {
     duration: 0.1,
     motionPath: [{x: 10, rotationZ: 1,}, {x: -10, rotationZ: -1,}, {x: 0, rotationZ: 0,},],
   }, 0.1)
-  .to('feGaussianBlur', {
+  .to("feGaussianBlur", {
     duration: 0.1,
     attr: {
       stdDeviation: 1,
     },
   }, 0.1)
-  .to('feGaussianBlur', {
+  .to("feGaussianBlur", {
     duration: 0.1,
     attr: {
       stdDeviation: 0,
@@ -71,13 +71,13 @@ gsap.registerPlugin(MotionPathPlugin);
   }, 0.2)
 
   const thunderOne = () => gsap.timeline()
-  .to('.thunder.one .bg', {
+  .to(".thunder.one .bg", {
     duration: 1,
-    x: '100%',
+    x: "100%",
   }, 0)
 
   const contractionTwo = () => gsap.timeline()
-  .to('#forearm-left', {
+  .to("#forearm-left", {
     keyframes: [{
       duration: 0.1,
       x: -25,
@@ -89,13 +89,13 @@ gsap.registerPlugin(MotionPathPlugin);
     }
                ]
   }, 0)
-  .to('#arm-left', {
+  .to("#arm-left", {
     duration: 0.3,
     rotateZ: -40,
   }, 0)
 
   const riffTwo = () => gsap.timeline()
-  .to('#forearm-left', {
+  .to("#forearm-left", {
     keyframes: [{
       duration: 0.03,
       x: -50,
@@ -107,28 +107,28 @@ gsap.registerPlugin(MotionPathPlugin);
     }
                ],
   }, 0)
-  .to('#arm-left', {
+  .to("#arm-left", {
     duration: 0.2,
     rotateZ: 30,
   }, 0)
-  .to('.shock.two', {
+  .to(".shock.two", {
     duration: 0.5,
     keyframes: [
       {opacity: 1, scale: 1.5,},
       {opacity: 0, scale: 2,}
     ]
   }, 0.1)
-  .to('.scene', {
+  .to(".scene", {
     duration: 0.3,
     motionPath: [{x: 15, rotationZ: 1}, {x: -15,  rotationZ: -1}, {x: 0,  rotationZ: 0}],
   }, 0.1)
-  .to('feGaussianBlur', {
+  .to("feGaussianBlur", {
     duration: 0.1,
     attr: {
       stdDeviation: 1,
     },
   }, 0.1)
-  .to('feGaussianBlur', {
+  .to("feGaussianBlur", {
     duration: 0.1,
     attr: {
       stdDeviation: 0,
@@ -136,27 +136,27 @@ gsap.registerPlugin(MotionPathPlugin);
   }, 0.2)
 
   const thunderTwo = () => gsap.timeline()
-  .to('.thunder.two .bg', {
+  .to(".thunder.two .bg", {
     duration: 1,
-    x: '100%',
+    x: "100%",
   }, 0)
 
   const contractionRight = () => gsap.timeline()
-  .to('#hand-right', {
+  .to("#hand-right", {
     duration: 0.5,
     x: 40,
     y: 10,
   }, 0)
-  .to('#forearm-right', {
+  .to("#forearm-right", {
     duration: 0.5,
     x: 408,
     y: 120,
   }, 0)
-  .to('#arm-right', {
+  .to("#arm-right", {
     duration: 0.5,
-    x: '+=20',
+    x: "+=20",
   }, 0)
-  .to('#guitar', {
+  .to("#guitar", {
     duration: 0.5,
     x: -255,
     y: 0,
@@ -164,42 +164,42 @@ gsap.registerPlugin(MotionPathPlugin);
   }, 0)
 
   const zoom = () => gsap.timeline()
-  .to('#slash, .dust-container', {
+  .to("#slash, .dust-container", {
     duration: 1.5,
     z: 20,
   }, 0)
 
   const restart = () => gsap.timeline()
-  .to('#hand-right', {
+  .to("#hand-right", {
     duration: 1.5,
     x: 0,
     y: 0,
   }, 0)
-  .to('#arm-right', {
+  .to("#arm-right", {
     duration: 1.5,
-    x: '-=20',
+    x: "-=20",
   }, 0)
-  .to('#forearm-right', {
+  .to("#forearm-right", {
     duration: 1.5,
     x: 380,
     y: 110,
   }, 0)
-  .to('#arm-left', {
+  .to("#arm-left", {
     duration: 1.5,
     rotate: 0,
   }, 0)
-  .to('#forearm-left', {
+  .to("#forearm-left", {
     duration: 1.5,
     x: -58,
     y: -60,
   }, 0)
-  .to('#guitar', {
+  .to("#guitar", {
     duration: 1.5,
     x: -285,
     y: 47,
     rotationZ: 0,
   }, 0)
-  .to('#slash, .dust-container', {
+  .to("#slash, .dust-container", {
     duration: 1.5,
     z: -10,
   }, 0)
@@ -219,7 +219,7 @@ gsap.registerPlugin(MotionPathPlugin);
     .add(restart())
 
 
-  gsap.to('.hair', {
+  gsap.to(".hair", {
     repeat: -1,
     yoyo: true,
     duration: 0.1,
@@ -227,17 +227,17 @@ gsap.registerPlugin(MotionPathPlugin);
     y: -5,
   })
 
-  const dustParticles = document.getElementById('dust-particles');
+  const dustParticles = document.getElementById("dust-particles");
   function spawn() {
-    const newParticle = document.createElement('div');
-    newParticle.classList.add('dust');
+    const newParticle = document.createElement("div");
+    newParticle.classList.add("dust");
 
     gsap.to(newParticle, {
-      ease: 'linear',
-      duration: 'random(1, 3)',
-      scale: 'random(5, 10)',
-      y: 'random(-10, -100)',
-      left: '100%',
+      ease: "linear",
+      duration: "random(1, 3)",
+      scale: "random(5, 10)",
+      y: "random(-10, -100)",
+      left: "100%",
       onComplete: () => {
         dustParticles.removeChild(newParticle);
       }

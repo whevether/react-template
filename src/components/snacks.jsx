@@ -1,8 +1,8 @@
-import React from 'react';
-import {Link,Outlet} from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import React from "react";
+import {Link,Outlet} from "react-router-dom";
+import { Helmet } from "react-helmet";
 // 子组件示例
-/* eslint-disable react/no-multi-comp */ 
+  
 const Snacks = () =>{
     const head = ()=>{
         return (
