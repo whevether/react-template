@@ -1,9 +1,9 @@
 import prod from "./configureStore.prod";
 import dev from "./configureStore.dev";
-export const configureStore = (history,initialState)=>{
+export const configureStore = (initialState)=>{
   if (process.env.NODE_ENV === "production") {
-    return prod(history,initialState);
+    return prod(initialState);
   } else {
-    return dev(history,initialState);
+    return dev(initialState);
   }
 };
