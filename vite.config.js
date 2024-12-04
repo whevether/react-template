@@ -7,7 +7,6 @@ import viteCompression from "vite-plugin-compression2";
 import atImport from "postcss-import";
 // import { cdn } from 'vite-plugin-cdn2';
 import autoprefixer from "autoprefixer";
-import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 const pathResolve = (dir) => fileURLToPath(new URL(dir, import.meta.url));
 // const env = loadEnv(mode, process.cwd())
 // 打包模式
@@ -52,12 +51,6 @@ export default defineConfig({
     },
   },
   plugins: [
-    createSvgIconsPlugin({
-      // 指定需要缓存的图标文件夹
-      iconDirs: [pathResolve("src/icons")],
-      // 指定symbolId格式
-      symbolId: "icon-[name]"
-    }),
     reactRefresh(),
     // cdn({modules: [{ name: 'react', relativeModule: './umd/react.production.min.js' },{ name: 'react-dom', relativeModule: './umd/react-dom.production.min.js', aliases: ['client'] },'react-helmet', 'react-router-dom','axios','echarts','redux','react-redux'] }),
     AutoImport({
