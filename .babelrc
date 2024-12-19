@@ -12,13 +12,10 @@
         }]
       ],
       "plugins": [
-        "@babel/plugin-syntax-dynamic-import",
-        "@babel/plugin-syntax-import-meta",
         ["@babel/plugin-transform-class-properties", { "loose": true }],
         "@babel/plugin-transform-json-strings",
         "@babel/plugin-transform-arrow-functions",
         "@babel/plugin-transform-async-generator-functions",
-        "@babel/plugin-syntax-async-generators",
         "@babel/plugin-transform-async-to-generator",
         "@babel/plugin-transform-optional-chaining",
         "@babel/plugin-transform-runtime"
@@ -38,13 +35,10 @@
       "plugins": [
         "@babel/plugin-transform-react-constant-elements",
         "babel-plugin-transform-react-remove-prop-types",
-        "@babel/plugin-syntax-dynamic-import",
-        "@babel/plugin-syntax-import-meta",
         ["@babel/plugin-transform-class-properties", { "loose": true }],
         "@babel/plugin-transform-json-strings",
         "@babel/plugin-transform-arrow-functions",
         "@babel/plugin-transform-async-generator-functions",
-        "@babel/plugin-syntax-async-generators",
         "@babel/plugin-transform-async-to-generator",
         "@babel/plugin-transform-optional-chaining",
         "@babel/plugin-transform-runtime"
