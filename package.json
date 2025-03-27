@@ -110,6 +110,9 @@
   "overrides": {
     "@pmmmwh/react-refresh-webpack-plugin": {
       "webpack-dev-server": "^5.2.1"
+    },
+    "@loadable/component": {
+      "react":"^19.0.0"
     }
   },
   "keywords": [
