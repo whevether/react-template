@@ -1,4 +1,4 @@
-import React from "react";
+import React,{lazy} from "react";
 import PropTypes from "prop-types";
 import {/*Routes, Route*/ useRoutes } from "react-router-dom";
 import { connect } from "react-redux";
@@ -8,18 +8,16 @@ import RootLayout from "./rootLayout";
 import DefaultLayout from "./defaultLayout";
 //默认布局
 import LoginLayout from "./loginLayout";
-//分割路由
-import LoadableComponent from "./LoadableComponent";
 /* 页面 */
-const Home = LoadableComponent(() => import(/* webpackPrefetch: true */"../components/home"));
-const RedBull = LoadableComponent(() => import(/* webpackPrefetch: true */"../components/redBull"));
-const Snacks = LoadableComponent(() => import(/* webpackPrefetch: true */"../components/snacks"));
-const One = LoadableComponent(() => import(/* webpackPrefetch: true */"../components/one"));
-const Two = LoadableComponent(() => import(/* webpackPrefetch: true */"../components/two"));
-const NotFound = LoadableComponent(() => import(/* webpackPrefetch: true */"../components/nodeFound"));
-const Error401 = LoadableComponent(() => import(/* webpackPrefetch: true */"../components/401"));
-const Keep = LoadableComponent(() => import(/* webpackPrefetch: true */"../components/keep"));
-const Login = LoadableComponent(() => import(/* webpackPrefetch: true */"../components/login"));
+const Home = lazy(() => import(/* webpackPrefetch: true */"../components/home"));
+const RedBull = lazy(() => import(/* webpackPrefetch: true */"../components/redBull"));
+const Snacks = lazy(() => import(/* webpackPrefetch: true */"../components/snacks"));
+const One = lazy(() => import(/* webpackPrefetch: true */"../components/one"));
+const Two = lazy(() => import(/* webpackPrefetch: true */"../components/two"));
+const NotFound = lazy(() => import(/* webpackPrefetch: true */"../components/nodeFound"));
+const Error401 = lazy(() => import(/* webpackPrefetch: true */"../components/401"));
+const Keep = lazy(() => import(/* webpackPrefetch: true */"../components/keep"));
+const Login = lazy(() => import(/* webpackPrefetch: true */"../components/login"));
 /* Routes 相当于 v4 v5中的switch路由 */
 const routes = [{
   path: "/",
