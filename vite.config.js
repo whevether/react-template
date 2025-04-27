@@ -60,7 +60,7 @@ export default defineConfig({
       include: /^(?!.*min\.js$).*\.(js|json|css|scss)$/i,
       threshold: 10240,
       algorithm: "gzip",
-      deleteOriginFile: true,
+      deleteOriginalAssets: true,
       // ext: ".gz",
     })],
   define: {
@@ -82,7 +82,7 @@ export default defineConfig({
     sourcemap: (modeEnv === "production") ? false : true,
     rollupOptions: {
       input: {
-        app: pathResolve("src/index.html")
+        app: pathResolve("src/index_vite.html")
       },
       // external: [
       //   'react',
