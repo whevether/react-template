@@ -87,7 +87,7 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
-      template: "src/index.html",
+      template: "src/index_webpack.html",
       filename: "index.html",
       favicon: "src/favicon.ico",
       minify: {

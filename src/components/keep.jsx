@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import { Helmet } from "react-helmet";
+import {head} from 'utils/head';
 class Keep extends Component{
   static getDerivedStateFromProps(nextProps, prevState) {
      
@@ -20,18 +20,10 @@ class Keep extends Component{
   //   console.log(nextProps);
   //   console.log(prevState);
   // }
-  head(){
-    return(
-      <Helmet>
-      <title>测试v18.2新api</title>
-      <meta property="og:title" content="新api" />
-    </Helmet>
-    );
-  }
   render(){
     return(
       <>
-        {this.head()}
+        {head('测试v18.2新api')}
         <span>新api</span>
       </>
     );
