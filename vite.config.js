@@ -52,7 +52,7 @@ export default defineConfig({
   },
   plugins: [
     reactRefresh(),
-    // cdn({modules: [{ name: 'react', relativeModule: './umd/react.production.min.js' },{ name: 'react-dom', relativeModule: './umd/react-dom.production.min.js', aliases: ['client'] },'react-helmet', 'react-router-dom','axios','echarts','redux','react-redux'] }),
+    // cdn({modules: [{ name: 'react', relativeModule: './umd/react.production.min.js' },{ name: 'react-dom', relativeModule: './umd/react-dom.production.min.js', aliases: ['client'] }, 'react-router-dom','axios','echarts','redux','react-redux'] }),
     AutoImport({
       imports: ["react", "react-router-dom"]
     }),
@@ -82,13 +82,12 @@ export default defineConfig({
     sourcemap: (modeEnv === "production") ? false : true,
     rollupOptions: {
       input: {
-        app: pathResolve("src/index_vite.html")
+        app: pathResolve("src/index.html")
       },
       // external: [
       //   'react',
       //   'react-dom',
       //   'react-router-dom',
-      //   'react-helmet',
       //   'redux',
       //   'react-redux',
       //   'axios',
@@ -101,7 +100,7 @@ export default defineConfig({
         assetFileNames: assetInfo => {
           let extType = "assets";
           if (
-            /\.(css|scss|sass|less)(\?.*)?$/i.test(assetInfo.name)
+            /\.(css|scss|sass|less)(\?.*)?$/i.test(assetInfo.names[0])
           ) {
             extType = "css";
           }

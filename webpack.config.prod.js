@@ -131,7 +131,7 @@ const config = {
       ]
     }),
     new HtmlWebpackPlugin({
-      template: "src/index.html",
+      template: "src/index_webpack.html",
       filename: "index.html",
       // title: '阿布云首页',
       // chunks: ['vendor','index'],

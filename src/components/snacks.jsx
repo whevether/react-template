@@ -1,20 +1,12 @@
 import React from "react";
 import {Link,Outlet} from "react-router-dom";
-import { Helmet } from "react-helmet";
+import {head} from 'utils/head';
 // 子组件示例
   
 const Snacks = () =>{
-    const head = ()=>{
-        return (
-            <Helmet>
-              <title>子组件</title>
-              <meta property="og:title" content="子组件" />
-            </Helmet>
-        );
-    };
     return(
         <>
-            {head()}
+            {head('子组件')}
             <h2>小吃</h2>
             <ul>
                 <li><Link to="/snacks/one">辣条</Link></li>
