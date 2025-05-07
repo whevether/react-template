@@ -1,4 +1,4 @@
-import React,{lazy} from "react";
+import React, { lazy, Suspense } from "react";
 import PropTypes from "prop-types";
 import {/*Routes, Route*/ useRoutes } from "react-router-dom";
 import { connect } from "react-redux";
@@ -8,6 +8,24 @@ import RootLayout from "./rootLayout";
 import DefaultLayout from "./defaultLayout";
 //默认布局
 import LoginLayout from "./loginLayout";
+const loadComponent = (c) => (
+ <Suspense
+    fallback={
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          background: "rgba(255, 255, 255, 0.8)",
+        }}
+      >
+        <div>加载中...</div>
+      </div>
+    }
+  >{c}</Suspense>
+  );
 /* 页面 */
 const Home = lazy(() => import(/* webpackPrefetch: true */"../components/home"));
 const RedBull = lazy(() => import(/* webpackPrefetch: true */"../components/redBull"));
@@ -22,42 +40,42 @@ const Login = lazy(() => import(/* webpackPrefetch: true */"../components/login"
 const routes = [{
   path: "/",
   element: <RootLayout />,
-  children:[{
+  children: [{
     element: <DefaultLayout />,
     children: [{
       index: true,
-      element: <Home />
-    },{
+      element: loadComponent(<Home />)
+    }, {
       path: "redbull",
-      element: <RedBull />
-    },{
+      element: loadComponent(<RedBull />)
+    }, {
       path: "snacks",
-      element: <Snacks />,
+      element: loadComponent(<Snacks />),
       children: [{
         path: "one",
         index: true,
-        element: <One />
-      },{
+        element: loadComponent(<One />)
+      }, {
         path: "two",
-        element: <Two />
+        element: loadComponent(<Two />)
       }]
-    },{
+    }, {
       path: "keep",
-      element: <Keep />
+      element: loadComponent(<Keep />)
     }]
-  },{
+  }, {
     path: "login",
     element: <LoginLayout />,
     children: [{
       index: true,
-      element: <Login />
+      element: loadComponent(<Login />)
     }]
-  },{
+  }, {
     path: "401",
-    element: <Error401 />
-  },{
+    element: loadComponent(<Error401 />)
+  }, {
     path: "*",
-    element: <NotFound />
+    element: loadComponent(<NotFound />)
   }]
 }];
 // react路由.
