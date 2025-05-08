@@ -1,7 +1,7 @@
 import axios from "axios";
 import {removeCookie} from "utils/storage"; 
 export const axiosInstance = axios.create({
-  baseURL: "https://api.zytravel.shop/api"
+  baseURL: "http://ip-api.com/json"
 });
 export const request = (store) => {
   axiosInstance.interceptors.request.use((config) => {
@@ -10,8 +10,8 @@ export const request = (store) => {
     return Promise.reject(error);
   });
   axiosInstance.interceptors.response.use((response)=>{
-    if(response.status === 200 && (response.data.code === 200 || response.data.code === 0)){
-      return response?.data?.data;
+    if(response.status === 200){
+      return response?.data;
     }
   },(err)=>{
     const {response} = err;
