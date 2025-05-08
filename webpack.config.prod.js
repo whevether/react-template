@@ -19,7 +19,7 @@ const GLOBALS = {
 const config = {
   resolve: {
     //识别扩展文件名
-    extensions: ["*", ".js", ".jsx", ".json"],
+    extensions: [".*", ".js", ".jsx", ".json"],
     alias: {
       components: resolve(__dirname, "src/components/"),
       constants: resolve(__dirname, "src/store/constants/"),
