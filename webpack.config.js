@@ -1,22 +1,25 @@
-const webpack = require("webpack");
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin"); //生成html并注入
-const CopyWebpackPlugin = require("copy-webpack-plugin"); //拷贝资源文件
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
-const AutoImport = require("unplugin-auto-import/webpack");
+import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin"; //生成html并注入
+import CopyWebpackPlugin from "copy-webpack-plugin"; //拷贝资源文件
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import AutoImport from "unplugin-auto-import/webpack";
+import postcssPxtorem from 'postcss-pxtorem';
+import { dirname, join,resolve } from 'node:path'; 
+import { fileURLToPath } from 'node:url';
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const config = {
   resolve: {
     extensions: ["*", ".js", ".jsx", ".json"],
     alias: {
-      components: path.resolve(__dirname, "src/components/"),
-      constants: path.resolve(__dirname, "src/store/constants/"),
-      actions: path.resolve(__dirname, "src/store/actions/"),
-      reducers: path.resolve(__dirname, "src/store/reducers/"),
-      router: path.resolve(__dirname, "src/router/"),
-      style: path.resolve(__dirname, "src/style/"),
-      store: path.resolve(__dirname, "src/store/"),
-      utils: path.resolve(__dirname, "src/utils/"),
-      assets: path.resolve(__dirname, "src/public/assets/")
+      components: resolve(__dirname, "src/components/"),
+      constants: resolve(__dirname, "src/store/constants/"),
+      actions: resolve(__dirname, "src/store/actions/"),
+      reducers: resolve(__dirname, "src/store/reducers/"),
+      router: resolve(__dirname, "src/router/"),
+      style: resolve(__dirname, "src/style/"),
+      store: resolve(__dirname, "src/store/"),
+      utils: resolve(__dirname, "src/utils/"),
+      assets: resolve(__dirname, "src/public/assets/")
     }
   },
 
@@ -24,12 +27,12 @@ const config = {
   mode: "development",
   entry: {
     app: [
-      path.resolve(__dirname, "src/index.jsx") // 定位客户端目标
+      resolve(__dirname, "src/index.jsx") // 定位客户端目标
     ]
   },
   target: "web", // 目标是web 服务器
   output: {
-    path: path.resolve(__dirname, "dist"), // 输出编译文件目录
+    path: resolve(__dirname, "dist"), // 输出编译文件目录
     publicPath: "/", //根目录
     filename: "js/[name]-[hash].js?v=[chunkhash]",
     chunkFilename: "js/[name]-[hash].js?v=[chunkhash]",
@@ -37,7 +40,7 @@ const config = {
   devServer: {
     client: { overlay: false },
     static: {
-      directory: path.join(__dirname, "public/"),
+      directory: join(__dirname, "public/"),
       staticOptions: {},
       // Don't be confused with `devMiddleware.publicPath`, it is `publicPath` for static directory
       // Can be:
@@ -66,7 +69,7 @@ const config = {
     allowCollectingMemory: true,
   },
   plugins: [
-    AutoImport.default({
+    AutoImport({
       imports: ["react","react-router-dom"],
     }),
     new ReactRefreshWebpackPlugin({overlay: false}),
@@ -78,8 +81,8 @@ const config = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "src/public/assets"),
-          to: path.resolve(__dirname, "dist/assets"),
+          from: resolve(__dirname, "src/public/assets"),
+          to: resolve(__dirname, "dist/assets"),
           // ignore: ['.*']
         }
       ]
@@ -106,7 +109,7 @@ const config = {
         use: [{
           loader: "babel-loader",
           options: {
-            plugins: [require.resolve("react-refresh/babel")].filter(Boolean),
+            plugins: [import.meta.resolve("react-refresh/babel")].filter(Boolean),
           },
         }]
       },
@@ -193,7 +196,7 @@ const config = {
               postcssOptions: {
                 plugins: [
                   ["autoprefixer",{/*options*/}],
-                  require("postcss-pxtorem")({
+                  postcssPxtorem({
                     rootValue: 16,
                     unitPrecision: 5,
                     propList: ["*"],
@@ -212,7 +215,7 @@ const config = {
               sassOptions: {
                 webpackImporter: false,
                 indentWidth: 4,
-                includePaths: [path.resolve(__dirname, "src", "scss"),"node_modules"],
+                includePaths: [resolve(__dirname, "src", "scss"),"node_modules"],
               },
             }
             // loader: 'less-loader',
@@ -229,4 +232,4 @@ const config = {
     ]
   }
 };
-module.exports = config;
+export default config;

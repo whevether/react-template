@@ -1,8 +1,8 @@
 //编译出生产文件配置
  
-const webpack = require("webpack");
-const config = require("../webpack.config.prod");
-const {chalkError, chalkSuccess, chalkWarning, chalkProcessing} = require("./chalkConfig");
+import webpack from "webpack";
+import config from "../webpack.config.prod.js";
+import {chalkError, chalkSuccess, chalkWarning, chalkProcessing} from "./chalkConfig.js";
 
 process.env.NODE_ENV = "production"; // 环境变量
 /* eslint-disable no-console */

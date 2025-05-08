@@ -1,6 +1,6 @@
-const browserSync = require("browser-sync");
-const historyApiFallback = require("connect-history-api-fallback");
-const {chalkProcessing} = require("./chalkConfig");
+import browserSync from "browser-sync";
+import historyApiFallback from "connect-history-api-fallback";
+import {chalkProcessing} from "./chalkConfig.js";
 
  /* eslint-disable no-console */
 

@@ -1,11 +1,14 @@
-const webpack = require("webpack");
-const TerserPlugin = require("terser-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //打包压缩css
-const HtmlWebpackPlugin = require("html-webpack-plugin"); //生成html并注入
-const CopyWebpackPlugin = require("copy-webpack-plugin"); //拷贝资源文件
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const AutoImport = require("unplugin-auto-import/webpack");
-const path = require("path");
+import webpack from "webpack";
+import TerserPlugin from "terser-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin"; //打包压缩css
+import HtmlWebpackPlugin from "html-webpack-plugin"; //生成html并注入
+import CopyWebpackPlugin from "copy-webpack-plugin"; //拷贝资源文件
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import AutoImport from "unplugin-auto-import/webpack";
+import postcssPxtorem from 'postcss-pxtorem';
+import { dirname,resolve } from 'node:path'; 
+import { fileURLToPath } from 'node:url';
+const __dirname = dirname(fileURLToPath(import.meta.url));
 // 设置node.js生产环境变量
 const GLOBALS = {
   "process.env.NODE_ENV": JSON.stringify("production"),
@@ -18,27 +21,27 @@ const config = {
     //识别扩展文件名
     extensions: ["*", ".js", ".jsx", ".json"],
     alias: {
-      components: path.resolve(__dirname, "src/components/"),
-      constants: path.resolve(__dirname, "src/store/constants/"),
-      actions: path.resolve(__dirname, "src/store/actions/"),
-      reducers: path.resolve(__dirname, "src/store/reducers/"),
-      router: path.resolve(__dirname, "src/router/"),
-      style: path.resolve(__dirname, "src/style/"),
-      store: path.resolve(__dirname, "src/store/"),
-      utils: path.resolve(__dirname, "src/utils/"),
-      assets: path.resolve(__dirname, "src/public/assets/")
+      components: resolve(__dirname, "src/components/"),
+      constants: resolve(__dirname, "src/store/constants/"),
+      actions: resolve(__dirname, "src/store/actions/"),
+      reducers: resolve(__dirname, "src/store/reducers/"),
+      router: resolve(__dirname, "src/router/"),
+      style: resolve(__dirname, "src/style/"),
+      store: resolve(__dirname, "src/store/"),
+      utils: resolve(__dirname, "src/utils/"),
+      assets: resolve(__dirname, "src/public/assets/")
     }
   },
   //开启调试
 
   entry: {
-    app: path.resolve(__dirname, "src/index.jsx") // 定位客户端目标
+    app: resolve(__dirname, "src/index.jsx") // 定位客户端目标
   },
   target: "web", // 目标是web服务
   mode: "production",
   output: {
     //输出目录
-    path: path.resolve(__dirname, "dist"),
+    path: resolve(__dirname, "dist"),
     publicPath: "/",
     filename: "js/[name]-[hash].js?v=[chunkhash]",
     chunkFilename: "js/[name]-[hash].js?v=[chunkhash]",
@@ -110,7 +113,7 @@ const config = {
     allowCollectingMemory: true,
   },
   plugins: [
-    AutoImport.default({
+    AutoImport({
       imports: ["react","react-router-dom"],
     }),
     // 编译环境变量
@@ -124,8 +127,8 @@ const config = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "src/public/assets"),
-          to: path.resolve(__dirname, "dist/assets"),
+          from: resolve(__dirname, "src/public/assets"),
+          to: resolve(__dirname, "dist/assets"),
           // ignore: ['.*']
         }
       ]
@@ -269,7 +272,7 @@ const config = {
               postcssOptions: {
                 plugins: [
                   ["autoprefixer",{/*options*/}],
-                  require("postcss-pxtorem")({
+                  postcssPxtorem({
                     rootValue: 16,
                     unitPrecision: 5,
                     propList: ["*"],
@@ -288,13 +291,13 @@ const config = {
               sassOptions: {
                 // webpackImporter: false,
                 indentWidth: 4,
-                includePaths: [path.resolve(__dirname, "src", "scss"),"node_modules"],
+                includePaths: [resolve(__dirname, "src", "scss"),"node_modules"],
               },
             }
             // loader: 'less-loader',
             // options: {
             //   lessOptions: {
-            //     paths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
+            //     paths: [resolve(__dirname, 'src'), resolve(__dirname, 'node_modules')],
             //     javascriptEnabled: true,
             //     sourceMap: false
             //   }
@@ -305,4 +308,4 @@ const config = {
     ]
   }
 };
-module.exports = config;
+export default config;
