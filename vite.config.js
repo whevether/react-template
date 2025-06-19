@@ -3,7 +3,7 @@ import reactRefresh from "@vitejs/plugin-react";
 import { fileURLToPath, URL } from "url";
 import path from "path";
 import AutoImport from "unplugin-auto-import/vite";
-import viteCompression from "vite-plugin-compression2";
+import { compression, defineAlgorithm } from "vite-plugin-compression2";
 import atImport from "postcss-import";
 // import { cdn } from 'vite-plugin-cdn2';
 import autoprefixer from "autoprefixer";
@@ -56,10 +56,14 @@ export default defineConfig({
     AutoImport({
       imports: ["react", "react-router-dom"]
     }),
-    (modeEnv === "production") && viteCompression({
+    (modeEnv === "production") && compression({
       include: /^(?!.*min\.js$).*\.(js|json|css|scss)$/i,
       threshold: 10240,
-      algorithm: "gzip",
+       algorithms: [
+        'gzip',
+        'brotliCompress',
+        defineAlgorithm('deflate', { level: 9 })
+      ],
       deleteOriginalAssets: true,
       // ext: ".gz",
     })],
