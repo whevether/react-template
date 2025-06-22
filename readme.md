@@ -1,5 +1,5 @@
-###React version 18.X 版本脚手架
-> 包含客户端，使用了最新的react,并实现version 18.X;
+###React version 19.X 版本脚手架
+> 包含客户端，使用了最新的react,并实现version 19.X;
 > 使用webpack 5.X 来编译
 ```html
 <!-- 分离的第三方依赖 -->
@@ -10,7 +10,7 @@
 ```
 ##### 安装命令和一些常用的npm脚本;
 - yarn    (安装脚手架依赖)
-- yarn preinstall    (检查node版本,最低8.0以上版本)
+- yarn preinstall    (检查node版本,最低18.0以上版本)
 - yarn prestart    (删除dist 编译打包文件)
 - yarn start (启动客户端的开发环境)
 - yarn build (打包编译客户端环境,并启动)
