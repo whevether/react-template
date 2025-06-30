@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import reactRefresh from "@vitejs/plugin-react";
 import { fileURLToPath, URL } from "url";
-import path from "path";
+import { join } from 'node:path'; 
 import AutoImport from "unplugin-auto-import/vite";
 import { compression, defineAlgorithm } from "vite-plugin-compression2";
 import atImport from "postcss-import";
@@ -37,16 +37,8 @@ export default defineConfig({
     },
     postcss: {
       plugins: [
-        atImport({ path: path.join(__dirname, "src`") }),
-        autoprefixer({
-          overrideBrowserslist: [
-            "> 0.5%",
-            "last 2 versions",
-            "ie > 11",
-            "iOS >= 10",
-            "Android >= 5",
-          ],
-        }),
+        atImport({ path: join(__dirname, "src`") }),
+        autoprefixer(),
       ],
     },
   },
