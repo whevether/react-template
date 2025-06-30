@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import AutoImport from "unplugin-auto-import/vite";
 import { compression, defineAlgorithm } from "vite-plugin-compression2";
 import atImport from "postcss-import";
+import postcssPxtorem from 'postcss-pxtorem';
 // import { cdn } from 'vite-plugin-cdn2';
 import autoprefixer from "autoprefixer";
 const pathResolve = (dir) => fileURLToPath(new URL(dir, import.meta.url));
@@ -39,6 +40,15 @@ export default defineConfig({
       plugins: [
         atImport({ path: join(__dirname, "src`") }),
         autoprefixer(),
+        postcssPxtorem({
+          rootValue: 16,
+          unitPrecision: 5,
+          propList: ["*"],
+          selectorBlackList: [],
+          replace: true,
+          mediaQuery: false,
+          minPixelValue: 0
+        })
       ],
     },
   },
