@@ -4,7 +4,9 @@ import CopyWebpackPlugin from "copy-webpack-plugin"; //拷贝资源文件
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import AutoImport from "unplugin-auto-import/webpack";
 import postcssPxtorem from 'postcss-pxtorem';
+import atImport from "postcss-import";
 import { dirname, join,resolve } from 'node:path'; 
+import autoprefixer from "autoprefixer";
 import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const config = {
@@ -195,7 +197,8 @@ const config = {
             options: {
               postcssOptions: {
                 plugins: [
-                  ["autoprefixer",{/*options*/}],
+                  atImport({ path: join(__dirname, "src`") }),
+                  autoprefixer(),
                   postcssPxtorem({
                     rootValue: 16,
                     unitPrecision: 5,
