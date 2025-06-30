@@ -6,8 +6,10 @@ import CopyWebpackPlugin from "copy-webpack-plugin"; //拷贝资源文件
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import AutoImport from "unplugin-auto-import/webpack";
 import postcssPxtorem from 'postcss-pxtorem';
-import { dirname,resolve } from 'node:path'; 
+import atImport from "postcss-import";
+import { dirname,resolve,join } from 'node:path'; 
 import { fileURLToPath } from 'node:url';
+import autoprefixer from "autoprefixer";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // 设置node.js生产环境变量
 const GLOBALS = {
@@ -271,7 +273,8 @@ const config = {
             options: {
               postcssOptions: {
                 plugins: [
-                  ["autoprefixer",{/*options*/}],
+                  atImport({ path: join(__dirname, "src`") }),
+                  autoprefixer(),
                   postcssPxtorem({
                     rootValue: 16,
                     unitPrecision: 5,
