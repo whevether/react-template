@@ -1,4 +1,4 @@
-{
+ {
   "name": "react-template",
   "version": "2.0.0",
   "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个",
@@ -7,19 +7,21 @@
   },
 
   "scripts": {
-    "preinstall": "node tools/nodeVersionCheck.js",
-    "dev": "vite --open --force",
-    "build:vite": "npm run remove-dist && vite build --mode production --emptyOutDir",
+     "preinstall": "node tools/nodeVersionCheck.js",
     "start-message": "node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message remove-dist",
-    "start": "npm-run-all --parallel  open:src lint test:watch",
+    "predev": "npm-run-all --parallel start-message remove-dist",
     "open:src": " webpack serve --mode development",
     "open:dist": "node tools/distServer.js",
     "lint": "eslint --fix --color",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
+    "start": "npm-run-all --parallel  open:src lint test:watch",
+    "dev": "vite --open --force",
     "prebuild": "npm run clean-dist && npm run lint",
+    "prebuildvite": "npm run clean-dist && npm run lint",
     "build": "node tools/build.js  && npm run open:dist",
+    "buildvite": "vite build --mode production --emptyOutDir",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
@@ -35,13 +37,13 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.6.2",
+    "react-router-dom": "^7.6.3",
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.27.2",
-    "@babel/core": "^7.27.4",
+    "@babel/core": "^7.27.7",
     "@babel/eslint-parser": "^7.27.5",
     "@babel/plugin-transform-arrow-functions": "^7.27.1",
     "@babel/plugin-transform-async-generator-functions": "^7.27.1",
@@ -67,7 +69,7 @@
     "core-js": "^3.43.0",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "7.0.2",
-    "eslint": "^9.29.0",
+    "eslint": "^9.30.0",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.2.0",
     "html-webpack-plugin": "^5.6.3",
@@ -80,7 +82,6 @@
     "postcss-loader": "^8.1.1",
     "postcss-pxtorem": "^6.1.0",
     "react-refresh": "^0.17.0",
-    "regenerator-runtime": "^0.14.1",
     "rimraf": "^6.0.1",
     "sass": "^1.89.2",
     "sass-loader": "^16.0.5",
@@ -93,11 +94,14 @@
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
   },
-  "browserslist": [
+ "browserslist": [
     "last 15 versions",
     "> 0.00001%",
     "maintained node versions",
-    "not dead"
+    "not dead",
+    "ie > 11",
+    "iOS >= 10",
+    "Android >= 5"
   ],
   "jest": {
     "moduleNameMapper": {
@@ -111,6 +115,12 @@
   "overrides": {
     "@pmmmwh/react-refresh-webpack-plugin": {
       "webpack-dev-server": "^5.2.2"
+    },
+    "@babel/cli": {
+      "glob": "11.0.3"
+    },
+    "babel-jest": {
+      "glob": "11.0.3"
     }
   },
   "keywords": [
