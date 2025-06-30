@@ -1,6 +1,5 @@
 
 import "core-js/stable";
-import "regenerator-runtime/runtime";
 // 路由句柄
 import React from "react";
 import { createRoot } from "react-dom/client";
