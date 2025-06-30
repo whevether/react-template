@@ -1,4 +1,4 @@
-{
+ {
   "name": "react-template",
   "version": "2.0.0",
   "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个",
@@ -82,7 +82,6 @@
     "postcss-loader": "^8.1.1",
     "postcss-pxtorem": "^6.1.0",
     "react-refresh": "^0.17.0",
-    "regenerator-runtime": "^0.14.1",
     "rimraf": "^6.0.1",
     "sass": "^1.89.2",
     "sass-loader": "^16.0.5",
