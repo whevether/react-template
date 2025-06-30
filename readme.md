@@ -10,16 +10,17 @@
 ```
 ##### 安装命令和一些常用的npm脚本;
 - yarn    (安装脚手架依赖)
-- yarn preinstall    (检查node版本,最低18.0以上版本)
+- yarn preinstall    (检查node版本,最低20.0以上版本)
 - yarn prestart    (删除dist 编译打包文件)
 - yarn start (启动客户端的开发环境)
 - yarn build (打包编译客户端环境,并启动)
 - yarn lint (检查代码规范)
-- yarn lint:watch (检查代码规范并监听)
 - yarn test (启动单元测试)
 - yarn test:watch (启动单元测试并监听)
 - yarn remove-dist (删除dist文件夹)
 - yarn clean-dist (清空dist文件夹)
+- yarn dev (使用vite启动开发环境)
+- yarn build:vite (使用vite打包生成环境)
 ##### 一些常见问题
 1. 刷新之后 404 或者子路由报错；是使用了 BrowserRouter这个路由或者分割了代码。这个路由会开启h5 的history 模式;所以需要nginx的支持; nginx uri 定向到例如是打包文件是通过index.html 就重定向到index.html;如果是放在index.php就重定向到index.php就不会有这个问题了；
 2. 这个脚手架是封装了axios 这个ajax库到redux中；所以不用在调用的地方引入axios;只需要在redux的action中使用我在redux中封装的axios 中间件的别名  例如: api.get api.post等就好了;action中也符合redux的方式;
