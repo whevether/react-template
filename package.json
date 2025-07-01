@@ -3,9 +3,9 @@
   "version": "2.0.0",
   "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个",
   "engines": {
-    "npm": ">=20"
+    "node": ">=20",
+    "npm": ">=10"
   },
-
   "scripts": {
      "preinstall": "node tools/nodeVersionCheck.js",
     "start-message": "node tools/startMessage.js",
