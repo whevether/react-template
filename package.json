@@ -1,14 +1,13 @@
- {
+{
   "name": "react-template",
   "version": "2.0.0",
   "description": "这是一个最新版的react模板,会一直维护更新,因为没有类似vue-cli那样的工具所以自己建了个",
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=10.0.0"
+    "node": ">=20",
+    "npm": ">=10"
   },
-
   "scripts": {
-     "preinstall": "node tools/nodeVersionCheck.js",
+    "preinstall": "node tools/nodeVersionCheck.js",
     "start-message": "node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message remove-dist",
     "predev": "npm-run-all --parallel start-message remove-dist",
@@ -78,7 +77,6 @@
     "jest-cli": "^30.0.4",
     "mini-css-extract-plugin": "^2.9.2",
     "npm-run-all": "^4.1.5",
-    "open": "^10.1.2",
     "postcss-import": "^16.1.1",
     "postcss-loader": "^8.1.1",
     "postcss-pxtorem": "^6.1.0",
@@ -95,7 +93,7 @@
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
   },
- "browserslist": [
+  "browserslist": [
     "last 15 versions",
     "> 0.00001%",
     "maintained node versions",
