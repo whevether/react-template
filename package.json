@@ -37,7 +37,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.6.3",
+    "react-router-dom": "^7.7.0",
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0"
   },
@@ -89,7 +89,7 @@
     "vite": "^7.0.4",
     "vite-plugin-cdn2": "^1.1.0",
     "vite-plugin-compression2": "^2.2.0",
-    "webpack": "^5.100.1",
+    "webpack": "^5.100.2",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
   },
