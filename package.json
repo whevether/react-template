@@ -86,7 +86,7 @@
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
     "unplugin-auto-import": "^19.3.0",
-    "vite": "^7.0.4",
+    "vite": "^7.0.5",
     "vite-plugin-cdn2": "^1.1.0",
     "vite-plugin-compression2": "^2.2.0",
     "webpack": "^5.100.2",
