@@ -65,7 +65,7 @@
     "browser-sync": "^3.0.4",
     "chalk": "^5.5.0",
     "connect-history-api-fallback": "^2.0.0",
-    "copy-webpack-plugin": "^13.0.0",
+    "copy-webpack-plugin": "^13.0.1",
     "core-js": "^3.45.0",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "7.0.2",
@@ -89,7 +89,7 @@
     "vite": "^7.1.2",
     "vite-plugin-cdn2": "^1.1.0",
     "vite-plugin-compression2": "^2.2.0",
-    "webpack": "^5.101.0",
+    "webpack": "^5.101.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
   },
