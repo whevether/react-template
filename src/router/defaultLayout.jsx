@@ -32,14 +32,9 @@ const DefaultLayout = (props) => {
     }
   };
   return (
-    <> 
-      {
-        !props?.home?.logout && renderProtectedRoute()
-      }
-      {
-        props?.home?.logout && <Navigate to="/login" replace />
-      }
-    </>
+    
+      renderProtectedRoute()
+      
   );
 };
 DefaultLayout.propTypes = {

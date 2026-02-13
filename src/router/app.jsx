@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import PropTypes from "prop-types";
-import {/*Routes, Route*/ useRoutes } from "react-router-dom";
+import {createBrowserRouter,RouterProvider } from "react-router-dom";
 import { connect } from "react-redux";
 //总布局
 import RootLayout from "./rootLayout";
@@ -78,35 +78,13 @@ const routes = [{
     element: loadComponent(<NotFound />)
   }]
 }];
+export const router = createBrowserRouter(routes);
+
 // react路由.
 const App = () => {
   return (
-    <div className="main" >
-      {useRoutes(routes)}
-      {/* <Routes>
-        // 根布局
-        <Route path="/" element={<RootLayout />}>
-          // 默认布局
-          <Route element={<DefaultLayout />}>
-            <Route index element={<Home />} />
-            <Route element={<RedBull />} path="redbull"/>
-            // 子路由
-            <Route path="snacks" element={<Snacks />}>
-              <Route path="one" element={<One />} />
-              <Route path="two" element={<Two />} />
-            </Route>
-            <Route element={<Keep />} path="keep"/>
-          </Route>
-          // 登录页面布局
-          <Route element={<LoginLayout />}>
-            <Route element={<Login />} path="login" index/>
-          </Route>
-          // 401页面
-          <Route element={<Error401 />} path="401"/>
-          // 没有找到页面
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes> */}
+    <div className="main">
+      <RouterProvider router={router} />
     </div>
   );
 };

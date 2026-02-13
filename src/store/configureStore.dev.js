@@ -7,7 +7,7 @@ export default function configureStore(initialState) {
     withExtraArgument(axiosInstance),
   ];
   const store = createStore(rootReducer(), initialState, compose(applyMiddleware(...middlewares),),);
-  if (process.env.BUILD_TYPE === "webpack") {
+  if (typeof __BUILD_TYPE__ !== "undefined" && __BUILD_TYPE__) {
     const { webpackHot } = import.meta;
     if (webpackHot) {
       webpackHot?.accept("./reducers", () => {
@@ -28,7 +28,7 @@ export default function configureStore(initialState) {
   }
 
 
-  request(store);
+  request();
   return {
     store
   };
