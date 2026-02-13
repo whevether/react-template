@@ -28,8 +28,6 @@ const container = document.getElementById("app");
 const root = createRoot(container);
 root.render(
   <Provider store={store} >
-    <BrowserRouter>
       <App />
-    </BrowserRouter>
   </Provider>
 );

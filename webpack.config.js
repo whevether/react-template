@@ -5,7 +5,7 @@ import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import AutoImport from "unplugin-auto-import/webpack";
 import postcssPxtorem from 'postcss-pxtorem';
 import atImport from "postcss-import";
-import { dirname, join,resolve } from 'node:path'; 
+import { dirname, join, resolve } from 'node:path';
 import autoprefixer from "autoprefixer";
 import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -57,12 +57,19 @@ const config = {
     },
     port: 3005,
     historyApiFallback: true,
-    // proxy: [{
-    //  'context' :['/api'],
-    //  'target': 'https://test.zhiyeinfo.com/api',
-    //  'changeOrigin': true
-    // }],
-    // hotOnly: true,
+    // API 反向代理：/api/payment 走 28083，其余 /api 走 28062
+    proxy: [
+      {
+        context: ["/api/payment"],
+        target: "http://192.168.2.100:28083",
+        changeOrigin: true,
+      },
+      {
+        context: ["/api"],
+        target: "http://192.168.2.100:28062",
+        changeOrigin: true,
+      },
+    ],
     hot: true,
     open: true,
   },
@@ -72,12 +79,13 @@ const config = {
   },
   plugins: [
     AutoImport({
-      imports: ["react","react-router-dom"],
+      imports: ["react", "react-router-dom"],
     }),
-    new ReactRefreshWebpackPlugin({overlay: false}),
+    new ReactRefreshWebpackPlugin({ overlay: false }),
     new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify("development"), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
-      "process.env.BUILD_TYPE": JSON.stringify("webpack"),
+      "process.env.NODE_ENV": JSON.stringify("development"),
+      __BUILD_TYPE__: JSON.stringify("webpack"),
+      __APP_ENV__: JSON.stringify("development"), // 水印：浏览器可读，不依赖 process
       __DEV__: true
     }),
     new CopyWebpackPlugin({
@@ -218,7 +226,7 @@ const config = {
               sassOptions: {
                 webpackImporter: false,
                 indentWidth: 4,
-                includePaths: [resolve(__dirname, "src", "scss"),"node_modules"],
+                includePaths: [resolve(__dirname, "src", "scss"), "node_modules"],
               },
             }
             // loader: 'less-loader',

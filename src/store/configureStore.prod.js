@@ -7,7 +7,7 @@ export default function configureStore(initialState) {
     withExtraArgument(axiosInstance),
   ];
   const store = createStore(rootReducer(), initialState, compose(applyMiddleware(...middlewares),),);
-  request(store);
+  request();
   return {
     store
   };

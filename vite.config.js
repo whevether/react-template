@@ -1,7 +1,7 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import reactRefresh from "@vitejs/plugin-react";
 import { fileURLToPath, URL } from "url";
-import { join } from 'node:path'; 
+import { join } from 'node:path';
 import AutoImport from "unplugin-auto-import/vite";
 import { compression, defineAlgorithm } from "vite-plugin-compression2";
 import atImport from "postcss-import";
@@ -9,17 +9,34 @@ import postcssPxtorem from 'postcss-pxtorem';
 // import { cdn } from 'vite-plugin-cdn2';
 import autoprefixer from "autoprefixer";
 const pathResolve = (dir) => fileURLToPath(new URL(dir, import.meta.url));
-// const env = loadEnv(mode, process.cwd())
 // 打包模式
 const modeEnv = process.env.NODE_ENV;
-// console.log(modeEnv)
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  // 加载 .env，用于 server.proxy 等（API 地址不注入前端代码）
+  const env = loadEnv(mode, pathResolve("."), "");
+  const apiBaseUrl = env.VITE_APP_API_BASE_URL || "http://192.168.2.100:28062";
+  const paymentApiBaseUrl = env.VITE_APP_PAYMENT_API_BASE_URL || "http://192.168.2.100:28083";
+  return {
   root: "./src/",
   base: "/",
   publicDir: "public",
+  envDir: pathResolve("."),
+  server: {
+    // API 反向代理：/api/payment 走 28083，其余 /api 走 28062
+    proxy: {
+      "/api/payment": {
+        target: paymentApiBaseUrl,
+        changeOrigin: true,
+      },
+      "/api": {
+        target: apiBaseUrl,
+        changeOrigin: true,
+      },
+    },
+  },
   resolve: {
-    alias: [{ find: "components", replacement: pathResolve("src/components/") },
+    alias: [    { find: "components", replacement: pathResolve("src/components/") },
     { find: "constants", replacement: pathResolve("src/store/constants/") },
     { find: "actions", replacement: pathResolve("src/store/actions/") },
     { find: "reducers", replacement: pathResolve("src/store/reducers/") },
@@ -70,8 +87,9 @@ export default defineConfig({
       // ext: ".gz",
     })],
   define: {
-    "process.env": {
-    }
+    "process.env": {},
+    // Vite 用 import.meta.env，此处占位避免 env.js 中 __APP_ENV__ 未定义报错
+    __APP_ENV__: undefined,
   },
   build: {
     target: "es2015",
@@ -130,4 +148,5 @@ export default defineConfig({
       },
     },
   },
+};
 });
