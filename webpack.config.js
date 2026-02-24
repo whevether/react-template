@@ -8,10 +8,15 @@ import atImport from "postcss-import";
 import { dirname, join, resolve } from 'node:path';
 import autoprefixer from "autoprefixer";
 import { fileURLToPath } from 'node:url';
+import { loadEnv } from "./tools/loadEnv.js";
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const env = loadEnv("development");
+
 const config = {
   resolve: {
     extensions: [".*", ".js", ".jsx", ".json"],
+    fullySpecified: false,
     alias: {
       components: resolve(__dirname, "src/components/"),
       constants: resolve(__dirname, "src/store/constants/"),
@@ -57,19 +62,12 @@ const config = {
     },
     port: 3005,
     historyApiFallback: true,
-    // API 反向代理：/api/payment 走 28083，其余 /api 走 28062
-    proxy: [
-      {
-        context: ["/api/payment"],
-        target: "http://192.168.2.100:28083",
-        changeOrigin: true,
-      },
-      {
-        context: ["/api"],
-        target: "http://192.168.2.100:28062",
-        changeOrigin: true,
-      },
-    ],
+    proxy: [{
+      context: ['/api'],
+      target: env.VITE_APP_PROXY_TARGET || 'http://localhost:5900',
+      changeOrigin: true
+    }],
+    // hotOnly: true,
     hot: true,
     open: true,
   },
@@ -79,13 +77,16 @@ const config = {
   },
   plugins: [
     AutoImport({
-      imports: ["react", "react-router-dom"],
+      imports: ["react","react-router-dom"],
     }),
-    new ReactRefreshWebpackPlugin({ overlay: false }),
+    new ReactRefreshWebpackPlugin({overlay: false}),
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify("development"),
       __BUILD_TYPE__: JSON.stringify("webpack"),
-      __APP_ENV__: JSON.stringify("development"), // 水印：浏览器可读，不依赖 process
+      __APP_ENV__: JSON.stringify(env.VITE_APP_ENV || "development"),
+      __VITE_AES_KEY__: JSON.stringify(env.VITE_AES_KEY),
+      __VITE_APP_API_BASE_URL__: JSON.stringify(env.VITE_APP_API_BASE_URL),
+      __VITE_APP_WATERMARK_TEXT__: JSON.stringify(env.VITE_APP_WATERMARK_TEXT),
       __DEV__: true
     }),
     new CopyWebpackPlugin({
@@ -113,6 +114,14 @@ const config = {
   module: {
     //  编译模式
     rules: [
+      {
+        test: /\.m?js$/,
+        include: /node_modules/,
+        resolve: {
+          fullySpecified: false,
+        },
+        type: 'javascript/auto',
+      },
       {
         test: /\.(jsx|js)?$/,
         exclude: /node_modules/,
@@ -226,7 +235,7 @@ const config = {
               sassOptions: {
                 webpackImporter: false,
                 indentWidth: 4,
-                includePaths: [resolve(__dirname, "src", "scss"), "node_modules"],
+                includePaths: [resolve(__dirname, "src", "scss"),"node_modules"],
               },
             }
             // loader: 'less-loader',

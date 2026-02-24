@@ -9,34 +9,16 @@ import postcssPxtorem from 'postcss-pxtorem';
 // import { cdn } from 'vite-plugin-cdn2';
 import autoprefixer from "autoprefixer";
 const pathResolve = (dir) => fileURLToPath(new URL(dir, import.meta.url));
-// 打包模式
-const modeEnv = process.env.NODE_ENV;
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  // 加载 .env，用于 server.proxy 等（API 地址不注入前端代码）
-  const env = loadEnv(mode, pathResolve("."), "");
-  const apiBaseUrl = env.VITE_APP_API_BASE_URL || "http://192.168.2.100:28062";
-  const paymentApiBaseUrl = env.VITE_APP_PAYMENT_API_BASE_URL || "http://192.168.2.100:28083";
+  const env = loadEnv(mode, process.cwd(), "");
+  const modeEnv = mode;
   return {
   root: "./src/",
   base: "/",
   publicDir: "public",
-  envDir: pathResolve("."),
-  server: {
-    // API 反向代理：/api/payment 走 28083，其余 /api 走 28062
-    proxy: {
-      "/api/payment": {
-        target: paymentApiBaseUrl,
-        changeOrigin: true,
-      },
-      "/api": {
-        target: apiBaseUrl,
-        changeOrigin: true,
-      },
-    },
-  },
   resolve: {
-    alias: [    { find: "components", replacement: pathResolve("src/components/") },
+    alias: [{ find: "components", replacement: pathResolve("src/components/") },
     { find: "constants", replacement: pathResolve("src/store/constants/") },
     { find: "actions", replacement: pathResolve("src/store/actions/") },
     { find: "reducers", replacement: pathResolve("src/store/reducers/") },
@@ -87,14 +69,24 @@ export default defineConfig(({ mode }) => {
       // ext: ".gz",
     })],
   define: {
-    "process.env": {},
-    // Vite 用 import.meta.env，此处占位避免 env.js 中 __APP_ENV__ 未定义报错
-    __APP_ENV__: undefined,
+    "process.env": {
+    }
+  },
+  server: {
+    // test 环境不使用反向代理，直接请求 VITE_APP_API_BASE_URL
+    proxy: mode === "test" ? {} : {
+      "/api": {
+        target: env.VITE_APP_PROXY_TARGET || "http://localhost:5900",
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
   },
   build: {
     target: "es2015",
     outDir: "../dist",
     cssCodeSplit: true,
+    chunkSizeWarningLimit: 900000,
     minify: "terser",
     terserOptions: {
       compress: {

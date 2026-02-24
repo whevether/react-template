@@ -10,20 +10,25 @@ import atImport from "postcss-import";
 import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import autoprefixer from "autoprefixer";
+import { loadEnv } from "./tools/loadEnv.js";
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
-// 设置 node 生产环境变量；通过 APP_ENV 区分测试/正式（构建时传入，如 APP_ENV=test npm run build）
-const APP_ENV = process.env.APP_ENV || "production";
+const env = loadEnv(APP_ENV);
+
 const GLOBALS = {
   "process.env.NODE_ENV": JSON.stringify("production"),
   __BUILD_TYPE__: JSON.stringify("webpack"),
-  __APP_ENV__: JSON.stringify(APP_ENV), // 水印：浏览器可读，不依赖 process
+  __APP_ENV__: JSON.stringify(env.VITE_APP_ENV),
+  __VITE_AES_KEY__: JSON.stringify(env.VITE_AES_KEY),
+  __VITE_APP_API_BASE_URL__: JSON.stringify(env.VITE_APP_API_BASE_URL),
+  __VITE_APP_WATERMARK_TEXT__: JSON.stringify(env.VITE_APP_WATERMARK_TEXT),
   __DEV__: false
 };
 
 const config = {
   resolve: {
-    //识别扩展文件名
     extensions: [".*", ".js", ".jsx", ".json"],
+    fullySpecified: false,
     alias: {
       components: resolve(__dirname, "src/components/"),
       constants: resolve(__dirname, "src/store/constants/"),
@@ -87,7 +92,7 @@ const config = {
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       // name: true,
-      automaticNameDelimiter: "~",
+      automaticNameDelimiter: "~", 
       cacheGroups: {
         vendor: {//node_modules内的依赖库
           chunks: "all",
@@ -118,7 +123,7 @@ const config = {
   },
   plugins: [
     AutoImport({
-      imports: ["react", "react-router-dom"],
+      imports: ["react","react-router-dom"],
     }),
     // 编译环境变量
     new webpack.DefinePlugin(GLOBALS),
@@ -164,6 +169,14 @@ const config = {
   ],
   module: {
     rules: [
+      {
+        test: /\.m?js$/,
+        include: /node_modules/,
+        resolve: {
+          fullySpecified: false,
+        },
+        type: 'javascript/auto',
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -266,8 +279,8 @@ const config = {
               url: false
               // importLoaders: 2,
               // modules: {
-              // auto: (resourcePath) => resourcePath.endsWith('.scss'),
-              // localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                // auto: (resourcePath) => resourcePath.endsWith('.scss'),
+                // localIdentName: '[path][name]__[local]--[hash:base64:5]'
               // },
             }
           }, {
@@ -296,7 +309,7 @@ const config = {
               sassOptions: {
                 // webpackImporter: false,
                 indentWidth: 4,
-                includePaths: [resolve(__dirname, "src", "scss"), "node_modules"],
+                includePaths: [resolve(__dirname, "src", "scss"),"node_modules"],
               },
             }
             // loader: 'less-loader',
