@@ -13,7 +13,7 @@ import autoprefixer from "autoprefixer";
 import { loadEnv } from "./tools/loadEnv.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const env = loadEnv(APP_ENV);
+const env = loadEnv(process.env.APP_ENV || "production");
 
 const GLOBALS = {
   "process.env.NODE_ENV": JSON.stringify("production"),
