@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import PropTypes from "prop-types";
 import {createBrowserRouter,RouterProvider } from "react-router-dom";
-import { connect } from "react-redux";
 //总布局
 import RootLayout from "./rootLayout";
 //默认布局
@@ -92,6 +91,4 @@ App.propTypes = {
   route: PropTypes.object,
   routes: PropTypes.arrayOf(Object)
 };
-export default connect(state => ({
-  state: state.state,
-}))(App);
+export default App;

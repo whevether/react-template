@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import {Outlet} from "react-router-dom";
 // 登入页布局
 
@@ -15,6 +14,4 @@ const RootLayout = () => {
 RootLayout.propTypes = {
   routes: PropTypes.object
 };
-export default connect(state => ({
-  home: state?.home
-}))(RootLayout);
+export default RootLayout;

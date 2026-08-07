@@ -19,9 +19,6 @@ const config = {
     fullySpecified: false,
     alias: {
       components: resolve(__dirname, "src/components/"),
-      constants: resolve(__dirname, "src/store/constants/"),
-      actions: resolve(__dirname, "src/store/actions/"),
-      reducers: resolve(__dirname, "src/store/reducers/"),
       router: resolve(__dirname, "src/router/"),
       style: resolve(__dirname, "src/style/"),
       store: resolve(__dirname, "src/store/"),

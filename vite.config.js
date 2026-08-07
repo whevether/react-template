@@ -19,9 +19,6 @@ export default defineConfig(({ mode }) => {
   publicDir: "public",
   resolve: {
     alias: [{ find: "components", replacement: pathResolve("src/components/") },
-    { find: "constants", replacement: pathResolve("src/store/constants/") },
-    { find: "actions", replacement: pathResolve("src/store/actions/") },
-    { find: "reducers", replacement: pathResolve("src/store/reducers/") },
     { find: "router", replacement: pathResolve("src/router/") },
     { find: "style", replacement: pathResolve("src/style/") },
     { find: "store", replacement: pathResolve("src/store/") },
@@ -53,7 +50,7 @@ export default defineConfig(({ mode }) => {
   },
   plugins: [
     reactRefresh(),
-    // cdn({modules: [{ name: 'react', relativeModule: './umd/react.production.min.js' },{ name: 'react-dom', relativeModule: './umd/react-dom.production.min.js', aliases: ['client'] }, 'react-router-dom','axios','echarts','redux','react-redux'] }),
+    // cdn({modules: [{ name: 'react', relativeModule: './umd/react.production.min.js' },{ name: 'react-dom', relativeModule: './umd/react-dom.production.min.js', aliases: ['client'] }, 'react-router-dom','axios','echarts','zustand','@tanstack/react-query'] }),
     AutoImport({
       imports: ["react", "react-router-dom"]
     }),
@@ -104,8 +101,8 @@ export default defineConfig(({ mode }) => {
       //   'react',
       //   'react-dom',
       //   'react-router-dom',
-      //   'redux',
-      //   'react-redux',
+      //   'zustand',
+      //   '@tanstack/react-query',
       //   'axios',
       //   'echarts'
       // ],

@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import Navbar from "components/navbar";
 import {isGranted,getCookie} from "utils/storage";
 import {permission} from "utils/permission";
@@ -41,6 +40,4 @@ DefaultLayout.propTypes = {
   routes: PropTypes.object,
   home: PropTypes.object
 };
-export default connect(state => ({
-  home: state?.home
-}))(DefaultLayout);
+export default DefaultLayout;

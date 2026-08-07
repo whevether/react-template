@@ -2,13 +2,16 @@ import "core-js/stable";
 // 路由句柄
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { Provider } from "react-redux";
-import {configureStore} from "store/configureStore";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "store/queryClient";
+import { request } from "utils/request";
 //GYGBZ-MB5WR-DPZWK-WTKS2-UWBVS-VXBKW
 //服务端渲染的时候样式需要放在入口这里。放别的地方环境会报错; 
 import "style/test.scss";
-const {store} = configureStore(); //第二个参数是初始状态
 import App from "router/app";
+
+request();
+
 const loading = () => {
   setTimeout(() => {
     if (document.getElementById("scene")) {
@@ -25,7 +28,7 @@ loading();
 const container = document.getElementById("app");
 const root = createRoot(container);
 root.render(
-  <Provider store={store} >
+  <QueryClientProvider client={queryClient}>
       <App />
-  </Provider>
+  </QueryClientProvider>
 );

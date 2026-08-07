@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Outlet } from "react-router-dom";
-import { connect } from "react-redux";
 // 登入页布局
 const LoginLayout = () => {
   return (
@@ -16,6 +15,4 @@ const LoginLayout = () => {
 LoginLayout.propTypes = {
   routes: PropTypes.object
 };
-export default connect(state => ({
-  state: state
-}))(LoginLayout);
+export default LoginLayout;

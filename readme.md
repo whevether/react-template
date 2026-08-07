@@ -148,7 +148,7 @@ location / {
 
 ### 2. 请求接口怎么写？
 
-项目在 Redux 中封装了基于 **axios** 的请求，在 **action** 中通过封装的 API 方法（如 `api.get`、`api.post`）调用即可，无需在业务组件里直接引入 axios。
+服务端数据用 **TanStack Query**（见 `src/store/hooks/`），通过 `utils/request` 导出的 `axiosInstance` 发请求；客户端全局状态用 **Zustand**（见 `src/store/useAppStore.js`）。
 
 ---
 
@@ -156,7 +156,7 @@ location / {
 
 - `src/router/`：路由配置与布局（`app.jsx`、`rootLayout`、`defaultLayout`、`loginLayout`）
 - `src/components/`：页面与公共组件
-- `src/store/`：Redux store、reducers、actions
+- `src/store/`：Zustand 客户端状态、TanStack Query hooks 与 QueryClient
 - `src/utils/`：工具与权限配置（如 `permission.js`）
 - `src/style/`：全局样式
 - `tools/`：构建与检查脚本（Node 版本、dist 服务等）
@@ -178,6 +178,7 @@ HTML 中按顺序引用即可。
 
 | 日期 | 内容 |
 |------|------|
+| 2026.08.07 | 移除 Redux，改用 Zustand + TanStack Query |
 | 2026.02.10 | 升级依赖；环境变量编译；全局路由跳转与配置；文档与脚本调整 |
 | 2025.07.17 | 升级依赖；统一 Webpack 与 Vite 行为；Vite 压缩配置；文档与脚本 |
 | 2025.05.08 | 全量依赖升级；示例更新；统一 ESM，强制 `type: 'module'` |
