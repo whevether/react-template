@@ -1,10 +1,8 @@
-
 import "core-js/stable";
 // 路由句柄
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
 import {configureStore} from "store/configureStore";
 //GYGBZ-MB5WR-DPZWK-WTKS2-UWBVS-VXBKW
 //服务端渲染的时候样式需要放在入口这里。放别的地方环境会报错; 

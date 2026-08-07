@@ -7,7 +7,7 @@ import {permission} from "utils/permission";
 import {Outlet,Navigate,useLocation} from "react-router-dom";
 // 登入页布局
 
-const DefaultLayout = (props) => {
+const DefaultLayout = () => {
   let path = useLocation();
   const renderProtectedRoute = ()=>{
     if(!getCookie("token")) {

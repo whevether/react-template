@@ -1,47 +1,62 @@
 {
+  "targets": "defaults",
+  "assumptions": {
+    "arrayLikeIsIterable": true,
+    "constantReexports": true,
+    "ignoreFunctionLength": true,
+    "ignoreToPrimitiveHint": true,
+    "mutableTemplateObject": true,
+    "noClassCalls": true,
+    "noDocumentAll": true,
+    "objectRestNoSymbols": true,
+    "privateFieldsAsProperties": true,
+    "pureGetters": true,
+    "setClassMethods": true,
+    "setComputedProperties": true,
+    "setPublicClassFields": true,
+    "setSpreadProperties": true,
+    "skipForOfIteratorClosing": true,
+    "superIsCallableConstructor": true
+  },
   "env": {
     "development": {
       "presets": [
-        "@babel/preset-react",
-        ["@babel/preset-env",{
-          "useBuiltIns": "entry",
-          "corejs": "3",
-          "spec": true,
-          "loose": true,
-          "targets": "defaults"
-        }]
+        ["@babel/preset-react", { "runtime": "classic" }],
+        "@babel/preset-env"
       ],
       "plugins": [
-        ["@babel/plugin-transform-class-properties", { "loose": true }],
+        ["babel-plugin-polyfill-corejs3", {
+          "method": "entry-global",
+          "version": "3.50"
+        }],
+        "@babel/plugin-transform-class-properties",
         "@babel/plugin-transform-json-strings",
         "@babel/plugin-transform-arrow-functions",
         "@babel/plugin-transform-async-generator-functions",
         "@babel/plugin-transform-async-to-generator",
         "@babel/plugin-transform-optional-chaining",
-        "@babel/plugin-transform-runtime"
+        ["@babel/plugin-transform-runtime", { "moduleName": "@babel/runtime" }]
       ]
     },
     "production": {
       "presets": [
-        "@babel/preset-react",
-        ["@babel/preset-env",{
-          "useBuiltIns": "entry",
-          "corejs": "3",
-          "spec": true,
-          "loose": true,
-          "targets": "defaults"
-        }]
+        ["@babel/preset-react", { "runtime": "classic" }],
+        "@babel/preset-env"
       ],
       "plugins": [
+        ["babel-plugin-polyfill-corejs3", {
+          "method": "entry-global",
+          "version": "3.50"
+        }],
         "@babel/plugin-transform-react-constant-elements",
         "babel-plugin-transform-react-remove-prop-types",
-        ["@babel/plugin-transform-class-properties", { "loose": true }],
+        "@babel/plugin-transform-class-properties",
         "@babel/plugin-transform-json-strings",
         "@babel/plugin-transform-arrow-functions",
         "@babel/plugin-transform-async-generator-functions",
         "@babel/plugin-transform-async-to-generator",
         "@babel/plugin-transform-optional-chaining",
-        "@babel/plugin-transform-runtime"
+        ["@babel/plugin-transform-runtime", { "moduleName": "@babel/runtime" }]
       ]
     }
   }
